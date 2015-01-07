@@ -1,3 +1,5 @@
+package countAndSay;
+
 //The count-and-say sequence is the sequence of integers beginning as follows:
 //1, 11, 21, 1211, 111221, ...
 //1 is read off as "one 1" or 11.
@@ -7,8 +9,21 @@
 //Note: The sequence of integers will be represented as a string.
 //package countAndSay;
 
+
 public class Solution {
-	 public String countAndSay(int n) {
-	        
-	    }
+	 private static String countAndSay(int n) {
+		 StringBuilder ret = new StringBuilder();
+		 int count = 0;
+		 
+		 if (n < 1) return ret.toString();
+		 
+		 while(count < n){
+			 count++;
+		 }
+		 return ret.toString();
+	 }
+	 
+	 public static void main(String[] args){
+		 System.out.print(countAndSay(23));
+	 }
 }
