@@ -12,18 +12,29 @@ package countAndSay;
 
 public class Solution {
 	 private static String countAndSay(int n) {
-		 StringBuilder ret = new StringBuilder();
-		 int count = 0;
-		 
-		 if (n < 1) return ret.toString();
-		 
-		 while(count < n){
-			 count++;
+		 String curRes = "1";
+		 if (n < 1) return "";
+		 if (n == 1) return curRes;
+		 while(n>1){
+			 StringBuilder ret = new StringBuilder();
+			 int count = 1;
+			 for(int j = 1; j<curRes.length(); j++){
+				 if (curRes.charAt(j) == curRes.charAt(j-1))	count ++;
+				 else {
+					 ret.append(count);
+					 ret.append(curRes.charAt(j-1));
+					 count = 1;
+				 }
+			 }
+			 ret.append(count);
+			 ret.append(curRes.charAt(curRes.length()-1));
+			 curRes = ret.toString();
+			 n--;
 		 }
-		 return ret.toString();
+		 return curRes;
 	 }
 	 
 	 public static void main(String[] args){
-		 System.out.print(countAndSay(23));
+		 System.out.print(countAndSay(7));
 	 }
 }
