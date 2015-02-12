@@ -2,7 +2,7 @@ package tree.binarytree;
 
 import java.util.Stack;
 
-public class BinaryTreePreOrder {
+public class PreOrder {
 	public static void biTreePreOrderByRecursion(TreeNode root){
 		if (root == null) return;
 		

@@ -1,8 +1,7 @@
-package balancedBinaryTree;
+package tree.binarytree;
 
-import tree.binarytree.TreeNode;
 
-public class Solution {
+public class BalancedTree {
 	public static boolean isBalanced(TreeNode root){
 		return helper(root) >= 0;
 	}
