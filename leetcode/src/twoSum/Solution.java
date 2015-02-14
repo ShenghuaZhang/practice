@@ -3,6 +3,9 @@ package twoSum;
 import java.util.HashMap;
 import java.util.Map;
 
+//import tree.binarytree.InOrder;
+//import tree.binarytree.TreeNode;
+
 public class Solution {
 	public static int[] twoSum(int[] numbers, int target){
 		Map<Integer, Integer>map = new HashMap<>();
@@ -11,9 +14,11 @@ public class Solution {
 				return new int[] {map.get(target-numbers[i])+1, i+1};
 			map.put(numbers[i], i);
 		}
+//		just for testing static:
+//		TreeNode root = new TreeNode();
+//		InOrder.inOrder(root);
 		throw new IllegalArgumentException("No two sum solution.");
 	}
-	
 	public static void main(String[] args){
 		int[] numbers = {12, 23, 23, 1, 2, 3, 4, 5}, result;
 		int target = 13;
