@@ -74,4 +74,29 @@ public class PostOrder {
     	}
 		return list;
     }
+    
+    public List<Integer> postorderIII(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current= root;
+        if (current == null)    return list;
+
+        while (current != null || !stack.isEmpty()){
+            while(current != null){
+                stack.add(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            if (current.right != null){
+                stack.add(new TreeNode(current.val));
+                current = current.right;
+            }
+            else {
+                list.add(current.val);
+                current = null;
+            }
+        }
+        
+        return list;
+    }
 }
