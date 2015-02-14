@@ -23,9 +23,10 @@ public class BST {
 	public static TreeNode sortedListToBST(ListNode head){
 		if (head == null) return null;
 		int length = 0;
-		while (head!= null){
+		ListNode current = head;
+		while (current!= null){
 			length ++;
-			head = head.next;
+			current = current.next;
 		}
 		
 		ArrayList<ListNode> list = new ArrayList<>();
@@ -33,6 +34,13 @@ public class BST {
 		return sortedListToBSThelper(list, 0, length-1);
 	}
 	private static TreeNode sortedListToBSThelper(ArrayList<ListNode> list, int begin, int end){
-		return new TreeNode(list.get(0).val);
+		if (begin > end) return null;
+		int middle  = (begin+end)/2;
+		TreeNode left = sortedListToBSThelper(list, 1, middle-1);
+		TreeNode root = new TreeNode(list.get(0).val);
+		root.left = left;
+		list.set(0, list.get(0).next);
+		root.right = sortedListToBSThelper(list, middle+1, end);
+		return root;
 	}
 }
