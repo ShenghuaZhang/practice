@@ -1,9 +1,10 @@
-package tree.binarytree;
+package tree.binarysearchtree;
 
 import java.util.ArrayList;
+import tree.binarytree.*;
 import list.ListNode;
 
-public class BST {
+public class sortedStructureToBST {
 	public static TreeNode sortedArrayToBST(int[] Num){
 		int length = Num.length;
 		if (length == 0 || Num == null) return null;
@@ -14,7 +15,6 @@ public class BST {
 		if (begin > end) return null;
 		
 		TreeNode root = new TreeNode(Num[(begin + end)/2]);
-		InOrder.inOrder(root);
 		root.left = sortedArrayToBSThelper(Num, begin, (begin+end)/2-1);
 		root.right = sortedArrayToBSThelper(Num, (begin+end)/2+1, end);
 		return root;
@@ -43,4 +43,14 @@ public class BST {
 		root.right = sortedListToBSThelper(list, middle+1, end);
 		return root;
 	}
+	
+	public static void main(String[] args){
+		ListNode a = new ListNode();
+		ListNode.initial(a);
+		TreeNode result = sortedListToBST(a);
+		
+		System.out.print("inorder:   " + InOrder.inOrder(result));
+		System.out.print("\npreorder:  " + PreOrder.preOrder(result));
+		System.out.print("\npostorder: " + PostOrder.postOrder(result));
+	 }
 }

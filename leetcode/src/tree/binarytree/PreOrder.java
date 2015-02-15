@@ -17,7 +17,7 @@ public class PreOrder {
 		helper(list, root.right);
 	}
 	
-	public List<Integer> preOrder(TreeNode root){
+	public static List<Integer> preOrder(TreeNode root){
 		List<Integer> list = new ArrayList<>();
 		Stack<TreeNode> stack = new Stack<>();
 		TreeNode current = root;

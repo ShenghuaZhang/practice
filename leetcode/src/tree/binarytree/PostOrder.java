@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class PostOrder {
-	public List<Integer> postorder(TreeNode root){
+	public static List<Integer> postOrder(TreeNode root){
 		List<Integer> list = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         if (root == null)    return list;
@@ -31,7 +31,7 @@ public class PostOrder {
 	}
 	
 	
-	public List<Integer> postorderRecursion(TreeNode root) {
+	public List<Integer> postOrderRecursion(TreeNode root) {
         List<Integer> list = new ArrayList<>();
 		helper(list, root);
 		return list;
@@ -44,11 +44,11 @@ public class PostOrder {
     }
     
     
-    public List<Integer> postorderRecursionII(TreeNode root) {
+    public List<Integer> postOrderRecursionII(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         if (root != null)  {
-        	list.addAll(postorderRecursionII(root.left));
-        	list.addAll(postorderRecursionII(root.right));
+        	list.addAll(postOrderRecursionII(root.left));
+        	list.addAll(postOrderRecursionII(root.right));
             list.add(root.val);
         }
         return list;
