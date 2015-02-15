@@ -36,7 +36,7 @@ public class BST {
 	private static TreeNode sortedListToBSThelper(ArrayList<ListNode> list, int begin, int end){
 		if (begin > end) return null;
 		int middle  = (begin+end)/2;
-		TreeNode left = sortedListToBSThelper(list, l, middle-1);
+		TreeNode left = sortedListToBSThelper(list, begin, middle-1);
 		TreeNode root = new TreeNode(list.get(0).val);
 		root.left = left;
 		list.set(0, list.get(0).next);
