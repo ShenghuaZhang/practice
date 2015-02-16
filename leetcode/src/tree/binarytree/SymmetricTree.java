@@ -1,6 +1,7 @@
 package tree.binarytree;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class SymmetricTree {
 	public boolean isSymmetricByRecursive(TreeNode root){
@@ -14,39 +15,28 @@ public class SymmetricTree {
 		return helper(left.left, right.right) && helper(right.left, left.right);
 	}
 	
-	public boolean isSymmetric(TreeNode root) {  
-	    if(root == null)  
-	        return true;  
-	    if(root.left == null && root.right == null)  
-	        return true;  
-	    if(root.left == null || root.right == null)  
-	        return false;  
-	    LinkedList<TreeNode> q1 = new LinkedList<TreeNode>();  
-	    LinkedList<TreeNode> q2 = new LinkedList<TreeNode>();  
-	    q1.add(root.left);  
-	    q2.add(root.right);  
-	    while(!q1.isEmpty() && !q2.isEmpty())  
-	    {  
-	        TreeNode n1 = q1.poll();  
-	        TreeNode n2 = q2.poll();  
-	          
-	        if(n1.val != n2.val)  
-	            return false;  
-	        if(n1.left == null && n2.right != null || n1.left != null && n2.right == null)  
-	            return false;  
-	        if(n1.right == null && n2.left != null || n1.right != null && n2.left == null)  
-	            return false;  
-	        if(n1.left != null && n2.right != null)  
-	        {  
-	            q1.add(n1.left);  
-	            q2.add(n2.right);  
-	        }  
-	        if(n1.right != null && n2.left != null)  
-	        {  
-	            q1.add(n1.right);  
-	            q2.add(n2.left);  
-	        }              
-	    }  
-	    return true;  
+	public boolean isSymmetric(TreeNode root){
+		if(root == null)	return true;
+	    if(root.left == null && root.right == null)	return true;
+	    if(root.left == null || root.right == null)	return false;
+	    
+	    TreeNode left = root.left, right = root.right;
+	    Queue<TreeNode> ql = new LinkedList<>();
+	    Queue<TreeNode> qr = new LinkedList<>();
+	    
+	    while((left!=null && right != null) || (!ql.isEmpty() && !qr.isEmpty())){
+	    	while(left!=null && right!=null){
+	    		if (left.val != right.val)	return false;
+	    		ql.add(left);
+	    		qr.add(right);
+	    		left = left.left;
+	    		right = right.right;
+	    	}
+	    	if (left == null && right == null){
+	    		left = ql.poll().right;
+	    		right = qr.poll().left;
+	    	}else return false;
+	    }
+	    return (left == null)&&(right == null);
 	}
 }
