@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import tree.binarytree.*;
 import list.ListNode;
 
-public class sortedStructureToBST {
+public class SortedStructureToBST {
 	public static TreeNode sortedArrayToBST(int[] Num){
 		int length = Num.length;
 		if (length == 0 || Num == null) return null;
