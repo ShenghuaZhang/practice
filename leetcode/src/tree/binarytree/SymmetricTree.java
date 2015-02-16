@@ -1,7 +1,6 @@
 package tree.binarytree;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
 public class SymmetricTree {
 	public boolean isSymmetricByRecursive(TreeNode root){
@@ -21,20 +20,20 @@ public class SymmetricTree {
 	    if(root.left == null || root.right == null)	return false;
 	    
 	    TreeNode left = root.left, right = root.right;
-	    Queue<TreeNode> ql = new LinkedList<>();
-	    Queue<TreeNode> qr = new LinkedList<>();
+	    Stack<TreeNode> ql = new Stack<>();
+	    Stack<TreeNode> qr = new Stack<>();
 	    
 	    while((left!=null && right != null) || (!ql.isEmpty() && !qr.isEmpty())){
 	    	while(left!=null && right!=null){
 	    		if (left.val != right.val)	return false;
-	    		ql.add(left);
-	    		qr.add(right);
+	    		ql.push(left);
+	    		qr.push(right);
 	    		left = left.left;
 	    		right = right.right;
 	    	}
 	    	if (left == null && right == null){
-	    		left = ql.poll().right;
-	    		right = qr.poll().left;
+	    		left = ql.pop().right;
+	    		right = qr.pop().left;
 	    	}else return false;
 	    }
 	    return (left == null)&&(right == null);

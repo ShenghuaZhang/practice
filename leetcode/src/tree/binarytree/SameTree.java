@@ -18,8 +18,8 @@ public class SameTree {
 		while((p!=null &&q!=null)||(!sp.isEmpty()&&!sq.isEmpty())){
 			while (p!= null && q!=null){
 				if (p.val != q.val) return false;
-				sp.add(p);
-				sq.add(q);
+				sp.push(p);
+				sq.push(q);
 				p = p.left;
 				q = q.left;
 			}
