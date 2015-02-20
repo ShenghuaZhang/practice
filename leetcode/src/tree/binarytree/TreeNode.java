@@ -68,6 +68,7 @@ public class TreeNode {
 				queue.add(current.left);
 			}
 			num++;
+			if (num >= ss.length)	break;
 			if(ss[num].equals("#"))	current.right = null;
 			else {
 				current.right = new TreeNode(Integer.parseInt(ss[num]));
