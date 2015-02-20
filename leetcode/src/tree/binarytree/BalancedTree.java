@@ -15,12 +15,6 @@ public class BalancedTree {
 	}
 	
 	public static void main(String[] args){
-		TreeNode root = new TreeNode(1, null, null), 
-				left = new TreeNode(2, null, null), 
-				right = new TreeNode(3, null, null);
-		
-		root.left = left;
-		root.left.left = right;
-		System.out.print(isBalanced(root));
+		System.out.print(isBalanced(TreeNode.testRoot()));
 	 }
 }

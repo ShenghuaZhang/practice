@@ -45,9 +45,7 @@ public class SortedStructureToBST {
 	}
 	
 	public static void main(String[] args){
-		ListNode a = new ListNode();
-		ListNode.initial(a);
-		TreeNode result = sortedListToBST(a.next);
+		TreeNode result = sortedListToBST(ListNode.initial().next);
 		
 		System.out.print("inorder:   " + InOrder.inOrder(result));
 		System.out.print("\npreorder:  " + PreOrder.preOrder(result));

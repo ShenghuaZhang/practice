@@ -6,15 +6,14 @@ import java.util.Stack;
 
 public class PreOrder {
 	public List<Integer> preOrderRecursion(TreeNode root){
-		List<Integer> list = new ArrayList<>();
-		helper(list, root);
-		return list;
+		return helper(new ArrayList<Integer>(), root);
 	}
-	private void helper(List<Integer> list, TreeNode root){
-		if (root == null) return;
+	private List<Integer> helper(List<Integer> list, TreeNode root){
+		if (root == null) return list;
 		list.add(root.val);
 		helper(list, root.left);
 		helper(list, root.right);
+		return list;
 	}
 	
 	public static List<Integer> preOrder(TreeNode root){
