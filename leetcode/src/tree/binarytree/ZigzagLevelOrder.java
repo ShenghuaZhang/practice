@@ -8,7 +8,6 @@ public class ZigzagLevelOrder {
 	public static List<List<Integer>> zigzagLevelOrder(TreeNode root){
 		List<List<Integer>> list = new ArrayList<>();
 		if (root == null)	return list;
-		
 		int level = 1;
 		Stack<TreeNode> stack = new Stack<>();
 		stack.add(root);
@@ -36,5 +35,6 @@ public class ZigzagLevelOrder {
 	
 	public static void main(String[] args){
 		System.out.print(zigzagLevelOrder(TreeNode.testRoot()));
+//		System.out.print(LevelOrder.levelOrder(TreeNode.LeetcodeInitialize("{1,2,3,#,#,4,#,#,5}")));
 	}
 }

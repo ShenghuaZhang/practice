@@ -1,5 +1,8 @@
 package tree.binarytree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TreeNode {
 	public int val;
 	public TreeNode left;
@@ -13,7 +16,7 @@ public class TreeNode {
 	public TreeNode(int x){
 		val = x;
 	}
-	
+
 	public TreeNode(int data, TreeNode leftNode, TreeNode rightNode){
 		this.val = data;
 		this.left = leftNode;
@@ -47,4 +50,32 @@ public class TreeNode {
 		root.right.right.right = new TreeNode(10);
 	}
 	
+	
+	public static TreeNode LeetcodeInitialize(String s){
+		s = s.substring(1, s.length()-1);
+		String[] ss = s.split(",");
+		if (ss[0].equals("#"))	return null;
+		TreeNode root = new TreeNode(Integer.parseInt(ss[0]));
+		int num = 1;
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.add(root);
+		while(!queue.isEmpty() && num<ss.length){
+			TreeNode current = queue.poll();
+
+			if(ss[num].equals("#"))	current.left = null;
+			else {
+				current.left = new TreeNode(Integer.parseInt(ss[num]));
+				queue.add(current.left);
+			}
+			num++;
+			if(ss[num].equals("#"))	current.right = null;
+			else {
+				current.right = new TreeNode(Integer.parseInt(ss[num]));
+				queue.add(current.right);
+			}
+			num++;
+		}
+		
+		return root;
+	}
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class LevelOrder {
-	public List<List<Integer>> levelOrder(TreeNode root) {
+	public static List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> list = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
         TreeNode current = root;
@@ -29,13 +29,13 @@ public class LevelOrder {
         return list;
     }
 	
-	public List<List<Integer>> levelOrderDFS(TreeNode root) {
+	public static List<List<Integer>> levelOrderDFS(TreeNode root) {
 		List<List<Integer>> ret = new ArrayList<>();
 		if  (root == null) return ret;
 		DFShelper (ret, root, 0);
 		return ret;
 	}
-	public void DFShelper(List<List<Integer>> ret, TreeNode root, int level){
+	public static void DFShelper(List<List<Integer>> ret, TreeNode root, int level){
 		if (root == null)	return;
 		else {
 			if (level >= ret.size()){
@@ -48,7 +48,7 @@ public class LevelOrder {
 		}
 	}
 	
-	public List<List<Integer>> levelOrderBottom(TreeNode root) {
+	public static List<List<Integer>> levelOrderBottom(TreeNode root) {
 		List<List<Integer>> list = new ArrayList<>();
 		Queue<TreeNode> queue = new LinkedList<>();
 		TreeNode current = root;
