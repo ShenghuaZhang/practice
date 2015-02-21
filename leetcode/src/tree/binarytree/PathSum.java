@@ -38,7 +38,8 @@ public class PathSum {
 	}
 	
 	public static void main(String[] args){
-		TreeNode root = TreeNode.testRoot();
+		TreeNode root = new TreeNode();
+		root.testRoot();
 		System.out.print(hasPathSum(root, 8)?pathSum(root, 8):"Do not has this path.");
 	}
 }

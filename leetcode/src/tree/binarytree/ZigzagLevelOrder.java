@@ -34,7 +34,9 @@ public class ZigzagLevelOrder {
 	}
 	
 	public static void main(String[] args){
-		System.out.print(zigzagLevelOrder(TreeNode.testRoot()));
+		TreeNode root = new TreeNode();
+		root.testRoot();
+		System.out.print(zigzagLevelOrder(root));
 //		System.out.print(LevelOrder.levelOrder(TreeNode.LeetcodeInitialize("{1,2,3,#,#,4,#,#,5}")));
 	}
 }
