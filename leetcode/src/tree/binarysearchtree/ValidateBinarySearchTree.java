@@ -41,15 +41,12 @@ public class ValidateBinarySearchTree {
 		list.set(0, root.val);
 		return left && helperRecursive(list, root.right);
 	}
-
-//	This is not a good solution because of the answer have a bug when the minimum in the tree is -2147483647 and
-//	max is 2147483647
-//	public boolean isValidBSTbyTrick(TreeNode root){
-//		return helperTrick(root, Integer.MAX_VALUE, Integer.MIN_VALUE);
-//	}
-//	private boolean helperTrick(TreeNode root, int max, int min){
-//		if(root == null) return true;
-//		if (root.val <= min || root.val >= max) return false;
-//		return helperTrick(root.left, root.val, min) && helperTrick(root.right, max, root.val);
-//	}
+	
+	public boolean isValidBSTClean(TreeNode root) {
+        return helper(root, null, null);
+    }
+    private boolean helper(TreeNode root, Integer low, Integer high){
+        if (root == null)   return true;
+        return (low==null || root.val>low) && (high==null || root.val<high) && helper(root.left, low, root.val) && helper(root.right, root.val, high);
+    }
 }
