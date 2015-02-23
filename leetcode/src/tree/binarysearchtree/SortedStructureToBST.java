@@ -50,5 +50,6 @@ public class SortedStructureToBST {
 		System.out.print("inorder:   " + InOrder.inOrder(result));
 		System.out.print("\npreorder:  " + PreOrder.preOrder(result));
 		System.out.print("\npostorder: " + PostOrder.postOrder(result));
+		System.out.print("\nlevelorder: " + LevelOrder.levelOrder(result));
 	 }
 }

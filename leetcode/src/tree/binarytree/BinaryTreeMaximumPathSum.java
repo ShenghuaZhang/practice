@@ -5,7 +5,6 @@ import java.util.List;
 
 public class BinaryTreeMaximumPathSum {
 	public static int maxPathSum(TreeNode root){
-		if(root == null)	return 0;
 		List<Integer> list = new ArrayList<>();
 		list.add(Integer.MIN_VALUE);
 		helper(root, list);
