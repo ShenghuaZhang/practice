@@ -15,8 +15,6 @@ public class BalancedTree {
 	}
 	
 	public static void main(String[] args){
-		TreeNode root = new TreeNode();
-		root.testRoot();
-		System.out.print(isBalanced(root));
+		System.out.print(isBalanced(TreeNode.testRoot()));
 	 }
 }

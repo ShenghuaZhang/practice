@@ -23,7 +23,7 @@ public class TreeNode {
 		this.right = rightNode;
 	}
 	
-	public void testRoot(){
+	public void initialize(){
 		val = 5;
 		left = new TreeNode(2);
 		right = new TreeNode(8);
@@ -36,19 +36,20 @@ public class TreeNode {
 		right.right.right = new TreeNode(10);
 	}
 	
-	public void initialize(){
-		val = 15;
-		left = new TreeNode(22);
-		right = new TreeNode(28);
-		left.left = new TreeNode(11);
-		left.right = new TreeNode(3);
-		left.right.right = new TreeNode(4);
-		right.left = new TreeNode(-6);
-		right.left.right = new TreeNode(0);
-		right.right = new TreeNode(9);
-		right.right.right = new TreeNode(10);
+	public static TreeNode testRoot(){
+		TreeNode root = new TreeNode();
+		root.val = 5;
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(8);
+		root.left.left = new TreeNode(1);
+		root.left.right = new TreeNode(3);
+		root.left.right.right = new TreeNode(4);
+		root.right.left = new TreeNode(6);
+		root.right.left.right = new TreeNode(7);
+		root.right.right = new TreeNode(9);
+		root.right.right.right = new TreeNode(10);
+		return root;
 	}
-	
 	
 	public static TreeNode LeetcodeInitialize(String s){
 		s = s.substring(1, s.length()-1);
