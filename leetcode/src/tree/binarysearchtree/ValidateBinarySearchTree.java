@@ -10,25 +10,24 @@ public class ValidateBinarySearchTree {
 	/************************** 0 **************************/
 	// Using InOrder Traversal, but we do not use recursive here but using stack instead.
 	public static boolean isValidBST(TreeNode root){
-		if (root == null)	return true;
-		Stack<TreeNode> stack = new Stack<>();
-		int cnt = 0, max = 0;
-		while(root!= null || !stack.isEmpty()){
-			while(root!=null){
-				stack.push(root);
-				root = root.left;
-			}
-			root = stack.pop();
-			if(cnt == 0){
-				cnt ++;
-				max = root.val;
-			}else {
-				if(max >= root.val)	return false;
-				max = root.val;
-			}
-			root = root.right;
-		}
-		return true;
+		if (root == null)   return true;
+        Integer previous = null;
+        TreeNode current = root;
+        Stack<TreeNode> stack = new Stack<>();
+        while(current != null || !stack.isEmpty()){
+            while (current!=null){
+                stack.add(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            
+            if (previous == null || previous < current.val)
+            	previous = current.val;
+            else return false;
+            
+            current = current.right;
+        }
+        return true;
 	}
 	/************************** 1 **************************/
 	// Using the requirement we define a low and high value for each node, if not satisfy return false.
