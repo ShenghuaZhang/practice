@@ -35,13 +35,16 @@ public class PopulatingNextRightPointersInEachNode {
 		while(lastHead!=null){
 			TreeLinkNode lastCur = lastHead;
 			while(lastCur != null){
-				if (curHead == null){
-					curHead = lastCur.left;
-					pre = curHead;
-				}else {
-					pre.next = lastCur.left;
-					pre = pre.next;
+				if (lastCur.left != null){
+					if (curHead == null){
+						curHead = lastCur.left;
+						pre = curHead;
+					}else {
+						pre.next = lastCur.left;
+						pre = pre.next;
+					}
 				}
+				
 				if (lastCur.right != null){
 					if (curHead == null){
 						curHead = lastCur.right;
