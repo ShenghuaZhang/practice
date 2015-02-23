@@ -16,7 +16,7 @@ public class ValidateBinarySearchTree {
         Stack<TreeNode> stack = new Stack<>();
         while(current != null || !stack.isEmpty()){
             while (current!=null){
-                stack.add(current);
+                stack.push(current);
                 current = current.left;
             }
             current = stack.pop();
