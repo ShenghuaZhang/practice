@@ -3,7 +3,7 @@ package tree.binarytree;
 
 public class BalancedTree {
 	public static boolean isBalanced(TreeNode root){
-		return helper(root) >= 0;
+		return helper(root) != -1;
 	}
 	private static int helper(TreeNode root){
 		if (root == null) return 0;
