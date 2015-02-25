@@ -1,6 +1,6 @@
-package string;
+package test;
 
-public class Test {
+public class TestStringIsANormalType {
 	public static void main(String[] args){
 		String s = new String("Hello ");
 		System.out.print("String: " + s);
