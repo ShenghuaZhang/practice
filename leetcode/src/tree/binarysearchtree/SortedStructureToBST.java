@@ -1,8 +1,13 @@
 package tree.binarysearchtree;
 
 import java.util.ArrayList;
-import tree.binarytree.*;
+
 import list.ListNode;
+import tree.binarytree.InOrder;
+import tree.binarytree.LevelOrder;
+import tree.binarytree.PostOrder;
+import tree.binarytree.PreOrder;
+import tree.binarytree.TreeNode;
 
 public class SortedStructureToBST {
 	public static TreeNode sortedArrayToBST(int[] Num){
