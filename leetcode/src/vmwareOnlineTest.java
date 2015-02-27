@@ -70,5 +70,47 @@ public class vmwareOnlineTest {
         }
 		return date;
 
+	}
+    
+    public static int MEM[] = new int[100100];   // Can support up to 10000 value
+    
+     
+    public static int is_score_possible(int n, int[] coins) {
+        if(n < 0)	return 0;
+        else if (n == 0)	return 1;
+        else if(MEM[n] != 0)	return 1;
+        else {
+            for(int i = 0; i < coins.length; i++){
+            	MEM[n] = Math.max(MEM[n], is_score_possible(n-coins[i], coins));
+            	if (MEM[n] != 0)	return 1;
+            }
+            return 0;
+        }
     }
+  
+	public static int max_loot(int[] gold,int[] silver, int weight){  
+		if (weight < 0)	return 0;
+	    if (MEM[weight] >= 0)	return MEM[weight];
+	    int max = 0;
+	    
+	    for(int i=0; i<gold.length; i++)
+	    	max=Math.max(max,gold[i]*10 + max_loot(gold, silver, weight-gold[i]));
+	    for(int i=0; i<silver.length; i++)
+	    	max=Math.max(max,silver[i] + max_loot(gold, silver, weight-silver[i]));
+	    
+	    MEM[weight]=max;
+	    return max;  
+	}  
+	
+	public static void main(String[] args){
+		for (int i=0; i<10001; i++)   MEM[i] = -1;
+		int[] gold = new int[]{10000};
+		int[] silver = new int[]{10000};
+		System.out.print(max_loot(gold, silver, 10000));
+		
+//		int coins[] = {2, 4, 10};
+//      int count = is_score_possible(13, coins);
+//      System.out.println(count);
+	}
+
 }
