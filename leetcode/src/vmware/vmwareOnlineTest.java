@@ -1,6 +1,7 @@
 package vmware;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import list.ListNode;
@@ -74,8 +75,7 @@ public class vmwareOnlineTest {
 
 	}
     
-    public static int MEM[] = new int[100100];   // Can support up to 10000 value
-    
+    public static int MEM[] = new int[10001];   // Can support up to 10000 value
      
     public static int is_score_possible(int n, int[] coins) {
         if(n < 0)	return 0;
@@ -90,15 +90,24 @@ public class vmwareOnlineTest {
         }
     }
   
-	public static int max_loot(int[] gold,int[] silver, int weight){  
-		if (weight < 0)	return 0;
+    public static int max_loot(LinkedList<Integer> list, int gLength, int weight){  
+		if (weight == 0)	return 0;
+		else if (weight < 0)	return -1;
 	    if (MEM[weight] >= 0)	return MEM[weight];
 	    int max = 0;
 	    
-	    for(int i=0; i<gold.length; i++)
-	    	max=Math.max(max,gold[i]*10 + max_loot(gold, silver, weight-gold[i]));
-	    for(int i=0; i<silver.length; i++)
-	    	max=Math.max(max,silver[i] + max_loot(gold, silver, weight-silver[i]));
+	    for(int i=0; i<list.size(); i++){
+	    	int j=list.poll();
+	    	if (i<=gLength-1){
+		    	int temp = max_loot(list, gLength-1, weight-j);
+		    	if (temp >= 0)	max=Math.max(max, j*10+temp);
+	    	}else{
+		    	int temp = max_loot(list, gLength, weight-j);
+		    	if (temp >= 0)	max=Math.max(max, j+temp);
+	    	}
+	    	list.add(j);
+	    }
+	    
 	    
 	    MEM[weight]=max;
 	    return max;  
@@ -106,13 +115,13 @@ public class vmwareOnlineTest {
 	
 	public static void main(String[] args){
 		for (int i=0; i<10001; i++)   MEM[i] = -1;
-		int[] gold = new int[]{10000};
-		int[] silver = new int[]{10000};
-		System.out.print(max_loot(gold, silver, 10000));
+		int[] gold = new int[]{9000, 100, 90, 1};
+		int[] silver = new int[]{1000, 900, 2, 45};
 		
-//		int coins[] = {2, 4, 10};
-//      int count = is_score_possible(13, coins);
-//      System.out.println(count);
+		LinkedList<Integer> list = new LinkedList<>();
+		for(int i=0; i<gold.length; i++)	list.add(gold[i]);
+		for(int j=0; j<silver.length; j++)	list.add(silver[j]);
+		System.out.print(max_loot(list, gold.length, 10000));
 	}
 
 }
