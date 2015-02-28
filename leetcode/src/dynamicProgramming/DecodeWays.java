@@ -1,4 +1,4 @@
-package string;
+package dynamicProgramming;
 
 public class DecodeWays {
 	public static int numDecodings(String s){
