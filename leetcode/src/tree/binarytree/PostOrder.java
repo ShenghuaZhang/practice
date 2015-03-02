@@ -29,30 +29,6 @@ public class PostOrder {
         
         return list;
 	}
-	
-	
-	public List<Integer> postOrderRecursion(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-		helper(list, root);
-		return list;
-    }
-    private void helper(List<Integer> list, TreeNode root){
-        if (root == null)   return;
-        helper(list, root.left);
-        helper(list, root.right);
-        list.add(root.val);
-    }
-    
-    
-    public List<Integer> postOrderRecursionII(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        if (root != null)  {
-        	list.addAll(postOrderRecursionII(root.left));
-        	list.addAll(postOrderRecursionII(root.right));
-            list.add(root.val);
-        }
-        return list;
-    }
     
     public List<Integer> postorderII(TreeNode root){
     	List<Integer> list = new ArrayList<>();
@@ -75,6 +51,7 @@ public class PostOrder {
 		return list;
     }
     
+    // best logical one
     public List<Integer> postorderIII(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
@@ -97,6 +74,56 @@ public class PostOrder {
             }
         }
         
+        return list;
+    }
+    
+    //2015.3.1
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if(root == null)    return list;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        
+        while(!stack.isEmpty() || current!=null){
+            while(current!=null){
+                stack.push(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            while(current.right == null){
+                list.add(current.val);
+                if(!stack.isEmpty())    current = stack.pop();
+                else return list;
+            }
+            
+            stack.push(new TreeNode(current.val));
+            current = current.right;
+        }
+        return list;
+    }
+    
+	
+	// recursive
+	public List<Integer> postOrderRecursion(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+		helper(list, root);
+		return list;
+    }
+    private void helper(List<Integer> list, TreeNode root){
+        if (root == null)   return;
+        helper(list, root.left);
+        helper(list, root.right);
+        list.add(root.val);
+    }
+    
+    
+    public List<Integer> postOrderRecursionII(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if (root != null)  {
+        	list.addAll(postOrderRecursionII(root.left));
+        	list.addAll(postOrderRecursionII(root.right));
+            list.add(root.val);
+        }
         return list;
     }
 }
