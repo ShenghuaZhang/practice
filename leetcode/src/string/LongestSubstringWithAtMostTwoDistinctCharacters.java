@@ -33,6 +33,6 @@ public class LongestSubstringWithAtMostTwoDistinctCharacters {
 	}
 	
 	public static void main(String[] args){
-		System.out.print(lengthOfLongestSubstingTwoDistinct("aaabbcccc"));
+		System.out.print(lengthOfLongestSubstingTwoDistinct("aabbacccaa"));
 	}
 }
