@@ -10,28 +10,29 @@ public class LongestSubstringWithAtMostTwoDistinctCharacters {
 				maxLen = Math.max(k-i, maxLen);
 				i = j+1;
 			}
-			j = k-i;
+			j = k-1;
 		}
 		return Math.max(s.length()-i, maxLen);
 	}
-	// this one much better
+	
+	// this one much easier to understand
 	public static int lengthOfLongestSubstingTwoDistinctII(String s){
 		int[] count = new int[256];
-		int i=0, numDistinct = 0, maxLen = 0;
-		for(int j=0; j<s.length(); j++){
-			if(count[s.charAt(j)] == 0) numDistinct++;
-			count[s.charAt(j)]++;
+		int start=0, numDistinct = 0, maxLen = 0;
+		for(int cur=0; cur<s.length(); cur++){
+			if(count[s.charAt(cur)] == 0) numDistinct++;
+			count[s.charAt(cur)]++;
 			while(numDistinct > 2){
-				count[s.charAt(i)] --;
-				if(count[s.charAt(i)] == 0) numDistinct--;
-				i++;
+				count[s.charAt(start)] --;
+				if(count[s.charAt(start)] == 0) numDistinct--;
+				start++;
 			}
-			maxLen = Math.max(j-i+1,  maxLen);
+			maxLen = Math.max(cur-start+1,  maxLen);
 		}
 		return maxLen;
 	}
 	
 	public static void main(String[] args){
-		System.out.print(lengthOfLongestSubstingTwoDistinctII("abaac"));
+		System.out.print(lengthOfLongestSubstingTwoDistinct("aaabbcccc"));
 	}
 }
