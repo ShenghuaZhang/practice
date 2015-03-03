@@ -1,7 +1,6 @@
 package vmware;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 import list.ListNode;
@@ -89,39 +88,8 @@ public class vmwareOnlineTest {
             return 0;
         }
     }
-  
-    public static int max_loot(LinkedList<Integer> list, int gLength, int weight){  
-		if (weight == 0)	return 0;
-		else if (weight < 0)	return -1;
-	    if (MEM[weight] >= 0)	return MEM[weight];
-	    int max = 0;
-	    
-	    for(int i=0; i<list.size(); i++){
-	    	int j=list.poll();
-	    	if (i<=gLength-1){
-		    	int temp = max_loot(list, gLength-1, weight-j);
-		    	if (temp >= 0)	max=Math.max(max, j*10+temp);
-	    	}else{
-		    	int temp = max_loot(list, gLength, weight-j);
-		    	if (temp >= 0)	max=Math.max(max, j+temp);
-	    	}
-	    	list.add(j);
-	    }
-	    
-	    
-	    MEM[weight]=max;
-	    return max;  
-	}  
 	
 	public static void main(String[] args){
-		for (int i=0; i<10001; i++)   MEM[i] = -1;
-		int[] gold = new int[]{9000, 100, 90, 1};
-		int[] silver = new int[]{1000, 900, 2, 45};
-		
-		LinkedList<Integer> list = new LinkedList<>();
-		for(int i=0; i<gold.length; i++)	list.add(gold[i]);
-		for(int j=0; j<silver.length; j++)	list.add(silver[j]);
-		System.out.print(max_loot(list, gold.length, 10000));
 	}
 
 }

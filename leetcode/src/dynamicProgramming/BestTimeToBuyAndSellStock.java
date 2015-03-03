@@ -22,10 +22,8 @@ public class BestTimeToBuyAndSellStock {
 		return max;
 	}
 	
-	public int maxProfitIIII(int k, int[] prices){
+	public int maxProfitIV(int k, int[] prices){
 		if(prices==null || prices.length==0) return 0;
-		int length = prices.length;
-		
 		return -1;
 	}
 }
