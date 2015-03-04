@@ -1,7 +1,7 @@
 package string;
 
 public class LongestSubstringWithAtMostTwoDistinctCharacters {
-	// totally did not understand algorithm
+	// totally did not understand this algorithm
 	public static int lengthOfLongestSubstingTwoDistinct(String s){
 		int i=0, j=-1, maxLen=0;
 		for(int k=1; k<s.length(); k++){
