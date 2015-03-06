@@ -8,7 +8,7 @@ public class FindMinimumInRotatedSortedArray {
 			else if(num[left]>num[middle])	right=middle;
 			else	left=middle+1;
 		}
-		return -1;
+		throw new IllegalArgumentException("Not find this min.");
 	}
 	
 	//with duplicates
