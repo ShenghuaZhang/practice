@@ -7,6 +7,11 @@ import java.util.Stack;
 public class ValidParentheses {
 	public static boolean isValid(String s){
 		final Map<Character, Character> map = new HashMap<Character, Character>(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -1322714841813554287L;
+
 			{
 				put('(', ')');
 				put('{', '}');
