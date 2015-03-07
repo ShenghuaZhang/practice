@@ -47,7 +47,7 @@ public class BST implements Dictionary {
      * @throws <code>DuplicateException</code> if the item is already in the
      * dictionary
      **/
-    public void insert(Comparable item) throws DuplicateException {
+    public void insert(Comparable item) {
 	// If there is no root, create one, otherwise insert into the tree
 	if(root == null)
 	    root = new BSTNode(item);
@@ -63,10 +63,9 @@ public class BST implements Dictionary {
      * @param item the item to insert
      * @throws duplicate exception
      **/
-    private void insert(BSTNode n,Comparable item) throws DuplicateException {
+    private void insert(BSTNode n,Comparable item) {
 	// Check to see if item is already in the tree
 	if(n.key.compareTo(item) == 0) {
-	    throw new DuplicateException();
 	}
 	// Try to insert into left or right subtree
 	if(item.compareTo(n.key) < 0) {
