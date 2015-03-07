@@ -1,7 +1,7 @@
 package string;
 
 public class ValidPalindrome {
-	public boolean isPalindorme(String s){
+	public static boolean isPalindrome(String s){
 		int start = 0, end = s.length()-1;
 		while(start<end){
 			while(start<end && !Character.isLetterOrDigit(s.charAt(start)))	start++;
@@ -13,5 +13,8 @@ public class ValidPalindrome {
 		}
 		
 		return true;
+	}
+	public static void main(String[] args){
+		System.out.println(isPalindrome("!@&#!(@*^(*"));
 	}
 }
