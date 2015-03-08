@@ -28,14 +28,14 @@ Platform:         Windows XP (SecureCRT)
  *
  *@author Justin Goetz
  **/
-public class BST implements Dictionary {
+public class AddressBookBST implements Dictionary {
 
     public BSTNode root; // Pointer to root node of the tree
 
     /**
      * This is the default constructor for the BST class
      **/
-    public BST() {
+    public AddressBookBST() {
 	root = null;
     }
 
