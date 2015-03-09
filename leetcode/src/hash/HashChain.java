@@ -65,7 +65,7 @@ class SortedLinklist{
 
 class HashChainTable{
 	private SortedLinklist[] hashArray;
-	private int arraySize;
+	int arraySize;
 	
 	public HashChainTable(int size){
 		arraySize = size;
