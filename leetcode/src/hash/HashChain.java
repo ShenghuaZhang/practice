@@ -18,9 +18,8 @@ class SortedLinklist{
 		head = null;
 	}
 	
-	public void insert(LinklistNode node){
-		int key = node.value;
-		LinklistNode previous = null, current = head;
+	public void insert(int key){
+		LinklistNode previous = null, current = head, node = new LinklistNode(key);
 		
 		while(current!=null && key>current.value){
 			previous = current;
@@ -65,8 +64,52 @@ class SortedLinklist{
 }
 
 class HashChainTable{
+	private SortedLinklist[] hashArray;
+	private int arraySize;
 	
+	public HashChainTable(int size){
+		arraySize = size;
+		hashArray = new SortedLinklist[arraySize];
+		// TODO: Why need this?
+		/* fill array with lists*/
+		for(int j=0; j<arraySize; j++)	hashArray[j] = new SortedLinklist();
+	}
+	
+	public void displayTable(){
+		for(int j=0; j<arraySize; j++){
+			System.out.print(j+".");
+			hashArray[j].displayList();
+		}
+	}
+	
+	public int hashFunc(int key){
+		return key % arraySize;
+	}
+	
+	public void insert(int key){
+		int location = key % arraySize;
+		hashArray[location].insert(key);
+	}
+	
+	public boolean delete(int key){
+		int location = key % arraySize;
+		return hashArray[location].delete(key);
+	}
+	
+	public LinklistNode find(int key){
+		int location = key % arraySize;
+		return hashArray[location].find(key);
+	}
 }
 
-public class hashChain {
+public class HashChain {
+	public static void main(String[] args){
+		final int SIZE = 43, KEYSPRECELL = 5;
+		HashChainTable table = new HashChainTable(SIZE);
+
+		for (int j = 0; j < SIZE*2; j++)
+			table.insert((int) (Math.random() * KEYSPRECELL * SIZE));
+		
+		table.displayTable();
+	}
 }

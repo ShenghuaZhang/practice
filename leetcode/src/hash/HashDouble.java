@@ -82,12 +82,12 @@ class HashDouble {
 		 * divide it evenly, so the probe sequence will eventually check every
 		 * cell.
 		 */
-		int hashSize = 11;
-		HashDoubleTable hashTable = new HashDoubleTable(hashSize);
+		final int SIZE = 11;
+		HashDoubleTable table = new HashDoubleTable(SIZE);
 
-		for (int j = 0; j < hashSize/2; j++){
-			hashTable.insert((int) (java.lang.Math.random() * 2 * hashSize));
-			hashTable.displayTable();
+		for (int j = 0; j < SIZE/2; j++){
+			table.insert((int) (java.lang.Math.random() * 2 * SIZE));
+			table.displayTable();
 		}
 
 	}
