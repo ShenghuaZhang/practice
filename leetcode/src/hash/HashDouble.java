@@ -1,20 +1,20 @@
 package hash;
 
 class DataItem {
-	public int iData;
+	public int value;
 
 	public DataItem(int ii) {
-		iData = ii;
+		value = ii;
 	}
 }
 
-class HashTable {
+class HashDoubleTable {
 	private final int CONSTANT = 6;
 	DataItem[] hashArray;
 	int arraySize;
 	DataItem nonItem;
 
-	HashTable(int size) {
+	HashDoubleTable(int size) {
 		arraySize = size;
 		hashArray = new DataItem[arraySize];
 		nonItem = new DataItem(-1);
@@ -24,7 +24,7 @@ class HashTable {
 		System.out.println("Table: ");
 		for (int j = 0; j < arraySize; j++) {
 			if (hashArray[j] != null)
-				System.out.print(hashArray[j].iData + " ");
+				System.out.print(hashArray[j].value + " ");
 			else
 				System.out.print("** ");
 		}
@@ -45,7 +45,7 @@ class HashTable {
 		int stepSize = hashFunc2(key);
 		DataItem item = new DataItem(key);
 
-		while (hashArray[location] != null && hashArray[location].iData != -1
+		while (hashArray[location] != null && hashArray[location].value != -1
 				&& count < arraySize) {
 			count++;
 			location = (location + stepSize) % arraySize;
@@ -58,7 +58,7 @@ class HashTable {
 		int location = hashFunc1(key);
 		int stepSize = hashFunc2(key);
 		while (hashArray[location] != null) {
-			if (hashArray[location].iData == key)
+			if (hashArray[location].value == key)
 				return hashArray[location];
 			location = (location + stepSize) % arraySize;
 		}
@@ -83,7 +83,7 @@ class HashDouble {
 		 * cell.
 		 */
 		int hashSize = 11;
-		HashTable hashTable = new HashTable(hashSize);
+		HashDoubleTable hashTable = new HashDoubleTable(hashSize);
 
 		for (int j = 0; j < hashSize/2; j++){
 			hashTable.insert((int) (java.lang.Math.random() * 2 * hashSize));
