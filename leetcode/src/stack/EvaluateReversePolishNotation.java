@@ -21,8 +21,7 @@ public class EvaluateReversePolishNotation {
 		Stack<Integer> stack = new Stack<>();
 		for (String token : tokens) {
 			if (OPERATORS.contains(token)) {
-				int y = stack.pop();
-				int x = stack.pop();
+				int y = stack.pop(), x = stack.pop();
 				stack.push(eval(x, y, token));
 			} else {
 				stack.push(Integer.parseInt(token));
@@ -52,9 +51,8 @@ public class EvaluateReversePolishNotation {
 	interface Operator {
 		int eval(int x, int y);
 	}
-
 	private static final Map<String, Operator> map = new HashMap<String, Operator>() {
-		/**
+		/** Review about serialVersionUID
 		 * The serialization runtime associates with each serializable class a
 		 * version number, called a serialVersionUID, which is used during
 		 * deserialization to verify that the sender and receiver of a
