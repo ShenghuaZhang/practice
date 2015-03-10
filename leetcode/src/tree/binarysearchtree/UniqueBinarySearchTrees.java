@@ -14,7 +14,7 @@ public class UniqueBinarySearchTrees {
             num += numTrees(i)*numTrees(n-i-1);
         return num;
     }
-	// less time complexity, better time--O(n^2) space--O(n)
+	// less time complexity, better. time--O(n^2) space--O(n)
 	public int numTreesII(int n){
 		if (n <= 0)	return 0;
 		int[] res = new int[n+1];
