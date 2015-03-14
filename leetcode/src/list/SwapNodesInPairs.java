@@ -2,18 +2,17 @@ package list;
 
 public class SwapNodesInPairs {
 	public ListNode swapPairs(ListNode head) {
-		ListNode dummy = new ListNode(0);
-		dummy.next = head;
-		ListNode p = head;
-		ListNode prev = dummy;
-		while (p != null && p.next != null) {
-			ListNode q = p.next, r = p.next.next;
-			prev.next = q;
-			q.next = p;
-			p.next = r;
-			prev = p;
-			p = r;
+		ListNode dummyHead = new ListNode(0);
+		dummyHead.next = head;
+		ListNode previous=dummyHead, current=head;
+		while(current!=null && current.next!=null) {
+			ListNode next = current.next, end = next.next;
+			previous.next = next;
+			next.next = current;
+			current.next = end;
+			previous = current;
+			current = end;
 		}
-		return dummy.next;
+		return dummyHead.next;
 	}
 }
