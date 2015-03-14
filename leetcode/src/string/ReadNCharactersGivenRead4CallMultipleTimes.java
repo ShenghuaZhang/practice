@@ -5,11 +5,11 @@ public class ReadNCharactersGivenRead4CallMultipleTimes extends ReadNCharactersG
 	int offset = 0, bufsize = 0;
 
 	/**
-	 * @param buf
-	 *            Destination buffer
-	 * @param n
-	 *            Maximum number of characters to read
-	 * @return The number of characters read
+	 * https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/
+	 *  
+	 * @param buf 	Destination buffer
+	 * @param n  	Maximum number of characters to read
+	 * @return 		The number of characters read
 	 */
 	public int readIII(char[] buf, int n) {
 		int readBytes = 0;
