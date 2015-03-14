@@ -2,9 +2,7 @@ package binarySearch;
 
 public class SearchForARange {
 	public int[] searchRange(int[] A, int target){
-		int[] res = new int[2];
-		res[0] = -1;
-		res[1] = -1;
+		int[] res = new int[]{-1,-1};
 		if (A == null || A.length == 0)	return res;
 		
 		int left = 0, right = A.length-1, mid = (left+right)/2;
