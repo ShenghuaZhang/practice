@@ -1,11 +1,5 @@
 package vmware;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import list.ListNode;
-
-
 public class vmwareOnlineTest {
 	public static int CoinTossEndAmount(int betAmount, String coinTossResults) {
         int length = coinTossResults.length(), bet = 1;
@@ -19,26 +13,6 @@ public class vmwareOnlineTest {
             }
         }
         return betAmount;
-    }
-	
-	public static ListNode removeDuplicates(ListNode list) {
-		Map<Integer, Integer> map = new HashMap<>();
-        ListNode current = list;
-        if (current != null) map.put(current.val, 1);
-        while(current.next!=null){
-            if (!map.containsKey(current.next.val)) {
-                map.put(current.next.val, 1);
-                current = current.next;
-            }
-            else if (current.next.next != null) {
-                current.next = current.next.next;
-            }
-            else {
-                current.next = null;
-                return list;
-            }
-        }
-        return list;
     }
 	
 	public static int heightOfTree(String enc) {
