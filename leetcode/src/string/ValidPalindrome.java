@@ -1,5 +1,7 @@
 package string;
 
+import java.util.Vector;
+
 public class ValidPalindrome {
 	public static boolean isPalindrome(String s){
 		int start = 0, end = s.length()-1;
@@ -15,6 +17,8 @@ public class ValidPalindrome {
 		return true;
 	}
 	public static void main(String[] args){
+		Vector<Integer> vec = new Vector<>();
+		vec.get(0);
 		System.out.println(isPalindrome("!@&#!(@*^(*"));
 	}
 }

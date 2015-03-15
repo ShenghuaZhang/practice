@@ -12,7 +12,7 @@ public class Fibonacci {
 //			return;
 //		}
 //		int n = Integer.parseInt(args[0]);
-		int n = 122222;
+		int n = 12333;
 		if (n < 0)
 			throw new IllegalArgumentException("Number must be non-negative");
 
