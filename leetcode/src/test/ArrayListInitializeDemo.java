@@ -11,7 +11,7 @@ import java.util.List;
  * 
  * @author carllee1991
  */
-public class ArrayListDemo {
+public class ArrayListInitializeDemo {
 
 	public static void main(String args[]) {
 
