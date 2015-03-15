@@ -9,7 +9,7 @@ import java.util.Stack;
 
 public class EvaluateReversePolishNotation {
 	/*
-	 * TODO: caution how to initialize the hash set by using Arrays.aslist
+	 * TODO: How to initialize the hash set by using Arrays.aslist.
 	 * 
 	 * public static <T> List<T> asList(T... a) {return new ArrayList<>(a);}
 	 */

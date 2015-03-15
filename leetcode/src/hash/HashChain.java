@@ -70,7 +70,6 @@ class HashChainTable{
 	public HashChainTable(int size){
 		arraySize = size;
 		hashArray = new SortedLinklist[arraySize];
-		// TODO: Why need this?
 		/* fill array with lists*/
 		for(int j=0; j<arraySize; j++)	hashArray[j] = new SortedLinklist();
 	}

@@ -43,15 +43,13 @@ class HashDoubleTable {
 		int count = 0;
 		int location = hashFunc1(key);
 		int stepSize = hashFunc2(key);
-		DataItem item = new DataItem(key);
 
 		while (hashArray[location] != null && hashArray[location].value != -1
 				&& count < arraySize) {
 			count++;
 			location = (location + stepSize) % arraySize;
 		}
-		// TODO why cannot: hashArray[location].iData = key;
-		hashArray[location] = item;
+		hashArray[location] = new DataItem(key);
 	}
 
 	public DataItem find(int key) {
