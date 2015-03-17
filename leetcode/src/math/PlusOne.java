@@ -33,13 +33,11 @@ public class PlusOne {
 	 */
 	public static int[] plusOne(int[] digits) {
 		for (int i = digits.length - 1; i >= 0; i--) {
-			int temp = digits[i] + 1;
-			if (temp <= 9) {
-				digits[i] = temp;
-				return digits;
-			} else
-				digits[i] = 0;
+			digits[i] = digits[i] + 1;
+			if (digits[i] <= 9)	return digits;
+			else	digits[i] = 0;
 		}
+		
 		int[] ret = new int[digits.length + 1];
 		ret[0] = 1;
 		for (int i = 0; i < digits.length; i++)
