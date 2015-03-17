@@ -22,11 +22,11 @@ public class RotatedArray {
         reverse(nums, 0, k-1);
         reverse(nums, k, nums.length-1);
 	}
-	private static void reverse(int[] nums, int start, int end){
+	protected static void reverse(int[] nums, int start, int end){
 	    for(;start<end;start++, end--) swap(nums, start, end);
 	}
 	
-	private static void swap(int[] nums, int first, int second){
+	protected static void swap(int[] nums, int first, int second){
 		int temp = nums[first];
 		nums[first] = nums[second];
 		nums[second] = temp;
