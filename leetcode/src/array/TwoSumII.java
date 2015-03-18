@@ -1,7 +1,12 @@
 package array;
 
 public class TwoSumII {
-	// input array is sorted
+	/**
+	 * Same with Two sum but input array is sorted
+	 * @param numbers: given integer array
+	 * @param target: target number
+	 * @return An array which include two integers.
+	 */
 	public int[] twoSum(int[] numbers, int target){
 		for(int i=0; i<numbers.length; i++){
 			if (numbers[i]>target-numbers[i])	return null;
