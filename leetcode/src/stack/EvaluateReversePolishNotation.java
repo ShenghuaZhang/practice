@@ -1,4 +1,9 @@
 package stack;
+/**
+ * https://leetcode.com/problems/evaluate-reverse-polish-notation/
+ * 
+ *  ["2", "1", "+", "3", "*"] -> ((2 + 1) * 3) -> 9
+ */
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,12 +13,6 @@ import java.util.Set;
 import java.util.Stack;
 
 public class EvaluateReversePolishNotation {
-	/*
-	 * TODO: How to initialize the hash set by using Arrays.aslist.
-	 * 
-	 * public static <T> List<T> asList(T... a) {return new ArrayList<>(a);}
-	 */
-
 	private static final Set<String> OPERATORS = new HashSet<>(Arrays.asList(
 			"+", "-", "*", "/"));
 
@@ -63,25 +62,6 @@ public class EvaluateReversePolishNotation {
 		 * result in an InvalidClassException. A serializable class can declare
 		 * its own serialVersionUID explicitly by declaring a field named
 		 * "serialVersionUID" that must be static, final, and of type long:
-		 * 
-		 * ANY-ACCESS-MODIFIER static final long serialVersionUID = 42L; If a
-		 * serializable class does not explicitly declare a serialVersionUID,
-		 * then the serialization runtime will calculate a default
-		 * serialVersionUID value for that class based on various aspects of the
-		 * class, as described in the Java(TM) Object Serialization
-		 * Specification. However, it is strongly recommended that all
-		 * serializable classes explicitly declare serialVersionUID values,
-		 * since the default serialVersionUID computation is highly sensitive to
-		 * class details that may vary depending on compiler implementations,
-		 * and can thus result in unexpected InvalidClassExceptions during
-		 * deserialization. Therefore, to guarantee a consistent
-		 * serialVersionUID value across different java compiler
-		 * implementations, a serializable class must declare an explicit
-		 * serialVersionUID value. It is also strongly advised that explicit
-		 * serialVersionUID declarations use the private modifier where
-		 * possible, since such declarations apply only to the immediately
-		 * declaring class--serialVersionUID fields are not useful as inherited
-		 * members.
 		 */
 		private static final long serialVersionUID = 1L;
 
