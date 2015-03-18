@@ -50,7 +50,8 @@ public class MinPQ<Key> implements Iterable<Key> {
      * Initializes an empty priority queue with the given initial capacity.
      * @param initCapacity the initial capacity of the priority queue
      */
-    public MinPQ(int initCapacity) {
+    @SuppressWarnings("unchecked")
+	public MinPQ(int initCapacity) {
         pq = (Key[]) new Object[initCapacity + 1];
         N = 0;
     }
@@ -68,7 +69,8 @@ public class MinPQ<Key> implements Iterable<Key> {
      * @param initCapacity the initial capacity of the priority queue
      * @param comparator the order to use when comparing keys
      */
-    public MinPQ(int initCapacity, Comparator<Key> comparator) {
+    @SuppressWarnings("unchecked")
+	public MinPQ(int initCapacity, Comparator<Key> comparator) {
         this.comparator = comparator;
         pq = (Key[]) new Object[initCapacity + 1];
         N = 0;
@@ -85,7 +87,8 @@ public class MinPQ<Key> implements Iterable<Key> {
      * Takes time proportional to the number of keys, using sink-based heap construction.
      * @param keys the array of keys
      */
-    public MinPQ(Key[] keys) {
+    @SuppressWarnings("unchecked")
+	public MinPQ(Key[] keys) {
         N = keys.length;
         pq = (Key[]) new Object[keys.length + 1];
         for (int i = 0; i < N; i++)
@@ -124,7 +127,8 @@ public class MinPQ<Key> implements Iterable<Key> {
     // helper function to double the size of the heap array
     private void resize(int capacity) {
         assert capacity > N;
-        Key[] temp = (Key[]) new Object[capacity];
+        @SuppressWarnings("unchecked")
+		Key[] temp = (Key[]) new Object[capacity];
         for (int i = 1; i <= N; i++) temp[i] = pq[i];
         pq = temp;
     }
@@ -184,7 +188,8 @@ public class MinPQ<Key> implements Iterable<Key> {
    /***********************************************************************
     * Helper functions for compares and swaps.
     **********************************************************************/
-    private boolean greater(int i, int j) {
+    @SuppressWarnings("unchecked")
+	private boolean greater(int i, int j) {
         if (comparator == null) {
             return ((Comparable<Key>) pq[i]).compareTo(pq[j]) > 0;
         }
