@@ -2,7 +2,9 @@ package array;
 
 public class TwoSumII {
 	/**
-	 * Same with Two sum but input array is sorted
+	 * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+	 * 
+	 * Same with Two sum but input array is sorted in ascending order
 	 * @param numbers: given integer array
 	 * @param target: target number
 	 * @return An array which include two integers.
