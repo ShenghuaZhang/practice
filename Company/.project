@@ -3,6 +3,8 @@
 	<name>Company</name>
 	<comment></comment>
 	<projects>
+		<project>leetcode</project>
+		<project>practice</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
