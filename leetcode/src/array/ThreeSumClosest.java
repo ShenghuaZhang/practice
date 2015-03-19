@@ -8,6 +8,8 @@ package array;
  * target. Return the sum of the three integers.
  * You may assume that each input would have exactly one solution.
  * 
+ * See this with combination:
+ * #TwoSum#TwoSumII#TwoSumIII#ThreeSum#ThreeSumClosest#FourSum
  */
 
 import java.util.Arrays;

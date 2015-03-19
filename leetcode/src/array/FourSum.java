@@ -6,6 +6,9 @@ package array;
  * Given an array S of n integers,
  * are there elements a, b, c, and d in S such that a + b + c + d = target?
  * Find all unique quadruplets in the array which gives the sum of target.
+ * 
+ * See this with combination:
+ * #TwoSum#TwoSumII#TwoSumIII#ThreeSum#ThreeSumClosest#FourSum
  */
 
 import java.util.ArrayList;
@@ -25,10 +28,8 @@ public class FourSum {
 				int start = j + 1, end = num.length - 1;
 				while (start < end) {
 					int sum = num[i] + num[j] + num[start] + num[end];
-					if (sum > target)
-						end--;
-					else if (sum < target)
-						start++;
+					if (sum > target)	end--;
+					else if (sum < target)	start++;
 					else {
 						List<Integer> curList = new ArrayList<>(Arrays.asList(
 								num[i], num[j], num[start++], num[end--]));

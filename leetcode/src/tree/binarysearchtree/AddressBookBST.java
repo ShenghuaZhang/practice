@@ -24,8 +24,6 @@ Platform:         Windows XP (SecureCRT)
  * This class implements a Binary Search Tree for the AddressBook 
  * application.
  *
- *<p>Bugs: None known
- *
  *@author Justin Goetz
  **/
 public class AddressBookBST implements Dictionary {
