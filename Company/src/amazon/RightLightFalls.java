@@ -4,9 +4,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-import tree.binarytree.LevelOrder;
-import tree.binarytree.TreeNode;
-
 /**
  * 
  * Round 3: (F2F - Data structures and Algorithms)
@@ -18,6 +15,9 @@ import tree.binarytree.TreeNode;
  */
 
 public class RightLightFalls {
+	/*
+	 * This algorithm is very fast when we know the height of tree
+	 */
 	public static void printRightMostNode(TreeNode root){
 		int height = SpiralOrderBTree.height(root);
 		Stack<TreeNode> stack = new Stack<>();
@@ -88,7 +88,6 @@ public class RightLightFalls {
 	
 	public static void main(String[] args){
 		TreeNode root = TreeNode.LeetcodeInitialize("(1,2,#,3,#,4,5,6,#,7,8,#,9,#,10,11,12)");
-		System.out.println(LevelOrder.levelOrder(root));
 		printLeftMostNode(root);
 	}
 }

@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import tree.binarytree.LevelOrder;
-import tree.binarytree.TreeNode;
-
 public class SpiralOrderBTree{
 	public static List<List<Integer>> spiralOrder(TreeNode root) {
 		Stack<TreeNode> oddStack = new Stack<>();
@@ -74,7 +71,6 @@ public class SpiralOrderBTree{
 	
 	public static void main(String[] args){
 		TreeNode root = TreeNode.LeetcodeInitialize("(4,3,2,5,61,2,0,6,13,9,7,8)");
-		System.out.println("Original: "+LevelOrder.levelOrder(root));
 //		System.out.println("Recursive: "+spiralOrderRecursive(root));
 		spiralOrderRecursive(root);
 		System.out.println();
