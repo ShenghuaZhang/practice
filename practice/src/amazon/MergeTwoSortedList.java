@@ -32,9 +32,7 @@ public class MergeTwoSortedList {
 				current1=next1;
 				next1=current1.next;
 			}
-			
 		}
-		
 		return first;
 	}
 	
