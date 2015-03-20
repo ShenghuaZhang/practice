@@ -11,7 +11,7 @@ public class SameTree {
 	}
 	
 	public static boolean isSame(TreeNode p, TreeNode q){
-		Stack<TreeNode> sp = new Stack<>(),sq = new Stack<>();
+		Stack<TreeNode> sp = new Stack<>(), sq = new Stack<>();
 		if (p == null && q == null) return true;
 		if (p == null || q == null)	return false;
 		

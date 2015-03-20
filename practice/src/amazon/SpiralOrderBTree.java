@@ -5,6 +5,8 @@ package amazon;
  * 1. Give a binary tree, print all the nodes in spiral order with constant space
  */
 
+import global.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

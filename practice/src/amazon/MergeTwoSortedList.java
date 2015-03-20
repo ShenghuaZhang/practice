@@ -1,5 +1,7 @@
 package amazon;
 
+import global.*;
+
 /**
  * 3.	Merge two sorted linked lists without using extra space
  * 

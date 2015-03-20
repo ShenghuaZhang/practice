@@ -80,4 +80,22 @@ public class TreeNode {
 		
 		return root;
 	}
+	
+	public static void levelOrder(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeNode current = root;
+        
+        if (current == null) return;
+        queue.add(current);
+        
+        while(!queue.isEmpty()){
+        	int size = queue.size();
+        	for (int j = 0; j < size; j++){
+        		current = queue.poll();
+        		System.out.print(current.val+" ");
+        		if (current.left != null)	queue.add(current.left);
+        		if (current.right != null)	queue.add(current.right);
+        	}System.out.println();
+        }
+    }
 }
