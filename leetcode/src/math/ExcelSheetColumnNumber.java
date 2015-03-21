@@ -6,7 +6,7 @@ package math;
  * Related to question Excel Sheet Column Title.
  * Given a column title as appear in an Excel sheet,
  * return its corresponding column number.
- * 
+ * #ExcelSheetColumnTitle
  * @author yili3
  *
  */
