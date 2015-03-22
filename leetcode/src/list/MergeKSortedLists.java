@@ -34,7 +34,7 @@ public class MergeKSortedLists {
 	}
 
 	/*
-	 * TODO:
+	 * TODO: merge k list using priority heap
 	 * Using heap
 	 * Time complexity: O(n*k*logk) k is the number of list
 	 * Space: O(k)
