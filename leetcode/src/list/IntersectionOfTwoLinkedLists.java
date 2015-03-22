@@ -17,25 +17,15 @@ public class IntersectionOfTwoLinkedLists {
 	 * 5. Then we can traverse both the lists in parallel till we come across a common node.
 	 */
 	public static ListNode getIntersectionNode(ListNode headA, ListNode headB){
-		if(headA==null || headB==null)  return null;
-		int length1 = length(headA), length2 = length(headB);
+		if(!hasIntersection(headA, headB))	return null;
 		
+		int length1 = length(headA), length2 = length(headB);
 		int length = Math.abs(length1-length2);
 		if(length1>length2)	for(; length>0; length--)	headA = headA.next;
 		else	for(; length>0; length--)	headB = headB.next;
 		
-		for(;headA!=null && headB!=null; headA = headA.next,headB = headB.next)
-			if(headA==headB)	return headA;
-
-		return null;
-	}
-	private static int length(ListNode head){
-		int length=0;
-		while(head!=null){
-			head = head.next;
-			length++;
-		}
-		return length;
+		for(;headA!=headB; headA=headA.next,headB=headB.next);
+		return headA;
 	}
 	
 	/*
@@ -71,13 +61,6 @@ public class IntersectionOfTwoLinkedLists {
 		}
 		last.next=null;
 		return first;
-	}
-	private static boolean hasIntersection(ListNode headA, ListNode headB){
-		if(headA==null || headB==null)	return false;
-		for(; headA.next!=null; headA=headA.next);
-		for(; headB.next!=null; headB=headB.next);
-		
-		return headA==headB;
 	}
 	
 	/*
@@ -122,6 +105,7 @@ public class IntersectionOfTwoLinkedLists {
 		reverse(last);
 		return headB;
 	}
+	
 	private static ListNode reverse(ListNode head){
 		ListNode current = head, previous= null;
 		while(current!=null){
@@ -133,9 +117,20 @@ public class IntersectionOfTwoLinkedLists {
 		return previous;
 	}
 	
-	public static void main(String[] args){
-		ListNode head = ListNode.LeetcodeInitialize("{1,2,3,4,5,6,7,8,9,10,11,12,13}");
-		System.out.print(getIntersectionNodeIII(head, head.next.next).val);
+	private static int length(ListNode head){
+		int length=0;
+		while(head!=null){
+			head = head.next;
+			length++;
+		}
+		return length;
 	}
 	
+	private static boolean hasIntersection(ListNode headA, ListNode headB){
+		if(headA==null || headB==null)	return false;
+		for(; headA.next!=null; headA=headA.next);
+		for(; headB.next!=null; headB=headB.next);
+		
+		return headA==headB;
+	}
 }

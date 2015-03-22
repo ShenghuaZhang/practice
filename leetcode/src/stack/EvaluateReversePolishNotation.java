@@ -46,7 +46,6 @@ public class EvaluateReversePolishNotation {
 	 * A more functional way by creating an interface and map each operator
 	 * string to an implementation of the Operator interface
 	 */
-
 	interface Operator {
 		int eval(int x, int y);
 	}
