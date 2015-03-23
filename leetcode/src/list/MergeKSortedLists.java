@@ -20,7 +20,7 @@ public class MergeKSortedLists {
 	public static ListNode mergeKLists(List<ListNode> lists) {
 		if (lists == null || lists.size() == 0)
 			return null;
-		return helper(lists, 0, lists.size() - 1);
+		return helper(lists, 0, lists.size()-1);
 	}
 
 	private static ListNode helper(List<ListNode> lists, int start, int end) {
