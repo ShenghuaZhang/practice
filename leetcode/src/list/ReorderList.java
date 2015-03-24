@@ -12,7 +12,7 @@ package list;
  *
  */
 public class ReorderList {
-	public void reorderList(ListNode head){
+	public static void reorderList(ListNode head){
 		if(head==null || head.next==null || head.next.next==null)	return;
 		ListNode slow=head, fast=head;
 		while(fast.next!=null && fast.next.next!=null){
@@ -32,7 +32,7 @@ public class ReorderList {
 			head2 = next2;
 		}
 	}
-	protected ListNode reverse(ListNode head){
+	protected static ListNode reverse(ListNode head){
 		ListNode previous = null, current = head;
 		
 		while(current!=null){
@@ -43,16 +43,18 @@ public class ReorderList {
 		}
 		return previous;
 	}
-	protected ListNode reverseRecursive(ListNode head){
+	
+	protected static ListNode reverseRecursive(ListNode head){
 		if(head==null || head.next==null)	return head;
-		return reverseRecursive(head, head.next);
+		ListNode next = head.next;
+		head.next = null;
+		return reverseRecursive(head, next);
 	}
-	private ListNode reverseRecursive(ListNode current, ListNode next){
+	private static ListNode reverseRecursive(ListNode current, ListNode next){
 		if(next==null)	 return current;
-		ListNode newHead = reverseRecursive(current.next, next.next);
+		ListNode head = reverseRecursive(next, next.next);
 		next.next = current;
-		current.next = null;
-		return newHead;
+		return head;
 	}
 	
 	public static void reorderListMine(ListNode head){
@@ -82,5 +84,10 @@ public class ReorderList {
 			second=next2;
 			head = next1;
 		}
+	}
+	
+	public static void main(String[] args){
+		ListNode head = ListNode.initial(), rHead = reverseRecursive(head);
+		ListNode.print(rHead);
 	}
 }
