@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Partition {
 	public static void partition(int[] A, int left, int right, int n){
-		int i=left-1, j=right;
+		int i=left-1, j=right-1;
 		while(i<j){
 			while(A[i]<n)	i++;
 			while(A[j]>=n)	j--;
