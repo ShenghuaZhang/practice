@@ -9,7 +9,7 @@ package string;
  *
  */
 public class LongestCommonPrefix {
-	public String longestCommonPrefix(String[] strs) {
+	public static String longestCommonPrefix(String[] strs) {
         if(strs==null || strs.length==0)  return "";
         
         int i=0;
@@ -18,10 +18,15 @@ public class LongestCommonPrefix {
             for(String s:strs){
             	if(i>=s.length() || c!=s.charAt(i)){
             		if(i==0)	return "";
-            		else return s.substring(0,i-1);
+            		else return s.substring(0, i);
             	}
             }
         }
         return strs[0].substring(0, i);
     }
+	
+	public static void main(String[] args){
+		String[] strs = {"aa", "ab"};
+		System.out.print(longestCommonPrefix(strs));
+	}
 }
