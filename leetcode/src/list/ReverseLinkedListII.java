@@ -1,6 +1,5 @@
 package list;
 /**
- * TODO: Practice one more time
  * https://leetcode.com/problems/reverse-linked-list-ii/
  * 
  * Reverse a linked list from position m to n.
@@ -12,6 +11,8 @@ package list;
  * 
  * Given m, n satisfy the following condition:
  * 1 <= m <= n <= length of list.
+ * 
+ * #ReorderList
  * 
  * @author yili3
  *
@@ -27,12 +28,13 @@ public class ReverseLinkedListII {
 			previous = previous.next;
 			index++;
 		}
-		ListNode mNode = previous.next, current = mNode.next;
+		
+		ListNode mNode = previous.next;
 		while(index<n){
+			ListNode current = mNode.next;
 			mNode.next = current.next;
 			current.next = previous.next;
 			previous.next = current;
-			current = mNode.next;
 			index++;
 		}
 		
