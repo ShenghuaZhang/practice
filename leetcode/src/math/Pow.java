@@ -1,5 +1,12 @@
 package math;
-
+/**
+ * https://leetcode.com/problems/powx-n/
+ * 
+ * Implement pow(x, n).
+ * 
+ * @author yili3
+ *
+ */
 public class Pow {
 	static double pow(double x, int n){
 		if(n==0)	return 1;
