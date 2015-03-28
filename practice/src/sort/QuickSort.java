@@ -8,14 +8,14 @@ public class QuickSort {
 		helperII(B, 0, B.length-1);
 	}
 	
-	protected static void helperI(int[] A, int left, int right){
+	static void helperI(int[] A, int left, int right){
 		if(left>=right)	return;
 		int partition = partition(A, left, right);
 		helperI(A, left, partition-1);
 		helperI(A, partition+1, right);
 	}
 	
-	protected static void helperII(int[] A, int left, int right){
+	static void helperII(int[] A, int left, int right){
 		if(left-right<10)	insertionSort(A, left, right);
 		else{
 			int median = medianOfThree(A, left, right);
@@ -24,7 +24,7 @@ public class QuickSort {
 			helperII(A, partition+1, right);
 		}
 	}
-	private static int medianOfThree(int[] A, int left, int right){
+	static int medianOfThree(int[] A, int left, int right){
 		int median = (left+right)/2;
 		if(A[left]>A[median])	BubbleSort.swap(A, left, median);
 		if(A[median]>A[right])	BubbleSort.swap(A, median, right);
@@ -32,14 +32,14 @@ public class QuickSort {
 		return A[median];
 	}
 	
-	public static void insertionSort(int[] A, int left, int right){
+	static void insertionSort(int[] A, int left, int right){
 		if(left>=right)	return;
 		for(int i=left+1; i<=right; i++)
 			for(int j=i; j>0 && A[j]<A[j-1]; j--)
 				BubbleSort.swap(A, j, j-1);
 	}
 	
-	public static int partition(int[] A, int left, int right){
+	static int partition(int[] A, int left, int right){
 		int n= right--;
 		while(left<right){
 			while(A[left]<A[n])	left++;
@@ -50,7 +50,7 @@ public class QuickSort {
 		return left;
 	}
 	
-	public static int partitionMine(int[] A, int left, int right, int n){
+	static int partitionMine(int[] A, int left, int right, int n){
 		while(left<right){
 			while(A[left]<n)	left++;
 			while(left<right && A[right]>=n)	right--;
