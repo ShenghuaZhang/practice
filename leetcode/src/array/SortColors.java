@@ -13,6 +13,16 @@ package array;
  */
 public class SortColors {
 	public void sortColors(int[] A){
-		
+		if(A==null || A.length==0)	return;
+		for(int i=0, zero=0, one=0; i<A.length; i++){
+			if(A[i]==0){
+				A[i] = 2;
+				A[one++] = 1;
+				A[zero++] = 0;
+			}else if(A[i] == 1){
+				A[i] =2;
+				A[one++] = 1;
+			}
+		}
 	}
 }
