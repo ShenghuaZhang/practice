@@ -1,6 +1,7 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,13 +24,13 @@ import java.util.List;
  *
  */
 public class InsertInterval {
-	public static class Interval{
+	class Interval{
 		int start, end;
 		Interval(){	start = 0;	end = 0;}
 		Interval(int s, int e){	start = s;	end = e;}
 	}
 	
-	public static List<Interval> insert(List<Interval> intervals, Interval newInterval){
+	List<Interval> insert(List<Interval> intervals, Interval newInterval){
 		if(newInterval ==null)	return intervals;
 		List<Interval> list = new ArrayList<>();
         if(intervals == null || intervals.size()<1){
@@ -37,46 +38,79 @@ public class InsertInterval {
         	return list;
         }
 		
-		boolean finish = false, hasStart = false;
-		int start=0;
+		boolean finished = false;
 		for(int i=0; i<intervals.size(); i++){
-			if(finish || intervals.get(i).end < newInterval.start){
+			if(finished || intervals.get(i).end < newInterval.start){
 				list.add(intervals.get(i));
 				continue;
 			}
+			
 			// find start point
-			if(!hasStart){
-				if(intervals.get(i).start >= newInterval.start)	start = newInterval.start;
-				else start = intervals.get(i).start;
-				hasStart = true;
-			}
+			newInterval.start = Math.min(newInterval.start, intervals.get(i).start);
+			
 			// find end point
 			if(intervals.get(i).start > newInterval.end){
-				list.add(new Interval(start, newInterval.end));
+				list.add(newInterval);
 				list.add(intervals.get(i));
-				finish = true;
+				finished = true;
 			}
 			else if(intervals.get(i).end >= newInterval.end){
-				list.add(new Interval(start, intervals.get(i).end));
-				finish = true;
+				list.add(new Interval(newInterval.start, intervals.get(i).end));
+				finished = true;
 			}
 		}
 		
-		if(!finish){
-		    if (hasStart)	list.add(new Interval(start, newInterval.end));
-		    else list.add(newInterval);
-		}
+		if(!finished)	list.add(newInterval);
 		
 		return list;
 	}
-	
-	public static void main(String[] args){
-		Interval newInterval = new Interval(0, 1);
-		List<Interval> intervals = new ArrayList<>();
+	/**
+	 * Change input type to LinkedList.
+	 * Make a in-place algorithm(actually the same...)
+	 * BUT! Insertion of LinkedList is O(1), so time complexity still O(n)
+	 */
+	void insert(LinkedList<Interval> intervals, Interval newInterval){
+		if(newInterval ==null)	return;
+        if(intervals == null || intervals.size()<1){
+        	intervals.add(newInterval);
+        	return;
+        }
+        
+		for(int i=0; i<intervals.size(); i++){
+			// find start point
+			if(intervals.get(i).end >= newInterval.start)
+				newInterval.start = Math.min(newInterval.start, intervals.get(i).start);
+			
+			// find end point
+			if(intervals.get(i).start > newInterval.end){
+				intervals.add(i, newInterval);
+				return;
+			} else if(intervals.get(i).end >= newInterval.end){
+				intervals.add(i, new Interval(newInterval.start, intervals.get(i).end));
+				return;
+			}
+		}
 		
-		intervals.add(new Interval(1, 5));
+		intervals.add(newInterval);
+	}
+	/**
+	 * If has collision, return false, else same as first
+	 */
+	boolean insertWithoutCollision(List<Interval> intervals, Interval newInterval){
+		int left = 0, right = intervals.size(), middle = (left+right)>>>2;
 		
-		List<Interval> list = insert(intervals, newInterval);
-		System.out.println(list.get(0).start);
+		for(; left<right; middle=(left+right)>>>2){
+			if(intervals.get(middle).start > newInterval.start)	right = middle+1;
+			else if(intervals.get(middle).start < newInterval.start){
+				if(intervals.get(middle+1).start > newInterval.start) break;
+				left = middle-1;
+			}
+			else return false;
+		}
+		
+		if(intervals.get(middle+1).start < newInterval.end)	intervals.add(middle+1, newInterval);
+		else return false;
+		
+		return true;
 	}
 }

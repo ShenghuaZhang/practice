@@ -1,5 +1,13 @@
 package binarySearch;
-
+/**
+ * https://leetcode.com/problems/sqrtx/
+ * 
+ * Implement int sqrt(int x).
+ * Compute and return the square root of x.
+ * 
+ * @author yili3
+ *
+ */
 public class Sqrt {
 	public static int sqrt(int x){
 		if (x <= 0)	return 0;
