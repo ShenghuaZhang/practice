@@ -41,10 +41,10 @@ public class LargestNumber {
 		return sb.toString();
 	}
 	
-	public static class Card implements Comparable<Card> {
+	public static class TexasHoldem implements Comparable<TexasHoldem> {
 		int val;
 
-		public Card(int val) {
+		public TexasHoldem(int val) {
 			super();
 			this.val = val;
 		}
@@ -53,17 +53,17 @@ public class LargestNumber {
 			return "" + val;
 		}
 
-		public int compareTo(Card c) {
-			return c.val - this.val;
+		public int compareTo(TexasHoldem c) {
+			return this.val - c.val;
 		}
 	}
 	
 	public static void main(String[] strs) {
-		List<Card> cards = new ArrayList<>(Arrays.asList(new Card(11), new Card(2)));
+		List<TexasHoldem> cards = new ArrayList<>(Arrays.asList(new TexasHoldem(11), new TexasHoldem(2)));
 
 		Collections.sort(cards);
 
-		for (Card card : cards)
+		for (TexasHoldem card : cards)
 			System.out.println(card.toString());
 
 	}
