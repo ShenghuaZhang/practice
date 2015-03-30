@@ -1,5 +1,6 @@
 package array;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,21 +23,60 @@ import java.util.List;
  *
  */
 public class InsertInterval {
-	public class Interval{
+	public static class Interval{
 		int start, end;
-		Interval(){
-			start = 0;
-			end = 0;
-		}
-		Interval(int s, int e){
-			start = s;
-			end = e;
-		}
+		Interval(){	start = 0;	end = 0;}
+		Interval(int s, int e){	start = s;	end = e;}
 	}
 	
-	public List<Interval> insert(List<Interval> intervals, Interval newInterval){
-		// TODO insert interval
-		return null;
+	public static List<Interval> insert(List<Interval> intervals, Interval newInterval){
+		if(newInterval ==null)	return intervals;
+		List<Interval> list = new ArrayList<>();
+        if(intervals == null || intervals.size()<1){
+        	list.add(newInterval);
+        	return list;
+        }
 		
+		boolean finish = false, hasStart = false;
+		int start=0;
+		for(int i=0; i<intervals.size(); i++){
+			if(finish || intervals.get(i).end < newInterval.start){
+				list.add(intervals.get(i));
+				continue;
+			}
+			// find start point
+			if(!hasStart){
+				if(intervals.get(i).start >= newInterval.start)	start = newInterval.start;
+				else start = intervals.get(i).start;
+				hasStart = true;
+			}
+			// find end point
+			if(intervals.get(i).start > newInterval.end){
+				list.add(new Interval(start, newInterval.end));
+				list.add(intervals.get(i));
+				finish = true;
+			}
+			else if(intervals.get(i).end >= newInterval.end){
+				list.add(new Interval(start, intervals.get(i).end));
+				finish = true;
+			}
+		}
+		
+		if(!finish){
+		    if (hasStart)	list.add(new Interval(start, newInterval.end));
+		    else list.add(newInterval);
+		}
+		
+		return list;
+	}
+	
+	public static void main(String[] args){
+		Interval newInterval = new Interval(0, 1);
+		List<Interval> intervals = new ArrayList<>();
+		
+		intervals.add(new Interval(1, 5));
+		
+		List<Interval> list = insert(intervals, newInterval);
+		System.out.println(list.get(0).start);
 	}
 }
