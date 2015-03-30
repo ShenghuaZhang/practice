@@ -30,7 +30,7 @@ public class MergeIntervals {
 		if(intervals==null || intervals.size()<2)	return intervals;
 		
 		List<Interval> res = new ArrayList<>();
-		// TODO: How to use comparator
+
 		Comparator<Interval> cmp = new Comparator<Interval>(){
 			public int compare(Interval first, Interval second){
 				if(first.start == second.start)
