@@ -14,6 +14,8 @@ import java.util.List;
  * return [1,6],[8,10],[15,18].
  * 
  * @author yili3
+ * 
+ * #InsertInterval
  *
  */
 public class MergeIntervals {
