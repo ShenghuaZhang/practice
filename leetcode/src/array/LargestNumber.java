@@ -1,6 +1,7 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -38,5 +39,32 @@ public class LargestNumber {
 		
 		if(sb.charAt(0) == '0')	return "0";
 		return sb.toString();
+	}
+	
+	public static class Card implements Comparable<Card> {
+		int val;
+
+		public Card(int val) {
+			super();
+			this.val = val;
+		}
+		
+		public String toString() {
+			return "" + val;
+		}
+
+		public int compareTo(Card c) {
+			return c.val - this.val;
+		}
+	}
+	
+	public static void main(String[] strs) {
+		List<Card> cards = new ArrayList<>(Arrays.asList(new Card(11), new Card(2)));
+
+		Collections.sort(cards);
+
+		for (Card card : cards)
+			System.out.println(card.toString());
+
 	}
 }
