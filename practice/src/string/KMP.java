@@ -1,11 +1,13 @@
 package string;
 
+import java.util.Arrays;
+
 public class KMP {
 	private String pattern;
 	private int[] table;
 	
-	public KMP(String pattern){
-		this.pattern = pattern;
+	public KMP(String s){
+		this.pattern = s;
 
 		int length = pattern.length();
 		table = new int[length];
@@ -30,8 +32,33 @@ public class KMP {
 			}
 		}
 		
+		System.out.println(Arrays.toString(table));
+		
 		for(int i=table.length-1; i>=0; i--)
 			table[i] = (i==0)?-1:table[i-1];
+		
+		System.out.println(Arrays.toString(table));
+	}
+	
+	public KMP(String s, Boolean x) {
+		this.pattern = s;
+		
+		int length = pattern.length();
+		table = new int[length];
+		
+		int pre = -1, suffix = 0;
+		for (; suffix < length; suffix++) {
+			if (suffix == 0)	table[suffix] = -1;
+			else if (pattern.charAt(suffix) != pattern.charAt(pre))
+				table[suffix] = pre;
+			else
+				table[suffix] = table[pre];
+			while (pre >= 0 && pattern.charAt(suffix) != pattern.charAt(pre))
+				pre = table[pre];
+			pre++;
+		}
+
+		System.out.println(Arrays.toString(table));
 	}
 	
 	static boolean kmp(String text, String pattern){
@@ -51,6 +78,6 @@ public class KMP {
 	}
 	
 	public static void main(String[] args){
-		System.out.println(kmp("dabcabdabcxxxasdfsaf", "dabcabsddabcxxx"));
+		System.out.println(kmp("dabcabdabcxxxaabaaabaxasdfsaf", "aabaaaba"));
 	}
 }
