@@ -35,7 +35,7 @@ public class KMP{
 		System.out.println("nfa: "+Arrays.toString(nfa));
 	}
 	
-	public void getNFAImprove(String pattern){
+	public void getNext(String pattern){
 		next = new int[pattern.length()];
 		
 		int i=-1, j=0;
@@ -49,28 +49,14 @@ public class KMP{
 			else i = next[i];
 		}
 		
-		System.out.println("nfa improved: "+Arrays.toString(next));
+		System.out.println("next: "+Arrays.toString(next));
 	}
 	
 	public KMP(String pattern) {
 		this.pattern = pattern;
-		next = new int[pattern.length()];
-		
-		int i=-1, j=0;
-		while (j < pattern.length()) {
-			if (j == 0)	next[j] = -1;
-			else if (pattern.charAt(j) != pattern.charAt(i))
-				next[j] = i;
-			else
-				next[j] = next[i];
-			while (i >= 0 && pattern.charAt(j) != pattern.charAt(i)) {
-				i = next[i];
-			}
-			i++;
-			j++;
-		}
-
-		System.out.println("final nfa: "+Arrays.toString(next));
+		getDFA(pattern);
+		getNFA(pattern);
+		getNext(pattern);
 	}
 
 	
@@ -80,10 +66,9 @@ public class KMP{
 		int M = pattern.length();
 		int N = text.length();
 		int i, j;
-		for (i = 0, j = 0; i < N && j < M; i++) {
+		for (i = 0, j = 0; i < N && j < M; i++, j++) {
 			while (j >= 0 && text.charAt(i) != pattern.charAt(j))
 				j = next[j];
-			j++;
 		}
 		if (j == M)
 			return i - M;
@@ -96,11 +81,8 @@ public class KMP{
 				text = "ababaabaaabaaaabab";;
 		// substring search
 		KMP kmp = new KMP(pattern);
-		kmp.getDFA(pattern);
-		kmp.getNFA(pattern);
-		kmp.getNFAImprove(pattern);
 		int offset = kmp.search(text);
-
+		kmp.getNext("ababab");
 		System.out.println("text:    " + text);
 		System.out.print("pattern: ");
 		for (int i = 0; i < offset; i++)
