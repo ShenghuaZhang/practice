@@ -1,5 +1,11 @@
 package string;
-
+/**
+ * Princeton:
+ * http://algs4.cs.princeton.edu/53substring/KMPplus.java.html
+ * Leetcode:
+ * https://leetcode.com/problems/implement-strstr/
+ * 
+ */
 import java.util.Arrays;
 
 public class KMP{
