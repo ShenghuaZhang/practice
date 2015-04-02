@@ -37,10 +37,10 @@ public class KMP{
 	
 	public void getNext(String pattern){
 		next = new int[pattern.length()];
+		if(pattern.length()>0)	next[0] = -1;
 		
 		int i=-1, j=0;
 		while(j < pattern.length()-1){
-			if(j==0) next[j] = -1;
 			if(i==-1 || pattern.charAt(i)==pattern.charAt(j)){
 				if(pattern.charAt(++i)!=pattern.charAt(++j))
 					next[j] = i;
@@ -70,19 +70,16 @@ public class KMP{
 			while (j >= 0 && text.charAt(i) != pattern.charAt(j))
 				j = next[j];
 		}
-		if (j == M)
-			return i - M;
-		return N;
+		return (j == M)?(i - M):N;
 	}
 
 	// test client
 	public static void main(String[] args) {
-		String pattern = "aabaaaba", 
-				text = "ababaabaaabaaaabab";;
+		String pattern = "a", 
+				text = "mississippi";;
 		// substring search
 		KMP kmp = new KMP(pattern);
 		int offset = kmp.search(text);
-		kmp.getNext("ababab");
 		System.out.println("text:    " + text);
 		System.out.print("pattern: ");
 		for (int i = 0; i < offset; i++)
