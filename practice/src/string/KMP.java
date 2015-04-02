@@ -2,82 +2,109 @@ package string;
 
 import java.util.Arrays;
 
-public class KMP {
+public class KMP{
 	private String pattern;
-	private int[] table;
-	
-	public KMP(String s){
-		this.pattern = s;
+	private int[] next, nfa, dfa;
 
-		int length = pattern.length();
-		table = new int[length];
+	public void getDFA(String pattern){
+		dfa = new int[pattern.length()];
 		
-		int pre = 0, suffix = 0, value=0;
-		boolean fromBegin = true;
-		while(suffix < length){
-			if(suffix == 0)	table[suffix++] = 0;
-			if(pattern.charAt(pre) == pattern.charAt(suffix)){
-				table[suffix++] = ++value;
-				pre++;
-				fromBegin=false;
-			}else{
-				value = 0;
-				if(pre+1 == suffix){
-					table[suffix++] = 0;	
-					pre=0;
-				}else if(!fromBegin){
-					pre=0;
-					fromBegin = true;
-				}else	pre++;
+		int i = 0, j = 0;
+		while(j < pattern.length()){
+			if(j == 0)	dfa[j++] = 0;
+			else if(pattern.charAt(i) == pattern.charAt(j))
+				dfa[j++] = ++i;
+			else if(i==0)	dfa[j++] = 0;
+			else	i = dfa[i-1]; 
+		}
+
+		System.out.println("dfa: "+Arrays.toString(dfa));
+	}
+	
+	public void getNFA(String pattern){
+		nfa = new int[pattern.length()];
+		
+		int i=-1, j=0;
+		while(j<pattern.length()-1){
+			if(j==0)	nfa[j] = -1;
+			if(i==-1 || pattern.charAt(i)==pattern.charAt(j))
+				nfa[++j] = ++i;
+			else i = nfa[i];
+		}
+		
+		System.out.println("nfa: "+Arrays.toString(nfa));
+	}
+	
+	public void getNFAImprove(String pattern){
+		next = new int[pattern.length()];
+		
+		int i=-1, j=0;
+		while(j < pattern.length()-1){
+			if(j==0) next[j] = -1;
+			if(i==-1 || pattern.charAt(i)==pattern.charAt(j)){
+				if(pattern.charAt(++i)!=pattern.charAt(++j))
+					next[j] = i;
+				else next[j] = next[i];
 			}
+			else i = next[i];
 		}
 		
-		System.out.println(Arrays.toString(table));
-		
-		for(int i=table.length-1; i>=0; i--)
-			table[i] = (i==0)?-1:table[i-1];
-		
-		System.out.println(Arrays.toString(table));
+		System.out.println("nfa improved: "+Arrays.toString(next));
 	}
 	
-	public KMP(String s, Boolean x) {
-		this.pattern = s;
+	public KMP(String pattern) {
+		this.pattern = pattern;
+		next = new int[pattern.length()];
 		
-		int length = pattern.length();
-		table = new int[length];
-		
-		int pre = -1, suffix = 0;
-		for (; suffix < length; suffix++) {
-			if (suffix == 0)	table[suffix] = -1;
-			else if (pattern.charAt(suffix) != pattern.charAt(pre))
-				table[suffix] = pre;
+		int i=-1, j=0;
+		while (j < pattern.length()) {
+			if (j == 0)	next[j] = -1;
+			else if (pattern.charAt(j) != pattern.charAt(i))
+				next[j] = i;
 			else
-				table[suffix] = table[pre];
-			while (pre >= 0 && pattern.charAt(suffix) != pattern.charAt(pre))
-				pre = table[pre];
-			pre++;
+				next[j] = next[i];
+			while (i >= 0 && pattern.charAt(j) != pattern.charAt(i)) {
+				i = next[i];
+			}
+			i++;
+			j++;
 		}
 
-		System.out.println(Arrays.toString(table));
+		System.out.println("final nfa: "+Arrays.toString(next));
 	}
+
 	
-	static boolean kmp(String text, String pattern){
-		if(text.length()<pattern.length())	return false;
-		KMP kmp = new KMP(pattern);
-		
-		int i=0, j=0;
-		while(i<text.length() && j<pattern.length()){
-			if(j==-1 || text.charAt(i)==pattern.charAt(j)){
-				i++;
-				j++;
-			}else	j = kmp.table[j];
+	// return offset of first occurrence of text in pattern (or N if no match)
+	// simulate the NFA to find match
+	public int search(String text) {
+		int M = pattern.length();
+		int N = text.length();
+		int i, j;
+		for (i = 0, j = 0; i < N && j < M; i++) {
+			while (j >= 0 && text.charAt(i) != pattern.charAt(j))
+				j = next[j];
+			j++;
 		}
-		
-		if(j==pattern.length())	return true;
-		return false;
+		if (j == M)
+			return i - M;
+		return N;
 	}
-	
-	public static void main(String[] args){
-		System.out.println(kmp("dabcabdabcxxxaabaaabaxasdfsaf", "aabaaaba"));
+
+	// test client
+	public static void main(String[] args) {
+		String pattern = "aabaaaba", 
+				text = "ababaabaaabaaaabab";;
+		// substring search
+		KMP kmp = new KMP(pattern);
+		kmp.getDFA(pattern);
+		kmp.getNFA(pattern);
+		kmp.getNFAImprove(pattern);
+		int offset = kmp.search(text);
+
+		System.out.println("text:    " + text);
+		System.out.print("pattern: ");
+		for (int i = 0; i < offset; i++)
+			System.out.print(" ");
+		System.out.println(pattern);
 	}
 }
