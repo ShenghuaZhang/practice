@@ -34,7 +34,7 @@ public class WordLadder {
 		Set<String> visited = new HashSet<>();
 		int level = 1, lastNum = 1, curNum = 0;
 		
-		queue.offer(start); //same with queue.add(start);
+		queue.offer(start);
 		visited.add(start);
 		while(!queue.isEmpty()){
 			String cur = queue.poll();
@@ -47,7 +47,7 @@ public class WordLadder {
 					if(temp.equals(end))	return level+1;
 					if(dict.contains(temp) && !visited.contains(temp)){
 						curNum++;
-						queue.add(temp);
+						queue.offer(temp);
 						visited.add(temp);
 					}
 				}
@@ -59,17 +59,5 @@ public class WordLadder {
 			}
 		}
 		return 0;
-	}
-	
-	@SuppressWarnings("unused")
-	private boolean oneDiff(String first, String second){
-		boolean rs = false;
-		for(int i=0; i<first.length(); i++){
-			if(first.charAt(i)==second.charAt(i)){
-				if(rs = true)	return false;
-				else rs = true;
-			}
-		}
-		return rs;
 	}
 }

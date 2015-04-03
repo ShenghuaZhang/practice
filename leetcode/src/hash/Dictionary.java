@@ -1,7 +1,7 @@
 package hash;
 
 public class Dictionary {
-	// TODO: How to use hashtable?
+	// TODO: How to use Hash table implement a dictionary?
 	final static int NUMBERWORDS = 50000;
 	final static int SIZE = (int) (NUMBERWORDS * 2);
 
