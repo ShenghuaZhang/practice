@@ -45,10 +45,18 @@ public class WordLadder {
 				for (char c = 'a'; c <= 'z'; c++) {
 					charCur[i] = c;
 					/*
-					 * TODO: caution to using toString(), it is actually return the
-					 * reference address like: [C@4dcbadb4
+					 * TODO: caution to using toString()
+					 * it is actually return the reference address like: [C@4dcbadb4
 					 * public String toString() {
 					 * 		return getClass().getName() + "@" + Integer.toHexString(hashCode());
+					 * }
+					 * 
+					 * So it is different with toCharArray() which return a char array:
+					 * public char[] toCharArray() {
+					 * 		// Cannot use Arrays.copyOf because of class initialization order issues
+					 * 		char result[] = new char[value.length];
+					 * 		System.arraycopy(value, 0, result, 0, value.length);
+					 * 		return result;
 					 * }
 					 */
 					String temp = charCur.toString();
