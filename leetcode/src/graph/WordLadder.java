@@ -27,37 +27,60 @@ import java.util.Set;
  *
  */
 public class WordLadder {
-	public int ladderLength(String start, String end, Set<String> dict){
-		if(start==null || end==null || start.length()==0 || end.length()==0)
+	public static int ladderLength(String start, String end,
+			Set<String> dict) {
+		if (start == null || end == null || start.length() == 0
+				|| end.length() == 0)
 			return 0;
 		Queue<String> queue = new LinkedList<>();
-		Set<String> visited = new HashSet<>();
-		int level = 1, lastNum = 1, curNum = 0;
-		
+		Set<String> set = new HashSet<>();
+		int level = 1, curNum = 0, lastNum = 1;
 		queue.offer(start);
-		visited.add(start);
-		while(!queue.isEmpty()){
-			String cur = queue.poll();
+		set.add(start);
+		while (!queue.isEmpty()) {
+			String current = queue.poll();
 			lastNum--;
-			for(int i=0; i<cur.length(); i++){
-				char[] charCur = cur.toCharArray();
-				for(char c ='a'; c<= 'z'; c++){
+			for (int i = 0; i < current.length(); i++) {
+				char[] charCur = current.toCharArray();
+				for (char c = 'a'; c <= 'z'; c++) {
 					charCur[i] = c;
-					String temp = new String(charCur);
-					if(temp.equals(end))	return level+1;
-					if(dict.contains(temp) && !visited.contains(temp)){
-						curNum++;
+					/*
+					 * TODO: caution to using toString(), it is actually return the
+					 * reference address like: [C@4dcbadb4
+					 * public String toString() {
+					 * 		return getClass().getName() + "@" + Integer.toHexString(hashCode());
+					 * }
+					 */
+					String temp = charCur.toString();
+					temp = new String(charCur);
+					if (temp.equals(end))
+						return level + 1;
+					if (dict.contains(temp) && !set.contains(temp)) {
+						set.add(temp);
 						queue.offer(temp);
-						visited.add(temp);
+						curNum++;
 					}
 				}
 			}
-			if(lastNum==0){
+			if (lastNum == 0) {
 				lastNum = curNum;
 				curNum = 0;
 				level++;
 			}
 		}
+
 		return 0;
+	}
+	
+	public static void main(String[] args){
+		String start = "hot", end = "dog";
+		Set<String> dict = new HashSet<String>(){
+			{
+				add("hot");
+				add("dog");
+				add("dot");
+			}
+		};
+		System.out.println(ladderLength(start, end, dict));
 	}
 }
