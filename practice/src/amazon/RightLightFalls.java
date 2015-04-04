@@ -7,7 +7,6 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
- *	TODO: first two method is wrong answer
  * Round 3: (F2F - Data structures and Algorithms)
  * 2. Give a binary tree and a light source fixed placed right side of the tree.
  * Print all the nodes where the light directly falls.
@@ -26,7 +25,7 @@ public class RightLightFalls {
 		TreeNode current = root;
 		int finished = 0, curHeight = 1;
 		
-		while(current!=null || height>finished){
+		while(height>finished){
 			while(current!=null){
 				if(curHeight>finished){
 					finished++;
@@ -39,6 +38,7 @@ public class RightLightFalls {
 			current = stack.pop();
 			curHeight--;
 			if(current.left!=null){
+				stack.push(new TreeNode(current.val));
 				current=current.left;
 				curHeight++;
 			}
@@ -52,7 +52,7 @@ public class RightLightFalls {
 		TreeNode current = root;
 		int finished = 0, curHeight = 1;
 		
-		while(current!=null || height>finished){
+		while(height>finished){
 			while(current!=null){
 				if(curHeight>finished){
 					finished++;
@@ -65,6 +65,7 @@ public class RightLightFalls {
 			current = stack.pop();
 			curHeight--;
 			if(current.right!=null){
+				stack.push(new TreeNode(current.val));
 				current=current.right;
 				curHeight++;
 			}
@@ -89,8 +90,8 @@ public class RightLightFalls {
 	}
 	
 	public static void main(String[] args){
-		TreeNode root = TreeNode.LeetcodeInitialize("{4,3,6,1,#,5,#,#,2}");
+		TreeNode root = TreeNode.LeetcodeInitialize("{1,2,3,4}");
 		printLeftMostNode(root);
-		printRightMostNodeLevelOrder(root);
+		printRightMostNode(root);
 	}
 }
