@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * https://leetcode.com/problems/binary-tree-right-side-view/
@@ -40,5 +41,38 @@ public class BinaryTreeRightSideView {
 		}
 		
 		return list;
+    }
+	
+	public List<Integer> rightSideViewII(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if(root==null)  return list;
+        TreeNode current = root;
+        Stack<TreeNode> stack = new Stack<>();
+        int height = height(root), finished = 0, curHeight = 1;
+        
+        while(finished<height){
+            while(current!=null){
+                if(curHeight>finished){
+                    list.add(current.val);
+                    finished++;
+                }
+                stack.push(current);
+                current = current.right;
+                curHeight++;
+            }
+            current = stack.pop();
+            curHeight--;
+            if(current.left!=null){
+                stack.push(new TreeNode(current.val));
+                current = current.left;
+                curHeight++;
+            }
+            else current = null;
+        }
+        return list;
+    }
+    private int height(TreeNode root){
+        if(root==null)  return 0;
+        return Math.max(height(root.left), height(root.right)) + 1;
     }
 }
