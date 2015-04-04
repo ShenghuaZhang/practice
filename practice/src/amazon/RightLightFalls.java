@@ -29,7 +29,7 @@ public class RightLightFalls {
 			while(current!=null){
 				if(curHeight>finished){
 					finished++;
-					System.out.println(finished+": "+current.val);
+					System.out.print(current.val+" ");
 				}
 				stack.push(current);
 				current = current.right;
@@ -44,6 +44,7 @@ public class RightLightFalls {
 			}
 			else current = null;
 		}
+		System.out.println();
 	}
 	
 	public static void printLeftMostNode(TreeNode root){
@@ -56,7 +57,7 @@ public class RightLightFalls {
 			while(current!=null){
 				if(curHeight>finished){
 					finished++;
-					System.out.println(finished+": "+current.val);
+					System.out.print(current.val+" ");
 				}
 				stack.push(current);
 				current = current.left;
@@ -71,6 +72,7 @@ public class RightLightFalls {
 			}
 			else current = null;
 		}
+		System.out.println();
 	}
 	
 	public static void printRightMostNodeLevelOrder(TreeNode root){
@@ -82,16 +84,36 @@ public class RightLightFalls {
 			int size = queue.size();
 			for(int i=0; i<size; i++){
 				current = queue.poll();
-				if(i==size-1)	System.out.println(current.val);
+				if(i==size-1)	System.out.print(current.val + " ");
 				if(current.left!=null)	queue.add(current.left);
 				if(current.right!=null)	queue.add(current.right);
 			}
 		}
+		System.out.println();
+	}
+	
+	public static void printLeftMostNodeLevelOrder(TreeNode root){
+		Queue<TreeNode> queue = new LinkedList<>();
+		TreeNode current = root;
+		queue.add(current);
+		
+		while(!queue.isEmpty()){
+			int size = queue.size();
+			for(int i=0; i<size; i++){
+				current = queue.poll();
+				if(i==0)	System.out.print(current.val+" ");
+				if(current.left!=null)	queue.offer(current.left);
+				if(current.right!=null)	queue.offer(current.right);
+			}
+		}
+		System.out.println();
 	}
 	
 	public static void main(String[] args){
 		TreeNode root = TreeNode.LeetcodeInitialize("{1,2,3,4}");
 		printLeftMostNode(root);
+		printLeftMostNodeLevelOrder(root);
 		printRightMostNode(root);
+		printRightMostNodeLevelOrder(root);
 	}
 }
