@@ -1,10 +1,10 @@
 package np;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * TODO: NQueens
  * https://leetcode.com/problems/n-queens/
  * 
  * The n-queens puzzle is the problem of placing n queens on an nxn chessboard
@@ -19,13 +19,13 @@ import java.util.List;
  *
  */
 public class NQueens {
-	public List<String[]> solveNQueens(int n) {
+	public static List<String[]> solveNQueens(int n) {
 		List<String[]> res = new ArrayList<String[]>();
 		helper(n, 0, new int[n], res);
 		return res;
 	}
 
-	private void helper(int n, int row, int[] columnForRow, List<String[]> res) {
+	private static void helper(int n, int row, int[] columnForRow, List<String[]> res) {
 		if (row == n) {
 			String[] item = new String[n];
 			for (int i = 0; i < n; i++) {
@@ -39,6 +39,7 @@ public class NQueens {
 				item[i] = strRow.toString();
 			}
 			res.add(item);
+			System.out.println(Arrays.toString(item));
 			return;
 		}
 		for (int i = 0; i < n; i++) {
@@ -49,12 +50,16 @@ public class NQueens {
 		}
 	}
 
-	private boolean check(int row, int[] columnForRow) {
+	private static boolean check(int row, int[] columnForRow) {
 		for (int i = 0; i < row; i++) {
 			if (columnForRow[row] == columnForRow[i]
 					|| Math.abs(columnForRow[row] - columnForRow[i]) == row - i)
 				return false;
 		}
 		return true;
+	}
+	
+	public static void main(String[] args){
+		solveNQueens(4);
 	}
 }
