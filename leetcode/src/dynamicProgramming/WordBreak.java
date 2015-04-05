@@ -1,10 +1,8 @@
 package dynamicProgramming;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
- * TODO Apr.3 2015
  * https://leetcode.com/problems/word-break/
  * 
  * Given a string s and a dictionary of words dict,
@@ -16,10 +14,13 @@ import java.util.Set;
  * Return true because "leetcode" can be segmented as "leet code".
  * 
  * @author carllee1991
+ * 
+ * #WordBreakII
+ * {@link #wordBreakBetter(String, Set)}
  *
  */
 public class WordBreak {
-	public static boolean wordBreak(String s, Set<String> dict) {
+	public static boolean wordBreakMine(String s, Set<String> dict) {
 		if(s==null)	return true;
         return helper(s, dict, 0);
     }
