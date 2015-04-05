@@ -28,15 +28,15 @@ public class WordBreak {
 		
 		for(int i=1; i<s.length()-index+1; i++)
 			if(dict.contains(s.substring(index, index+i)))
-				return helper(s, dict, index+i);
+				if(helper(s, dict, index+i)) return true;
 		
 		return false;
 	}
 	
 	public static void main(String[] args){
-		String s = "aaaaaaa";
+		String s = "aaaaa";
 		HashSet<String> dict = new HashSet<String>(){
-			{add("aaaa");	add("aaa");}};
+			{add("aa");	add("a");}};
 		System.out.println(wordBreak(s, dict));
 	}
 }
