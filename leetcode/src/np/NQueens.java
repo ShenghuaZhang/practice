@@ -19,9 +19,11 @@ import java.util.List;
  *
  */
 public class NQueens {
+	static int num = 0;
 	public static List<String[]> solveNQueens(int n) {
 		List<String[]> res = new ArrayList<String[]>();
 		helper(n, 0, new int[n], res);
+		helperII(n, 0, new int[n]);// return num;
 		return res;
 	}
 
@@ -46,6 +48,19 @@ public class NQueens {
 			columnForRow[row] = i;
 			if (check(row, columnForRow)) {
 				helper(n, row + 1, columnForRow, res);
+			}
+		}
+	}
+	
+	private static void helperII(int n, int row, int[] columnForRow) {
+		if (row == n) {
+			num++;
+			return;
+		}
+		for (int i = 0; i < n; i++) {
+			columnForRow[row] = i;
+			if (check(row, columnForRow)) {
+				helperII(n, row + 1, columnForRow);
 			}
 		}
 	}
