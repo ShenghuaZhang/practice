@@ -1,6 +1,5 @@
 package dynamicProgramming;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -20,23 +19,14 @@ import java.util.Set;
  */
 public class WordBreak {
 	public static boolean wordBreak(String s, Set<String> dict) {
-		if(s==null || s.length()==0)	return true;
+		if(s==null)	return true;
         return helper(s, dict, 0);
     }
 	private static boolean helper(String s, Set<String> dict, int index){
 		if(index==s.length())	return true;
-		
 		for(int i=1; i<s.length()-index+1; i++)
 			if(dict.contains(s.substring(index, index+i)))
 				if(helper(s, dict, index+i)) return true;
-		
 		return false;
-	}
-	
-	public static void main(String[] args){
-		String s = "aaaaa";
-		HashSet<String> dict = new HashSet<String>(){
-			{add("aa");	add("a");}};
-		System.out.println(wordBreak(s, dict));
 	}
 }
