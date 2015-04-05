@@ -1,5 +1,6 @@
 package dynamicProgramming;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,5 +29,24 @@ public class WordBreak {
 			if(dict.contains(s.substring(index, index+i)))
 				if(helper(s, dict, index+i)) return true;
 		return false;
+	}
+	
+	public static boolean wordBreakBetter(String s, Set<String> dict){
+		boolean[] rs = new boolean[s.length()];
+		for(int i=0; i<s.length(); i++){
+			for(int j=0; j<=i; j++){
+				if(j==i && dict.contains(s.substring(0, i+1))){
+					System.out.println(i);
+					rs[i] = true;
+					break;
+				}
+				else if(rs[j] && dict.contains(s.substring(j+1, i+1))){
+					System.out.println(i);
+					rs[i] = true;
+					break;
+				}
+			}
+		}
+		return rs[s.length()-1];
 	}
 }
