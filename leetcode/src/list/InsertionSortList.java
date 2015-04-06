@@ -11,14 +11,15 @@ public class InsertionSortList {
 	public ListNode insertionSortList(ListNode head){
 		if(head == null)	return null;
 		ListNode dummyHead = new ListNode(0);
+		ListNode current = head;
 		
-		while(head!=null){
-			ListNode next = head.next, p = dummyHead;
-			while(p.next!=null & p.next.val<=head.val)
+		while(current!=null){
+			ListNode next = current.next, p = dummyHead;
+			while(p.next!=null && p.next.val<=current.val)
 				p = p.next;
-			head.next = p.next;
-			p.next = head;
-			head = next;
+			current.next = p.next;
+			p.next = current;
+			current = next;
 		}
 		
 		return dummyHead.next;
