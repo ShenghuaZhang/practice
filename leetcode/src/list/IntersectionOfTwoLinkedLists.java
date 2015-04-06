@@ -12,7 +12,7 @@ public class IntersectionOfTwoLinkedLists {
 	/*
 	 * 1. Get count of the nodes in first list, let count be c1.
 	 * 2. Get count of the nodes in second list, let count be c2.
-	 * 3. Get the difference of counts d = Math.abs(c1 – c2)
+	 * 3. Get the difference of counts d = Math.abs(c1 - c2)
 	 * 4. Now traverse the bigger list from the first node till d nodes
 	 * 	so that from here onwards both the lists have equal no of nodes.
 	 * 5. Then we can traverse both the lists in parallel till we come across a common node.
@@ -77,9 +77,9 @@ public class IntersectionOfTwoLinkedLists {
 	 * Now we have
 	 * 				X + Y = length3
 	 * We have 3 linear equations. By solving them, we get
-	 * 			X = (length1 + length3 – length2)/2;
-	 * 			Y = (length2 + length3 – length1)/2;
-	 * 			Z = (length1 + length2 – length3)/2;
+	 * 			X = (length1 + length3 - length2)/2;
+	 * 			Y = (length2 + length3 - length1)/2;
+	 * 			Z = (length1 + length2 - length3)/2;
 	 * WE GOT THE INTERSECTION POINT.
 	 * 4)  Reverse first linked list.
 	 * 

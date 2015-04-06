@@ -12,11 +12,11 @@ package list;
 
 public class RemoveDuplicatesFromSortedList {
 	public ListNode deleteDuplicates(ListNode head) {
-        ListNode dummyHead = head;
-        while(dummyHead!=null&&dummyHead.next!=null){
-            if(dummyHead.val==dummyHead.next.val)
-                dummyHead.next=dummyHead.next.next;
-            else dummyHead = dummyHead.next;
+        ListNode current = head;
+        while(current!=null&&current.next!=null){
+            if(current.val==current.next.val)
+            	current.next=current.next.next;
+            else current = current.next;
         }
         return head;
     }

@@ -16,11 +16,10 @@ public class SortList {
 			slow = slow.next;
 			fast = fast.next.next;
 		}
-		ListNode head2 = slow.next;
+		ListNode newHead = slow.next;
 		slow.next = null;
-		ListNode head1 = head;
-		head1 = sortList(head1);
-		head2 = sortList(head2);
-		return MergeTwoSortedLists.mergeTwoLists(head1, head2);
+		head = sortList(head);
+		newHead = sortList(newHead);
+		return MergeTwoSortedLists.mergeTwoLists(head, newHead);
 	}
 }
