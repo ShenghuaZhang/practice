@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MixSort {
+public class JumbleSort {
 	public static void main(String[] args) throws Exception{
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader reader = new BufferedReader(isr);
 		String line = null;
 		while((line = reader.readLine())!=null)
-			sortString(line);
+			jumbleSort(line);
 	}
 	
-	public static void sortString(String line){
+	public static void jumbleSort(String line){
 		List<Integer> integers = new ArrayList<>();
 		List<String> words = new ArrayList<>();
 		int index_integer = 0, index_word = 0;
