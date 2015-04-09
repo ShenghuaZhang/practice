@@ -14,7 +14,7 @@ package dynamicProgramming;
  *
  */
 public class DistinctSubsequences {
-	public int numDistinct(String S, String T){
+	public static int numDistinct(String S, String T){
 		
 	}
 }

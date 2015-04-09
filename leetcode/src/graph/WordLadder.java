@@ -59,8 +59,7 @@ public class WordLadder {
 					 * 		return result;
 					 * }
 					 */
-					String temp = charCur.toString();
-					temp = new String(charCur);
+					String temp = new String(charCur);
 					if (temp.equals(end))
 						return level + 1;
 					if (dict.contains(temp) && !set.contains(temp)) {
