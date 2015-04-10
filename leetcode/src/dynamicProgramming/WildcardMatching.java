@@ -1,10 +1,11 @@
 package dynamicProgramming;
 /**
+ * TODO
  * https://leetcode.com/problems/wildcard-matching/
  * 
- * https://leetcode.com/problems/wildcard-matching/
  * boolean isNumeric(String s){
  * 		return s.matches("[-+]?\\d*\\.?\\d+");}
+ * 
  * Some examples:
  * isMatch("aa","a")  false
  * isMatch("aa","aa")  true
@@ -22,8 +23,9 @@ public class WildcardMatching {
 		return helper(s, p, 0, 0);
 	}
 	
-	private boolean helper(String s, String p, int i, int j){
+	private static boolean helper(String s, String p, int i, int j){
 		if(j==p.length())	return i==s.length();
+		return false;
 	}
 	
 	public static void main(String[] args){
