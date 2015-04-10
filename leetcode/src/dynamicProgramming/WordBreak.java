@@ -20,7 +20,7 @@ import java.util.Set;
  *
  */
 public class WordBreak {
-	public static boolean wordBreakMine(String s, Set<String> dict) {
+	public static boolean wordBreakRecursive(String s, Set<String> dict) {
 		if(s==null)	return true;
         return helper(s, dict, 0);
     }
@@ -37,12 +37,10 @@ public class WordBreak {
 		for(int i=0; i<s.length(); i++){
 			for(int j=0; j<=i; j++){
 				if(j==i && dict.contains(s.substring(0, i+1))){
-					System.out.println(i);
 					rs[i] = true;
 					break;
 				}
 				else if(rs[j] && dict.contains(s.substring(j+1, i+1))){
-					System.out.println(i);
 					rs[i] = true;
 					break;
 				}
