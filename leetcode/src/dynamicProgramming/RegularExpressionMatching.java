@@ -6,5 +6,5 @@ package dynamicProgramming;
  *
  */
 public class RegularExpressionMatching {
-	public 
+	public static 
 }

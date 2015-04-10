@@ -9,6 +9,8 @@ package bitManipulation;
  * If this function is called many times, how would you optimize it?
  * 
  * @author carllee1991
+ * 
+ * #ReverseInteger
  *
  */
 public class ReverseBits {
