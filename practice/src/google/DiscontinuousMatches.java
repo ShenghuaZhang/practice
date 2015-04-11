@@ -8,6 +8,7 @@ package google;
  * 
  * @author yili3
  * 
+ * #DistinctSubsequences
  */
 public class DiscontinuousMatches {
 	static int getDiscontinuousMatches(String pattern, String text){

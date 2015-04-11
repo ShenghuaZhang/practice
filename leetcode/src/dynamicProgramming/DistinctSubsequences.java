@@ -12,6 +12,7 @@ package dynamicProgramming;
  * 
  * @author yili3
  *
+ * #DiscontinuousMatches
  */
 public class DistinctSubsequences {
 	public static int numDistinct(String S, String T){

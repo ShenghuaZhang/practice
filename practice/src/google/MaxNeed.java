@@ -8,11 +8,11 @@ import java.util.List;
 class Job{
 	int start;
 	int end;
-	int need;
+	int processors;
 	public Job(int start, int end, int need){
 		this.start = start;
 		this.end = end;
-		this.need = need;
+		this.processors = need;
 	}
 	public int getStart(){
 		return start;
@@ -21,33 +21,34 @@ class Job{
 		return end;
 	}
 	public int getNeed(){
-		return need;
+		return processors;
 	}
-	public List<Helper> toHelper(){
-		List<Helper> list = new ArrayList<>();
-		list.add(new Helper(start, need));
-		list.add(new Helper(end, -need));
+	public List<Status> toStatus(){
+		List<Status> list = new ArrayList<>();
+		list.add(new Status(start, processors));
+		list.add(new Status(end, -processors));
 		return list;
 	}
 }
 
-class Helper{
+class Status {
 	int time;
-	int need;
-	public Helper(int time, int need){
+	int processors;
+
+	public Status(int time, int need) {
 		this.time = time;
-		this.need = need;
+		this.processors = need;
 	}
 }
 
 public class MaxNeed {
 	public static int maxNeed(List<Job> list){
-		List<Helper> helper = new ArrayList<>();
+		List<Status> helper = new ArrayList<>();
 		for(int i=0; i<list.size(); i++)
-			helper.addAll(list.get(i).toHelper());
+			helper.addAll(list.get(i).toStatus());
 		
-		Comparator<Helper> cmp = new Comparator<Helper>(){
-			public int compare(Helper h1, Helper h2){
+		Comparator<Status> cmp = new Comparator<Status>(){
+			public int compare(Status h1, Status h2){
 				return h1.time-h2.time;
 			}
 		};
@@ -55,7 +56,7 @@ public class MaxNeed {
 		
 		int max = 0, current=0;
 		for(int i=0; i<helper.size(); i++){
-			current += helper.get(i).need;
+			current += helper.get(i).processors;
 			max = Math.max(max, current);
 		}
 		
