@@ -40,12 +40,12 @@ public class MergeKSortedLists {
 	 */
 	public ListNode mergeKListsHeap(List<ListNode> lists) {
 		PriorityQueue<ListNode> heap = new PriorityQueue<ListNode>(10,
-				new Comparator<ListNode>() {
-					@Override
-					public int compare(ListNode n1, ListNode n2) {
-						return n1.val - n2.val;
-					}
-				});
+			new Comparator<ListNode>() {
+				@Override
+				public int compare(ListNode n1, ListNode n2) {
+					return n1.val - n2.val;
+				}
+		});
 		for (int i = 0; i < lists.size(); i++) {
 			ListNode node = lists.get(i);
 			if (node != null)	heap.offer(node);
