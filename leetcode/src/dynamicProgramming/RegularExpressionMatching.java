@@ -1,10 +1,9 @@
 package dynamicProgramming;
 /**
- * TODO
  * https://leetcode.com/problems/regular-expression-matching/
  * 
  * Implement regular expression matching with support for '.' and '*'.
- * '.' Matches any single character.
+ * '.' Matches any number any single character.
  * '*' Matches zero or more of the preceding element.
  * The matching should cover the entire input string (not partial).
  * The function prototype should be:
@@ -23,9 +22,29 @@ package dynamicProgramming;
  * #WildcardMatching
  *
  */
-public class RegularExpressionMatching {
-	public static boolean isMatch(String s, String p){
+public class RegularExpressionMatching {	
+	public static boolean isMatchBruteForce(String s, String p){
+		return helper(s, p, 0, 0);
+	}
+	private static boolean helper(String s, String p, int i, int j){
+		if(j==p.length())	return i==s.length();
 		
-		return true;
+		if(j==p.length()-1 || p.charAt(j+1)!='*'){
+			if(i==s.length() || s.charAt(i)!=p.charAt(j) && p.charAt(j)!='.')
+				return false;
+			else return helper(s, p, i+1, j+1);
+		}
+		
+		while(i<s.length() && (p.charAt(j)=='.'||p.charAt(j)==s.charAt(i))){
+			if(helper(s, p, i, j+2))	return true;// back tracking
+			i++;
+		}
+		
+		return helper(s, p, i, j+2);
+	}
+	
+	public static void main(String[] args){
+		String s = "baabbbaccbccacacc", p="c*..b*a*a.*a..*c";
+		System.out.println(isMatchBruteForce(s, p));
 	}
 }
