@@ -43,6 +43,23 @@ public class RegularExpressionMatching {
 		return helper(s, p, i, j+2);
 	}
 	
+	public static boolean isMatchDP(String s, String p){
+		if(s.length()==0 && p.length()==0)	return true;
+		if(p.length()==0)	return false;
+		boolean[][] dp = new boolean[s.length()+1][p.length()+1];
+		dp[0][0] = true;
+		
+		for(int j=0; j<p.length(); j++){
+			if(p.charAt(j+1)=='*'){
+				
+			}else{
+				
+			}
+		}
+		
+		return dp[s.length()][p.length()];
+	}
+	
 	public static void main(String[] args){
 		String s = "baabbbaccbccacacc", p="c*..b*a*a.*a..*c";
 		System.out.println(isMatchBruteForce(s, p));
