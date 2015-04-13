@@ -16,6 +16,8 @@ import java.util.List;
  * respectively.
  * 
  * @author carllee1991
+ * 
+ * #SudokuSolver
  *
  */
 public class NQueens {
