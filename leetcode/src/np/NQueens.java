@@ -16,8 +16,6 @@ import java.util.List;
  * respectively.
  * 
  * @author carllee1991
- * 
- * #SudokuSolver
  *
  */
 public class NQueens {
@@ -74,9 +72,5 @@ public class NQueens {
 				return false;
 		}
 		return true;
-	}
-	
-	public static void main(String[] args){
-		solveNQueens(4);
 	}
 }

@@ -12,27 +12,27 @@ import java.util.List;
  * You may assume that there will be only one unique solution.
  * 
  * @author yili3
- * 
- * #NQueens
  *
  */
 public class SudokuSolver {
-	public static boolean solveSudoku(char[][] board){
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				if(board[i][j] == '.'){
-					List<Character> list = possibleNumber(board, i, j);
-					if(list.size()==0)	return false;
-					for(int k=0; k<list.size(); k++){
-						board[i][j] = list.get(k);
-						if(solveSudoku(board))	return true;
-					}
-					board[i][j] = '.';
-					return false;
-				}
+	public static void solveSudoku(char[][] board){
+		helper(board, 0, 0);
+	}
+	public static boolean helper(char[][] board, int i, int j){
+		if(j==9)	return helper(board, i+1, 0);
+		if(i==9)	return true;
+		
+		if(board[i][j] == '.'){
+			List<Character> list = possibleNumber(board, i, j);
+			if(list.size()==0)	return false;
+			for(int k=0; k<list.size(); k++){
+				board[i][j] = list.get(k);
+				if(helper(board, i, j+1))	return true;
 			}
+			board[i][j] = '.';
+			return false;
 		}
-		return true;
+		else return helper(board, i, j+1);
 	}
 	private static List<Character> possibleNumber(char[][] board, int row, int column){
 		List<Character> list = new ArrayList<Character>(Arrays.asList('1','2','3','4','5','6','7','8','9'));
