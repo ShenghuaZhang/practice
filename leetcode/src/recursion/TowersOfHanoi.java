@@ -29,11 +29,16 @@ public class TowersOfHanoi {
 	Map<String, List<Integer>> map;
 	
 	public TowersOfHanoi(int n){
+		if(n<1){
+			System.err.print("n must bigger than 0");
+			return;
+		}
+		
 		Size = n;
-		Start = new ArrayList<Integer>(Size);
+		Start = new ArrayList<Integer>();
 		for(int i=1; i<=Size; i++)	Start.add(i);
-		Auxiliary = new ArrayList<Integer>(Size);
-		End = new ArrayList<Integer>(Size);
+		Auxiliary = new ArrayList<Integer>();
+		End = new ArrayList<Integer>();
 		map = new HashMap<String, List<Integer>>(){
 			private static final long serialVersionUID = 4624797769248664305L;
 			{
@@ -65,11 +70,7 @@ public class TowersOfHanoi {
 	}
 	
 	public void towersOfHanoi(int n, String from, String auxiliary, String to){
-		if(n==1){
-			move(from, to);
-			showTowersOfHanoi();
-			return;
-		}
+		if(n<1)	return;
 		towersOfHanoi(n-1, from, to, auxiliary);
 		move(from, to);
 		showTowersOfHanoi();
@@ -78,14 +79,6 @@ public class TowersOfHanoi {
 	
 	public void towersOfHanoi(){
 		towersOfHanoi(Size, "Start", "Auxiliary", "End");
-	}
-	
-	public static void towersOfHanoiPrinceton(int n, boolean left){
-		if(n==0) return;
-		towersOfHanoiPrinceton(n-1, !left);
-		if(left) System.out.println(n+" left");
-		else System.out.println(n+" right");
-		towersOfHanoiPrinceton(n-1, !left);
 	}
 	
 	public static void main(String[] args){
