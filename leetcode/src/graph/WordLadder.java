@@ -82,6 +82,7 @@ public class WordLadder {
 	public static void main(String[] args){
 		String start = "hot", end = "dog";
 		Set<String> dict = new HashSet<String>(){
+			private static final long serialVersionUID = -4240235025178617424L;
 			{
 				add("hot");
 				add("dog");
