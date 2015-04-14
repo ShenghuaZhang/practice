@@ -18,6 +18,6 @@ import java.util.List;
 public class Permutations {
 	public static List<List<Integer>> premute(int[] num){
 		List<List<Integer>> list = new ArrayList<>();
-		
+		return list;
 	}
 }
