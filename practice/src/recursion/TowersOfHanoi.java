@@ -24,19 +24,18 @@ import java.util.Scanner;
  *
  */
 public class TowersOfHanoi {
-	int Size;
-	List<Integer> Start, Auxiliary, End;
-	Map<String, List<Integer>> map;
+	private final int Size;
+	private List<Integer> Start, Auxiliary, End;
+	private Map<String, List<Integer>> map;
 	
 	public TowersOfHanoi(int n){
-		if(n<1){
+		Size = n;
+		if(Size<1){
 			System.err.print("n must bigger than 0");
 			return;
 		}
-		
-		Size = n;
 		Start = new ArrayList<Integer>();
-		for(int i=1; i<=Size; i++)	Start.add(i);
+		for(int i=1; i<=Size; i++)	Start.add(i);//Defensive copy
 		Auxiliary = new ArrayList<Integer>();
 		End = new ArrayList<Integer>();
 		map = new HashMap<String, List<Integer>>(){
