@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class InOrder {
-	public static List<Integer> inOrderRecursion(TreeNode root){
+public class Inorder {
+	public static List<Integer> inorderRecursion(TreeNode root){
 		List<Integer> list = new ArrayList<>();
 		helper(list, root);
 		return list;
@@ -17,7 +17,19 @@ public class InOrder {
 		helper(list, root.right);
 	}
 	
-	public static List<Integer> inOrder(TreeNode root){
+	public List<Integer> inorderTraversal(TreeNode root) {
+		List<Integer> list = new ArrayList<>();
+		if (root == null)
+			return list;
+
+		list.addAll(inorderTraversal(root.left));
+		list.add(root.val);
+		list.addAll(inorderTraversal(root.right));
+
+		return list;
+	}
+	
+	public static List<Integer> inorder(TreeNode root){
 		List<Integer> list = new ArrayList<>();
 		Stack<TreeNode> stack = new Stack<>();
 		TreeNode current = root;

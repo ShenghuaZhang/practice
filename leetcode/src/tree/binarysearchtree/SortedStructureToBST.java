@@ -3,7 +3,7 @@ package tree.binarysearchtree;
 import java.util.ArrayList;
 
 import list.ListNode;
-import tree.binarytree.InOrder;
+import tree.binarytree.Inorder;
 import tree.binarytree.LevelOrder;
 import tree.binarytree.PostOrder;
 import tree.binarytree.PreOrder;
@@ -52,7 +52,7 @@ public class SortedStructureToBST {
 	public static void main(String[] args){
 		TreeNode result = sortedListToBST(ListNode.initial().next);
 		
-		System.out.print("inorder:   " + InOrder.inOrder(result));
+		System.out.print("inorder:   " + Inorder.inorder(result));
 		System.out.print("\npreorder:  " + PreOrder.preOrder(result));
 		System.out.print("\npostorder: " + PostOrder.postOrder(result));
 		System.out.print("\nlevelorder: " + LevelOrder.levelOrder(result));
