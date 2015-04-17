@@ -1,5 +1,7 @@
 package tree.binarysearchtree;
-
+/**
+ * https://leetcode.com/problems/binary-search-tree-iterator/
+ */
 import java.util.Stack;
 
 import tree.binarytree.TreeNode;
@@ -19,12 +21,10 @@ public class BSTIterator {
 	public int next(){
 		TreeNode node = stack.pop();
 		int ret = node.val;
-		if (node.right != null){
-			node = node.right;
-			while(node != null){
-				stack.push(node);
-				node = node.left;
-			}
+		node = node.right;
+		while(node != null){
+			stack.push(node);
+			node = node.left;
 		}
 		return ret;
 	}
