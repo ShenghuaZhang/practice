@@ -21,13 +21,13 @@ public class BinaryTreeUpsideDown {
 		if (p == null)	return parent;
 		
 		TreeNode root = dfsBottomUpI(p.left, p);
-		root.left = (parent == null) ? null : dfsBottomUpI(parent.right, null);
-		root.right = parent;
+		p.left = (parent == null) ? null : dfsBottomUpI(parent.right, null);
+		p.right = parent;
 		
 		return root;
 	}
 	
 	public static void main(String[] args){
-		System.out.println(Levelorder.levelorder(UpsideDownBinaryTree(TreeNode.LeetcodeInitialize("{1,2}"))));
+		System.out.println(Levelorder.levelorder(UpsideDownBinaryTreeBottomUp(TreeNode.LeetcodeInitialize("{1,2,3,4,5,6,7}"))));
 	}
 }
