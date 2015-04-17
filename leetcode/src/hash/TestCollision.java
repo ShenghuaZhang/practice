@@ -13,8 +13,10 @@ public class TestCollision {
 	 */
 	public static void main(String[] args){
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Aa", 1);
-		map.put("BB", 2);
+		String a = "Aa", b = "BB";
+		System.out.println(a.equals(b));
+		map.put(a, 1);
+		map.put(b, 2);
 		map.put("CC", 3);
 	}
 }

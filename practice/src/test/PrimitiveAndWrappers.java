@@ -47,7 +47,7 @@ public class PrimitiveAndWrappers {
 	// @link: http://macemers.iteye.com/blog/860631
 
 	static void test03() {
-		Integer a = Integer.valueOf(100);
+		Integer a = 100;
 		Integer b = 100;
 
 		Integer c = 200;
