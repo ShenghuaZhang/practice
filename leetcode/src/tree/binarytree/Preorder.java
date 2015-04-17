@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class PreOrder {
-	public List<Integer> preOrderRecursion(TreeNode root){
+public class Preorder {
+	public List<Integer> preorderRecursion(TreeNode root){
 		return helper(new ArrayList<Integer>(), root);
 	}
 	private List<Integer> helper(List<Integer> list, TreeNode root){
@@ -16,7 +16,7 @@ public class PreOrder {
 		return list;
 	}
 	
-	public static List<Integer> preOrder(TreeNode root){
+	public static List<Integer> preorder(TreeNode root){
 		List<Integer> list = new ArrayList<>();
 		Stack<TreeNode> stack = new Stack<>();
 		TreeNode current = root;

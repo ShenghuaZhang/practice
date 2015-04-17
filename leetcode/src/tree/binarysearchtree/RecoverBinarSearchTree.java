@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import tree.binarytree.LevelOrder;
+import tree.binarytree.Levelorder;
 import tree.binarytree.TreeNode;
 
 public class RecoverBinarSearchTree {
@@ -64,6 +64,6 @@ public class RecoverBinarSearchTree {
 	public static void main(String[] args){
 		TreeNode root = TreeNode.LeetcodeInitialize("{3,1,2}");
 		recoverTreeII(root);
-		System.out.println(LevelOrder.levelOrder(root));
+		System.out.println(Levelorder.levelorder(root));
 	}
 }

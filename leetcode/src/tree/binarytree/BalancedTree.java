@@ -1,6 +1,9 @@
 package tree.binarytree;
-
-
+/**
+ * https://leetcode.com/problems/balanced-binary-tree/
+ * @author carllee1991
+ *
+ */
 public class BalancedTree {
 	public static boolean isBalanced(TreeNode root){
 		return helper(root) != -1;

@@ -28,6 +28,6 @@ public class BinaryTreeUpsideDown {
 	}
 	
 	public static void main(String[] args){
-		System.out.println(LevelOrder.levelOrder(UpsideDownBinaryTree(TreeNode.LeetcodeInitialize("{1,2}"))));
+		System.out.println(Levelorder.levelorder(UpsideDownBinaryTree(TreeNode.LeetcodeInitialize("{1,2}"))));
 	}
 }

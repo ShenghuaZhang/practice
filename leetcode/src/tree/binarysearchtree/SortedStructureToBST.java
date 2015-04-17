@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import list.ListNode;
 import tree.binarytree.Inorder;
-import tree.binarytree.LevelOrder;
-import tree.binarytree.PostOrder;
-import tree.binarytree.PreOrder;
+import tree.binarytree.Levelorder;
+import tree.binarytree.Postorder;
+import tree.binarytree.Preorder;
 import tree.binarytree.TreeNode;
 
 public class SortedStructureToBST {
@@ -53,8 +53,8 @@ public class SortedStructureToBST {
 		TreeNode result = sortedListToBST(ListNode.initial().next);
 		
 		System.out.print("inorder:   " + Inorder.inorder(result));
-		System.out.print("\npreorder:  " + PreOrder.preOrder(result));
-		System.out.print("\npostorder: " + PostOrder.postOrder(result));
-		System.out.print("\nlevelorder: " + LevelOrder.levelOrder(result));
+		System.out.print("\npreorder:  " + Preorder.preorder(result));
+		System.out.print("\npostorder: " + Postorder.postorder(result));
+		System.out.print("\nlevelorder: " + Levelorder.levelorder(result));
 	 }
 }
