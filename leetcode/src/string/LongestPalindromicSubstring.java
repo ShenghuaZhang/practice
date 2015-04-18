@@ -2,6 +2,7 @@ package string;
 
 
 public class LongestPalindromicSubstring {
+	// best answer without extra space
 	public static String longestPalindrome(String s) {
 		int start = 0, end = 0;
 		for (int i = 1; i < s.length(); i++) {
