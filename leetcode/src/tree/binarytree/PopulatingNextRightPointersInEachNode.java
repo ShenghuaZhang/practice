@@ -32,8 +32,7 @@ public class PopulatingNextRightPointersInEachNode {
 		}
 	}
 
-	// better solution i think, cause we have same time complexity with previous
-	// solution which is O(n), and better space complexity which is O(1).
+	// better solution
 	public void connectI(TreeLinkNode root) {
 		if (root == null)
 			return;

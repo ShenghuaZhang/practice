@@ -1,9 +1,11 @@
 package tree.binarytree;
-
+/**
+ * https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+ */
 import java.util.Stack;
 
 public class FlattenBinaryTreeToLinkedList {
-	public static void flatten(TreeNode root){
+	public void flatten(TreeNode root){
 		Stack<TreeNode> stack = new Stack<>();
 	    TreeNode temp = root;
 	    
@@ -19,9 +21,5 @@ public class FlattenBinaryTreeToLinkedList {
 	    	
 		    temp = temp.right;
 	    }
-	}
-	
-	public static void main(String[] args){
-		flatten(TreeNode.LeetcodeInitialize("{1,2}"));
 	}
 }
