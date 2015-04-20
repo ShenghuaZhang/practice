@@ -10,7 +10,7 @@ class TestSingleton{
 	private static TestSingleton instance;
 
 	private TestSingleton(){
-	System.out.println("Singleton(): Initializing Instance");
+		System.out.println("Singleton(): Initializing Instance");
 	}
 
 	public static TestSingleton getInstance(){
