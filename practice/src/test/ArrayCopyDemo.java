@@ -7,12 +7,12 @@ import java.util.Arrays;
  * @author yili3
  * 
  */
-public class ArrayDemo {
+public class ArrayCopyDemo {
 	public static void main(String args[]) {
 		/* ************ print ************ */
 		int[] A = { 8, 12, 3, 52, 6, 7 };
 		Arrays.sort(A);
-		System.err.println("err print: " + A.toString());
+		System.out.println("err print(only A's address): " + A.toString());
 		System.out.println("A: " + Arrays.toString(A));
 		
 		/*
@@ -29,6 +29,6 @@ public class ArrayDemo {
 		 */
 		int[] C = (int[])B.clone();
 		int[] D = Arrays.copyOf(C, C.length);
-		System.out.println("D: " + Arrays.toString(D));
+		System.out.println("C: "+Arrays.toString(C)+"\nD: " + Arrays.toString(D));
 	}
 }

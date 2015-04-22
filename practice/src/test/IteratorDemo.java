@@ -17,7 +17,7 @@ public class IteratorDemo {
 		System.out.print("Original contents of list: ");
 		Iterator<String> itr = list.iterator();
 		while (itr.hasNext()) {
-			Object element = itr.next();
+			String element = itr.next();
 			System.out.print(element + " ");
 		}
 		System.out.println();
@@ -26,7 +26,7 @@ public class IteratorDemo {
 		ListIterator<String> litr = list.listIterator();
 		while (litr.hasNext()) {
 			Object element = litr.next();
-			litr.set(element + "+");
+			litr.set(element + "-");// Replaces the last element
 		}
 		System.out.print("Modified contents of list: ");
 		itr = list.iterator();

@@ -80,7 +80,7 @@ public class PrimitiveAndWrappers {
 
 		System.out.println();
 		System.out.println("********* test04 *********");
-		if (i <= j & i >= j & i != j)
+		if (i <= j && i >= j && i != j)
 			System.out.println("0000");
 	}
 
