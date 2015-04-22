@@ -1,7 +1,7 @@
 package tree.heap;
 
 /*************************************************************************
- *  Compilation:  javac MinPQ.java
+ *  Compilation:  MinPQ.java
  *  Execution:    java MinPQ < input.txt
  *  
  *  Generic min priority queue implementation with a binary heap.
@@ -252,18 +252,5 @@ public class MinPQ<Key> implements Iterable<Key> {
             return copy.delMin();
         }
     }
-
-//    /**
-//     * Unit tests the <tt>MinPQ</tt> data type.
-//     */
-//    public static void main(String[] args) {
-//        MinPQ<String> pq = new MinPQ<String>();
-//        while (!StdIn.isEmpty()) {
-//            String item = StdIn.readString();
-//            if (!item.equals("-")) pq.insert(item);
-//            else if (!pq.isEmpty()) StdOut.print(pq.delMin() + " ");
-//        }
-//        StdOut.println("(" + pq.size() + " left on pq)");
-//    }
 
 }

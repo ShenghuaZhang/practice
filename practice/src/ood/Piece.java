@@ -153,8 +153,10 @@ public final class Piece {
     Given a string of x,y pairs ("0 0 0 1 0 2 1 0"), parses the
     points into a Point[] array.  (Provided code)
  */
- private static Point[] parsePoints(String string) {
+ @SuppressWarnings("unchecked")
+private static Point[] parsePoints(String string) {
 
+	@SuppressWarnings("rawtypes")
 	Vector points = new Vector();
 	StringTokenizer	tok = new StringTokenizer(string);
 	try {
