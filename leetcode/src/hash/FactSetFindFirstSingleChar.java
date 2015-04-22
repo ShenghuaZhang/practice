@@ -2,10 +2,9 @@ package hash;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class FactSetFindFirstSingleChar {
-	public static char firstSingle(String s){
+	public static void firstSingle(String s){
 		Map<Character, Integer> map = new HashMap<>();
 		
 		for(int i=0; i<s.length(); i++){
@@ -15,19 +14,15 @@ public class FactSetFindFirstSingleChar {
 			}else map.put(s.charAt(i), 1);
 		}
 		
-		Set<Character> set = map.keySet();
-		for(char a:set)	{
-			System.out.print(a);
-			System.out.print(map.get(a));
+		for(int i=0; i<s.length(); i++){
+			if(map.get(s.charAt(i)) == 1){
+				System.out.print(s.charAt(i)+" ");
+				return;
+			}
 		}
-		
-		for(int i=0; ;i++)
-			if(map.get(s.charAt(i)) == 1)	return s.charAt(i);
-		
 	}
 	
 	public static void main(String[] args){
-		int i = 6;
-		System.out.println(firstSingle("aaaaddddfddsdgfdfdsjklkfblgkdlfklcodsfsdsderdfjkw"));
+		firstSingle("aaaaddddfddsdgfdfdsjklkfblgkdlfklcodsfsdsderdfjkw");
 	}
 }

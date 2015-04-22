@@ -46,6 +46,7 @@ public class WordLadder {
 					charCur[i] = c;
 					/*
 					 * TODO: caution to using toString()
+					 * #ArrayCopyDemo
 					 * it is actually return the reference address like: [C@4dcbadb4
 					 * public String toString() {
 					 * 		return getClass().getName() + "@" + Integer.toHexString(hashCode());

@@ -15,8 +15,15 @@ class HeapNode {
 
 public class Heap {
 	private HeapNode[] heapArray;
+	private final int defaultSize=100;
 	private int maxSize;
 	private int currentSize;
+	
+	public Heap(){
+		maxSize = defaultSize;
+		heapArray = new HeapNode[maxSize];
+		currentSize = 0;
+	}
 	
 	public Heap(int x){
 		maxSize = x;
