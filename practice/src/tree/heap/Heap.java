@@ -90,19 +90,6 @@ public class Heap {
 	
 	public void print(){
 		for(int i=0; i<currentSize; i++)
-			System.out.print(i+": "+heapArray[i].getValue()+" ");
-	}
-	
-	public static void main(String[] args){
-		Heap heap = new Heap(5);
-		heap.insert(1);
-		heap.insert(2);
-		heap.insert(5);
-		heap.insert(12);
-		heap.insert(22);
-		heap.insert(52);
-		heap.print();
-		System.out.println("remove: "+heap.remove().getValue());
-		heap.print();
+			System.out.print(i+": "+heapArray[i].getValue()+"  ");
 	}
 }
