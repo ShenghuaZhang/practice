@@ -15,6 +15,12 @@ class tree{
 }
 
 public class GetFriendsCircle {
+	private static int find(int[] A, int a){
+		if(A[a] == a)	return A[a];
+		A[a] = find(A, A[a]);
+		return A[a];
+	}
+	
 	public static void printforest(tree[] t){
 		Map<Integer, Integer> map = new HashMap<>();
 		int cnt = 0;
@@ -35,24 +41,12 @@ public class GetFriendsCircle {
 			array[cnt++] = num;
 		}
 		
-		for(int i=1; i<t.length; i++){
-			int aIndex = array[t[i].a];
-			int bIndex = array[t[i].b];
-			if(aIndex==bIndex)	continue;
-			else{
-				while(bIndex!=array[bIndex]){
-					int temp = array[bIndex];
-					array[bIndex] = aIndex;
-					bIndex = temp;
-				}
-				array[bIndex] = aIndex;
-			}
+		for(int i=0; i<t.length; i++){
+			int aIndex = find(array, t[i].a);
+			int bIndex = find(array, t[i].b);
+			if(aIndex!= bIndex)	array[t[i].b] = aIndex;
 		}
-		
-		for(int i=1; i<array.length; i++){
-			if(array[i] != i && array[array[i]] != array[i])
-				array[i] = array[array[i]];
-		}
+		for(int i=1; i<array.length; i++) find(array, i);
 		
 		for(int i=1; i<cnt; i++)	System.out.print(array[i]+"  ");
 	}
