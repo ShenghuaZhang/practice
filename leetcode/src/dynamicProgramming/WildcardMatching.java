@@ -2,7 +2,9 @@ package dynamicProgramming;
 /**
  * TODO
  * https://leetcode.com/problems/wildcard-matching/
- * 
+ * '?' Matches any single character.
+'*' Matches any sequence of characters (including the empty sequence).
+
  * boolean isNumeric(String s){
  * 		return s.matches("[-+]?\\d*\\.?\\d+");}
  * 
