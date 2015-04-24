@@ -35,12 +35,8 @@ public class RegularExpressionMatching {
 				return false;
 			else return helper(s, p, i+1, j+1);
 		}
-		
-		while(i<s.length() && (p.charAt(j)=='.'||p.charAt(j)==s.charAt(i))){
-			if(helper(s, p, i, j+2))	return true;// back tracking
-			i++;
-		}
-		
+		else if(i<s.length() && (p.charAt(j)=='.'||p.charAt(j)==s.charAt(i)))
+			return helper(s, p, i, j+2) || helper(s, p, i+1, j);
 		return helper(s, p, i, j+2);
 	}
 	// http://codeganker.blogspot.com/2014/02/regular-expression-matching-leetcode.html
