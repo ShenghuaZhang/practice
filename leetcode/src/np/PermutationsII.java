@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO
+ * TODO 4.25's dp schedule
  * https://leetcode.com/problems/permutations-ii/
  * 
  * Given a collection of numbers that might contain duplicates,
@@ -15,6 +15,8 @@ import java.util.List;
  * [1,1,2], [1,2,1], and [2,1,1].
  * 
  * @author yili3
+ * 
+ * #Permutations
  *
  */
 public class PermutationsII {
