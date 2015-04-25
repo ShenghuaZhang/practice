@@ -2,9 +2,12 @@ package google;
 
 public class CalculateTarget{
 	public static boolean calculate(int[] num, int target){
-		return helper(num, 1, target, num[0]);
+		for(int i=0; i<num.length; i++){
+			if(helper(num, target, i, 0))	return true;
+		}
+		return false;
 	}
-	private static boolean helper(int[] num, int index, int target, int current){
+	private static boolean helper(int[] num, int target, int index, int current){
 		if(current == target)	return true;
 		for(int i=index; i<num.length; i++){
 			if(helper(num, index+1, target, current+num[index]))	return true;
