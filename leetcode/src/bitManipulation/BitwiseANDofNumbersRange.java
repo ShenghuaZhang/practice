@@ -11,9 +11,9 @@ package bitManipulation;
  *
  */
 public class BitwiseANDofNumbersRange {
-	public int rangeBitI(int m, int n){
-		for(int i=0; i<31; i++)
-			if((m>>(30-i))!=(n>>(30-i)))	return (n>>(31-i))<<(31-i);
-		return m;
-	}
+	public int rangeBitwiseAnd(int m, int n) {
+        for(int i=30; i>=0; i--)
+            if(m>>i != n>>i) return (m>>(i+1))<<(i+1);
+        return m;
+    }
 }

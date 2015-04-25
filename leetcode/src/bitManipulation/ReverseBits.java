@@ -22,13 +22,11 @@ public class ReverseBits {
 			n >>>= 1;
 			S--;
 		}
-		rs <<= S;
-		return rs;
+		return rs <<= S;
 	}
 	public static void main(String[] args){
 		System.out.println(reverseBits(1));
-		System.out.println(0b01111111111111111111111111111111);
-		System.out.println(0b10000000000000000000000000000000);
-		System.out.println(Integer.reverse(1));
+		System.out.println("logical right shift -2: "+(-2>>>1));
+		System.out.println("arithmetic right shift -2: "+(-2>>1));
 	}
 }
