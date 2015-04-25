@@ -2,6 +2,7 @@ package graph;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * https://leetcode.com/problems/surrounded-regions/
@@ -27,12 +28,12 @@ public class SurroundedRegions {
 		if (board == null || board.length <= 1 || board[0].length <= 1)
 			return;
 		for (int i = 0; i < board[0].length; i++) {
-			fill(board, 0, i);					// first row
-			fill(board, board.length-1, i);	// last row
+			fillBFS(board, 0, i);					// first row
+			fillBFS(board, board.length-1, i);	// last row
 		}
 		for (int i = 1; i < board.length-1; i++) {
-			fill(board, i, 0);					// first column
-			fill(board, i, board[0].length-1);// last column
+			fillBFS(board, i, 0);					// first column
+			fillBFS(board, i, board[0].length-1);// last column
 		}
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
@@ -46,23 +47,25 @@ public class SurroundedRegions {
 	
 	// stack over flow error when to much data
 	@SuppressWarnings("unused")
-	private void dfs(char[][] board, int i, int j){
+	private void dfsRecursion(char[][] board, int i, int j){
 		if(board[i][j]=='O'){
 			board[i][j] = '#';
-			if(i>0)	dfs(board, i-1, j);
-			if(j>0)	dfs(board, i, j-1);
-			if(j<board[0].length-1)	dfs(board, i, j+1);
-			if(i<board.length-1)	dfs(board, i+1, j);
+			if(i>0)	dfsRecursion(board, i-1, j);
+			if(j>0)	dfsRecursion(board, i, j-1);
+			if(j<board[0].length-1)	dfsRecursion(board, i, j+1);
+			if(i<board.length-1)	dfsRecursion(board, i+1, j);
 		}
 	}
 	
 	// BFS Iterative
-	private void fill(char[][] board, int i, int j) {
+	private void fillBFS(char[][] board, int i, int j) {
 		if (board[i][j] != 'O')	return;
 		board[i][j] = '#';
 		Queue<Integer> queue = new LinkedList<>();
-		int code = i * board[0].length + j;
+		// find a good way to save row and column in just one number
+		int code = i * board[0].length + j;	
 		queue.offer(code);
+		
 		while (!queue.isEmpty()) {
 			code = queue.poll();
 			int row = code / board[0].length;
@@ -82,6 +85,38 @@ public class SurroundedRegions {
 			if (col < board[0].length - 1 && board[row][col + 1] == 'O') {
 				queue.offer(row * board[0].length + col + 1);
 				board[row][col + 1] = '#';
+			}
+		}
+	}
+	
+	// DFS Iterative
+	@SuppressWarnings("unused")
+	private void fillDFS(char[][] board, int i, int j) {
+		if (board[i][j] != 'O')	return;
+		board[i][j] = '#';
+		Stack<Integer> stack = new Stack<>();
+		int code = i * board[0].length + j;
+		stack.push(code);
+
+		while (!stack.empty()) {
+			code = stack.pop();
+			int row = code / board[0].length;
+			int column = code % board[0].length;
+			if (row > 0 && board[row - 1][column] == 'O') {
+				stack.push((row - 1) * board[0].length + column);
+				board[row - 1][column] = '#';
+			}
+			if (column > 0 && board[row][column - 1] == 'O') {
+				stack.push((row * board[0].length) + column - 1);
+				board[row][column - 1] = '#';
+			}
+			if (row < board.length - 1 && board[row + 1][column] == 'O') {
+				stack.push((row + 1) * board[0].length + column);
+				board[row + 1][column] = '#';
+			}
+			if (column < board[0].length - 1 && board[row][column + 1] == 'O') {
+				stack.push((row) * board[0].length + column + 1);
+				board[row][column + 1] = '#';
 			}
 		}
 	}

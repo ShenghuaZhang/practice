@@ -1,38 +1,45 @@
 package graph;
-
+/**
+ * https://leetcode.com/problems/word-search/
+ * 
+ * Given a 2D board and a word, find if the word exists in the grid.
+ * The word can be constructed from letters of sequentially adjacent cell,
+ * where "adjacent" cells are those horizontally or vertically neighboring.
+ * The same letter cell may not be used more than once.
+ * For example,
+ * Given board =
+ * [
+ * 		["ABCE"],
+ * 		["SFCS"],
+ * 		["ADEE"]
+ * ]
+ * word = "ABCCED", -> returns true,
+ * word = "SEE", -> returns true,
+ * word = "ABCB", -> returns false.
+ * 
+ * @author yili3
+ *
+ */
 public class WordSearch {
 	public boolean exist(char[][] board, String word) {
-		if (word == null || word.length() == 0)
-			return true;
-		if (board == null || board.length == 0 || board[0].length == 0)
-			return false;
-
-		boolean[][] used = new boolean[board.length][board[0].length];
-
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[0].length; j++) {
-				if (search(board, word, 0, i, j, used))
-					return true;
-			}
-		}
-
-		return false;
-	}
-	private boolean search(char[][] board, String word, int index, int i,
-			int j, boolean[][] used) {
-		if (index == word.length())
-			return true;
-		if (i < 0 || j < 0 || i >= board.length || j >= board[0].length
-				|| used[i][j] || board[i][j] != word.charAt(index))
-			return false;
-		
-		used[i][j] = true;
-		boolean res = search(board, word, index+1, i-1, j, used) ||
-				search(board, word, index+1, i+1, j, used) ||
-				search(board, word, index+1, i, j-1, used) ||
-				search(board, word, index+1, i, j+1, used);
-		used[i][j] = false;
-		
-		return res;
-	}
+        boolean[][] used = new boolean[board.length][board[0].length];
+        for(int i=0; i<board.length; i++){
+            for(int j=0; j<board[0].length; j++){
+                 if(helper(board, word, i, j, 0, used))  return true;
+            }
+        }
+        return false;
+    }
+    private boolean helper(char[][]board, String word, int i, int j, int index, boolean[][] used){
+        if(!used[i][j] && board[i][j]==word.charAt(index)){
+        	used[i][j] = true;
+            if(index==word.length()-1)  return true;
+            if(i>0 && helper(board, word, i-1, j, index+1, used)) return true;
+            if(j>0 && helper(board, word, i, j-1, index+1, used)) return true;
+            if(i<board.length-1 && helper(board, word, i+1, j, index+1, used))    return true;
+            if(j<board[0].length-1 && helper(board, word, i, j+1, index+1, used)) return true;
+            used[i][j] = false;
+        }
+        return false;
+    }
 }

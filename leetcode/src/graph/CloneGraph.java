@@ -32,15 +32,14 @@ public class CloneGraph {
 		Queue<UndirectedGraphNode> queue = new LinkedList<>();
 		Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
 		
-		UndirectedGraphNode copy = new UndirectedGraphNode(node.label);
-		map.put(node, copy);
+		map.put(node, new UndirectedGraphNode(node.label));
 		queue.offer(node);
+		
 		while(!queue.isEmpty()){
 			UndirectedGraphNode cur = queue.poll();
 			for(int i=0; i<cur.neighbors.size();i++){
 				if(!map.containsKey(cur.neighbors.get(i))){
-					copy = new UndirectedGraphNode(cur.neighbors.get(i).label);
-					map.put(cur.neighbors.get(i), copy);
+					map.put(cur.neighbors.get(i), new UndirectedGraphNode(cur.neighbors.get(i).label));
 					queue.offer(cur.neighbors.get(i));
 				}
 				map.get(cur).neighbors.add(map.get(cur.neighbors.get(i)));
@@ -67,7 +66,6 @@ public class CloneGraph {
                 map.get(current).neighbors.add(map.get(current.neighbors.get(i)));
             }
         }
-        
         return map.get(node);
     }
 	
