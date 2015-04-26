@@ -17,6 +17,7 @@ public class CompareVersionNumbers {
 	public static int compareVersion(String version1, String version2) {
 		List<Integer> list1 = new ArrayList<>(), list2 = new ArrayList<>();
 		/* TODO: use regular expression when use String.split(String s);
+		 * #JumbleSort
 		 * The split function takes a regular expression, not a string, to match.
 		 * Our regular expression uses a special character - in this case '.'
 		 * so we would need to change it to escape that character:
