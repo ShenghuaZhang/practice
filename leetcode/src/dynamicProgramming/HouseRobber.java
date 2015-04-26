@@ -1,6 +1,7 @@
 package dynamicProgramming;
 
 /**
+ * 198
  * https://leetcode.com/problems/house-robber/
  * 
  * You are a professional robber planning to rob houses along a street. Each
@@ -17,18 +18,30 @@ package dynamicProgramming;
  *
  */
 public class HouseRobber {
-	public static int rob(int[] num) {
-		if(num.length==0 || num==null)	return 0;
-		if(num.length==1)	return num[0];
-		if(num.length==2)	return Math.max(num[1], num[0]);
-		if(num.length==3)	return Math.max(num[1], num[0]+num[2]);
-		
-		num[2] = Math.max(num[1], num[0]+num[2]);
-		for(int i=3; i<num.length; i++)
-			num[i] = num[i] + Math.max(num[i-2], num[i-3]);
-		
-		return Math.max(num[num.length-1], num[num.length-2]);
+	public static int rob(int[] nums) {
+		if(nums==null || nums.length==0)    return 0;
+        if(nums.length==1)  return nums[0];
+        if(nums.length==2)  return Math.max(nums[0], nums[1]);
+        int[] dp = new int[nums.length+1];
+        dp[0] = 0; dp[1]=nums[0];
+        
+        for(int i=2; i<=nums.length; i++)
+            dp[i] = Math.max(dp[i-1], dp[i-2]+nums[i-1]);
+            
+        return dp[nums.length];
 	}
+	
+	public int robWithExtraSpace(int[] nums) {
+        if(nums==null || nums.length==0)    return 0;
+        if(nums.length==1)  return nums[0];
+        if(nums.length==2)  return Math.max(nums[0], nums[1]);
+        
+        nums[1] = Math.max(nums[0], nums[1]);
+        for(int i=2; i<nums.length; i++)
+            nums[i] = Math.max(nums[i-2]+nums[i], nums[i-1]);
+            
+        return nums[nums.length-1];
+    }
 
 	public static void main(String[] args) {
 		int[] num = {114, 117, 207, 117, 235, 82, 90, 67, 143, 146, 53, 108,
