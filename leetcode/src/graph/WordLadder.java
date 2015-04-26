@@ -24,11 +24,12 @@ import java.util.Set;
  * All words contain only lower-case alphabetic characters.
  * 
  * @author yili3
+ * 
+ * #WordLadderII #WordSearch
  *
  */
 public class WordLadder {
-	public static int ladderLength(String start, String end,
-			Set<String> dict) {
+	public static int ladderLength(String start, String end, Set<String> dict) {
 		if (start == null || end == null || start.length() == 0
 				|| end.length() == 0)
 			return 0;
@@ -44,22 +45,13 @@ public class WordLadder {
 				char[] charCur = current.toCharArray();
 				for (char c = 'a'; c <= 'z'; c++) {
 					charCur[i] = c;
-					/*
-					 * TODO: caution to using toString()
-					 * #ArrayCopyDemo
-					 * it is actually return the reference address like: [C@4dcbadb4
-					 * public String toString() {
-					 * 		return getClass().getName() + "@" + Integer.toHexString(hashCode());
-					 * }
-					 * 
-					 * So it is different with toCharArray() which return a char array:
-					 * public char[] toCharArray() {
-					 * 		// Cannot use Arrays.copyOf because of class initialization order issues
-					 * 		char result[] = new char[value.length];
-					 * 		System.arraycopy(value, 0, result, 0, value.length);
-					 * 		return result;
-					 * }
-					 */
+				/*
+				 * #ArrayCopyDemo
+				 * two ways convert char array to string
+				 * 1. String B = String.valueOf(A);
+				 * 2. String C = new String(A);
+				 * }
+				 */
 					String temp = new String(charCur);
 					if (temp.equals(end))
 						return level + 1;
