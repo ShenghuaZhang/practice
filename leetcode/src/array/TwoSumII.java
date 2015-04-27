@@ -1,6 +1,7 @@
 package array;
 
 /**
+ * 167
  * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
  * 
  * Same with Two sum but input array is sorted in ascending order
@@ -11,6 +12,16 @@ package array;
  */
 
 public class TwoSumII {
+	public int[] twoSumBetter(int[] numbers, int target){
+		int start = 0, end = numbers.length-1;
+		while(start<end){
+			if (numbers[start]+numbers[end] > target)	end--;
+			else if (numbers[start]+numbers[end] < target)	start++;
+			else return new int[]{start+1, end+1};
+		}
+		return null;
+	}
+	
 	public int[] twoSum(int[] numbers, int target){
 		for(int i=0; i<numbers.length; i++){
 			if (numbers[i]>target-numbers[i])	return null;
@@ -27,17 +38,5 @@ public class TwoSumII {
 			else return middle;
 		}
 		return -1;
-	}
-	
-	public int[] twoSumBetter(int[] numbers, int target){
-		int start = 0, end = numbers.length-1;
-		while(start<end){
-			if (numbers[start]+numbers[end] > target){
-				end--;
-			}else if (numbers[start]+numbers[end] < target){
-				start++;
-			}else return new int[]{start+1, end+1};
-		}
-		return null;
 	}
 }
