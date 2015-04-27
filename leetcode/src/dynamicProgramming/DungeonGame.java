@@ -40,6 +40,7 @@ public class DungeonGame {
         
         return global[dungeon[0].length-1];
     }
+	
 	public static void main(String[] args){
 		int[][] dungeon = new int[2][2];
 		dungeon[0][0] = -10; dungeon[0][1] = -11;
