@@ -7,6 +7,7 @@ import java.util.Scanner;
  * 
  * @author yili3
  *
+ * #CountPrimes
  */
 public class PrimeSieve {
 	public static void main(String[] args){
