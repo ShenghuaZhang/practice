@@ -1,12 +1,12 @@
 package array;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 /**
+ * 179
  * https://leetcode.com/problems/largest-number/
  * 
  * Given a list of non negative integers, arrange them such that they form the
@@ -20,11 +20,11 @@ import java.util.List;
  *
  */
 public class LargestNumber {
-	public String largestNumber(int[] num){
-		if(num==null)	return null;
+	public String largestNumber(int[] nums){
+		if(nums==null)	return null;
 		
 		List<Integer> list = new ArrayList<>();
-		for(int n:num)	list.add(n);
+		for(int n:nums)	list.add(n);
 		
 		Collections.sort(list, new Comparator<Integer>(){
 			public int compare(Integer first, Integer second){
@@ -39,32 +39,5 @@ public class LargestNumber {
 		
 		if(sb.charAt(0) == '0')	return "0";
 		return sb.toString();
-	}
-	
-	public static class TexasHoldem implements Comparable<TexasHoldem> {
-		int val;
-
-		public TexasHoldem(int val) {
-			super();
-			this.val = val;
-		}
-		
-		public String toString() {
-			return "" + val;
-		}
-
-		public int compareTo(TexasHoldem c) {
-			return this.val - c.val;
-		}
-	}
-	
-	public static void main(String[] strs) {
-		List<TexasHoldem> cards = new ArrayList<>(Arrays.asList(new TexasHoldem(11), new TexasHoldem(2)));
-
-		Collections.sort(cards);
-
-		for (TexasHoldem card : cards)
-			System.out.println(card.toString());
-
 	}
 }
