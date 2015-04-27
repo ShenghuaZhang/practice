@@ -14,7 +14,7 @@ import java.util.BitSet;
  *         #PrimeSieve
  */
 public class CountPrimes {
-	// TODO BitSet
+	// TODO 4.27 BitSet
 	public int countPrimesBitSet(int n) {
 	    BitSet bs = new BitSet(n);
 	    bs.set(0); bs.set(1);
@@ -29,6 +29,7 @@ public class CountPrimes {
 	    }
 	    return count;
 	}
+	
 	public int countPrimes(int n) {
 		int cnt = 0;
 		boolean isPrime[] = new boolean[n];
