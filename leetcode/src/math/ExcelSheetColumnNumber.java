@@ -7,9 +7,10 @@ package math;
  * Related to question Excel Sheet Column Title.
  * Given a column title as appear in an Excel sheet,
  * return its corresponding column number.
- * #ExcelSheetColumnTitle
+ * 
  * @author yili3
- *
+ * 
+ * #ExcelSheetColumnTitle
  */
 public class ExcelSheetColumnNumber {
 	public static int titleToNumber(String s){
