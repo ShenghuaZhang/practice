@@ -1,6 +1,7 @@
 package math;
 
 /**
+ * 171
  * https://leetcode.com/problems/excel-sheet-column-number/
  * 
  * Related to question Excel Sheet Column Title.
@@ -19,6 +20,6 @@ public class ExcelSheetColumnNumber {
 	}
 	
 	public static void main(String[] args){
-		System.out.print(titleToNumber("AAA"));
+		System.out.print(titleToNumber("DA"));
 	}
 }

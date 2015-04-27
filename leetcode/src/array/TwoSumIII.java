@@ -4,7 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 170
+ * https://leetcode.com/problems/two-sum-iii-data-structure-design/
+ * 
+ * Design and implement a TwoSum class. It should support the following operations:
+ * add - Add the number to an internal data structure.
+ * find - Find if there exists any pair of numbers which sum is equal to the value.
+ * 
+ * @author yili3
+ *
+ */
 public class TwoSumIII {
 	Map<Integer,Integer> map = new HashMap<>();
 	List<Integer> list = new ArrayList<>();
