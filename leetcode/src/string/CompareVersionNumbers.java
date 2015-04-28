@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 165
  * https://leetcode.com/problems/compare-version-numbers/
  * 
  * Compare two version numbers version1 and version2. If version1 > version2
@@ -16,7 +17,7 @@ import java.util.List;
 public class CompareVersionNumbers {
 	public static int compareVersion(String version1, String version2) {
 		List<Integer> list1 = new ArrayList<>(), list2 = new ArrayList<>();
-		/* TODO: use regular expression when use String.split(String s);
+		/* Using regular expression when use String.split(String s);
 		 * #JumbleSort
 		 * The split function takes a regular expression, not a string, to match.
 		 * Our regular expression uses a special character - in this case '.'

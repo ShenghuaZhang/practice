@@ -1,6 +1,7 @@
 package array;
 
 /**
+ * 164
  * https://leetcode.com/problems/maximum-gap/
  * 
  * Given an unsorted array, find the maximum difference between the successive
@@ -17,7 +18,7 @@ public class MaximumGap {
 	public static int maximumGap(int[] num) {
 		if(num.length==1 || num==null || num.length==0)	return 0;
 		/* Radix Algorithm	#RadixSort */
-		int x = 1, max = num[0], k=0;
+		int x = 1, max = num[0];
 		for(int n:num) max = Math.max(max, n);
 		int[][] bucket = new int[10][num.length];
 		int[] order = new int[10];
@@ -28,13 +29,12 @@ public class MaximumGap {
 				bucket[digit][order[digit]] = n;
 				order[digit]++;
 			}
-			for(int i=0; i<10; i++){
+			for(int i=0, k=0; i<10; i++){
 				for(int j=0; j<order[i]; j++)
 					num[k++] = bucket[i][j];
 				order[i] = 0;
 			}
 			x *= 10;
-			k = 0;
 		}
 		
 		max = 0;

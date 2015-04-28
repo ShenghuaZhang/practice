@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class RadixSort {
 	public static void radixSort(int[] A){
-		int n=1, k=0, length=A.length;
+		int n=1, length=A.length;
 		int[][] bucket = new int[10][length];
 		int[] order= new int[10];
 		
@@ -17,13 +17,12 @@ public class RadixSort {
 				bucket[digit][order[digit]] = num;
 				order[digit]++;
 			}
-			for(int i=0; i<10; i++){
+			for(int i=0, k=0; i<10; i++){
 				for(int j=0; j<order[i]; j++)
 					A[k++] = bucket[i][j];
 				order[i] = 0;
 			}
 			n*=10;
-			k=0;
 		}
 	}
 	

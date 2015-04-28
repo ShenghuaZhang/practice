@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 167
+ * 166
  * https://leetcode.com/problems/fraction-to-recurring-decimal/
  * 
  * Given two integers representing the numerator and denominator of a fraction,
@@ -20,7 +20,7 @@ import java.util.Map;
  *
  */
 public class FractionToRecuringDecimal {
-	 public String fractionToDecimal(int numerator, int denominator) {
+	 public static String fractionToDecimal(int numerator, int denominator) {
 		 StringBuilder sb = new StringBuilder();
 		 String sign = (numerator<0==denominator<0 || numerator==0)?"":"-";
 		 long num = Math.abs((long)numerator);
@@ -42,4 +42,8 @@ public class FractionToRecuringDecimal {
 		 sb.append(")");
 		 return sb.toString().replace("(0)", "");
 	  }
+	 public static void main(String[] args){
+		 int numerator = 5, denominator = 6;
+		 System.out.print(fractionToDecimal(numerator, denominator));
+	 }
 }
