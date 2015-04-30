@@ -1,5 +1,13 @@
 package string;
-
+/**
+ * 161
+ * https://leetcode.com/problems/one-edit-distance/
+ * 
+ * Given two strings S and T, determine if they are both one edit distance apart.
+ * 
+ * @author yili3
+ *
+ */
 public class OneEditDistance {
 	public static boolean isOneEditDistance(String s, String t){
 		int m = s.length(), n = t.length();

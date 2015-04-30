@@ -1,22 +1,20 @@
 package string;
-
+/**
+ * 159
+ * https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/
+ * 
+ * Given a string, find the length of the longest substring T that
+ * contains at most 2 distinct characters.
+ * 
+ * For example, Given s = “eceba”,
+ * T is "ece" which its length is 3.
+ * 
+ * @author yili3
+ *
+ */
 public class LongestSubstringWithAtMostTwoDistinctCharacters {
-	// totally did not understand this algorithm
-	public static int lengthOfLongestSubstingTwoDistinct(String s){
-		int i=0, j=-1, maxLen=0;
-		for(int k=1; k<s.length(); k++){
-			if (s.charAt(k) == s.charAt(k-1))	continue;
-			if (j>=0 && s.charAt(j) != s.charAt(k)){
-				maxLen = Math.max(k-i, maxLen);
-				i = j+1;
-			}
-			j = k-1;
-		}
-		return Math.max(s.length()-i, maxLen);
-	}
-	
 	// this one much easier to understand
-	public static int lengthOfLongestSubstingTwoDistinctII(String s){
+	public int lengthOfLongestSubstingTwoDistinct(String s){
 		int[] count = new int[256];
 		int start=0, numDistinct = 0, maxLen = 0;
 		for(int cur=0; cur<s.length(); cur++){
@@ -30,9 +28,5 @@ public class LongestSubstringWithAtMostTwoDistinctCharacters {
 			maxLen = Math.max(cur-start+1,  maxLen);
 		}
 		return maxLen;
-	}
-	
-	public static void main(String[] args){
-		System.out.print(lengthOfLongestSubstingTwoDistinct("aabbacccaa"));
 	}
 }

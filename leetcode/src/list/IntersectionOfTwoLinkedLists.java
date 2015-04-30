@@ -1,6 +1,7 @@
 package list;
 
 /**
+ * 160
  * https://leetcode.com/problems/intersection-of-two-linked-lists/
  * 
  * Write a program to find the node
@@ -32,7 +33,8 @@ public class IntersectionOfTwoLinkedLists {
 	/*
 	 * 1. Traverse the first linked list(count the elements) and make a circular linked list.
 	 * 	(Remember last node so that we can break the circle later on).
-	 * 2. Now view the problem as find the loop in the second linked list. So the problem is solved.
+	 * 2. Now view the problem as find the loop in the second linked list.
+	 * 	So the problem is solved.
 	 * 3. Since we already know the length of the loop(size of first linked list)
 	 * 	we can traverse those many number of nodes in second list,
 	 * 	and then start another pointer from the beginning of second list.
@@ -43,24 +45,14 @@ public class IntersectionOfTwoLinkedLists {
 		if(!hasIntersection(headA, headB))	return null;
 		ListNode last = headA, first=headB;
 		
-		int length=0;
-		while(last!=null){
-			length++;
-			if(last.next==null){
-				last.next = headA;
-				break;
-			}
-			last=last.next;
-		}
-		while(length>0){
-			first=first.next;
-			length--;
-		}
-		while(headB!=first){
-			headB=headB.next;
-			first=first.next;
-		}
+		int length=1;
+		for(; last.next!=null; length++, last=last.next);
+		last.next = headA;
+		
+		for(; length>0; first=first.next, length--);
+		for(; headB!=first; headB=headB.next, first=first.next);
 		last.next=null;
+		
 		return first;
 	}
 	
@@ -89,15 +81,10 @@ public class IntersectionOfTwoLinkedLists {
 	public static ListNode getIntersectionNodeIII(ListNode headA, ListNode headB){
 		if(!hasIntersection(headA, headB))	return null;
 		
-		int length1 = 1, length2 = length(headB);
-		ListNode last = headA;
-		while(last.next!=null){
-			length1++;
-			last=last.next;
-		}
-		reverse(headA);
-
+		int length1 = length(headA), length2 = length(headB);
+		ListNode last = reverse(headA);
 		int length3 = length(headB);
+		
 		int Y = (length2+length3-length1)/2;
 		while(Y!=0){
 			headB=headB.next;
