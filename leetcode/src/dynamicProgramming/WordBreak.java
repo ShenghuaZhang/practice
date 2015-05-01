@@ -3,6 +3,7 @@ package dynamicProgramming;
 import java.util.Set;
 
 /**
+ * 139
  * https://leetcode.com/problems/word-break/
  * 
  * Given a string s and a dictionary of words dict,
@@ -16,36 +17,35 @@ import java.util.Set;
  * @author carllee1991
  * 
  * #WordBreakII
- * {@link #wordBreakBetter(String, Set)}
  *
  */
 public class WordBreak {
-	public static boolean wordBreakRecursive(String s, Set<String> dict) {
+	/* DP algorithm */
+	public boolean wordBreakBetter(String s, Set<String> wordDict){
+		boolean[] inDict = new boolean[s.length()+1];
+        inDict[0] = true;
+        for(int i=0; i<s.length(); i++){
+            for(int j=0; j<=i; j++){
+                if(wordDict.contains(s.substring(j, i+1)) && inDict[j]){
+                    inDict[i+1] = true;
+                    break;
+                }
+            }
+        }
+        return inDict[s.length()];
+	}
+	
+	/* Recursive: Time Limit Exceeded */
+	public boolean wordBreakRecursive(String s, Set<String> wordDict) {
 		if(s==null)	return true;
-        return helper(s, dict, 0);
+        return helper(s, wordDict, 0);
     }
-	private static boolean helper(String s, Set<String> dict, int index){
+	private boolean helper(String s, Set<String> wordDict, int index){
 		if(index==s.length())	return true;
-		for(int i=1; i<s.length()-index+1; i++)
-			if(dict.contains(s.substring(index, index+i)))
-				if(helper(s, dict, index+i)) return true;
+		for(int i=index+1; i<=s.length(); i++)
+			if(wordDict.contains(s.substring(index, i)))
+				if(helper(s, wordDict, i)) return true;
 		return false;
 	}
 	
-	public static boolean wordBreakBetter(String s, Set<String> dict){
-		boolean[] rs = new boolean[s.length()];
-		for(int i=0; i<s.length(); i++){
-			for(int j=0; j<=i; j++){
-				if(j==i && dict.contains(s.substring(0, i+1))){
-					rs[i] = true;
-					break;
-				}
-				else if(rs[j] && dict.contains(s.substring(j+1, i+1))){
-					rs[i] = true;
-					break;
-				}
-			}
-		}
-		return rs[s.length()-1];
-	}
 }
