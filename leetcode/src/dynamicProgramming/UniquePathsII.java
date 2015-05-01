@@ -27,20 +27,16 @@ public class UniquePathsII {
         
         for(int i=0; i<m; i++){
         	for(int j=0; j<n; j++){
-        		if(obstacleGrid[i][j]==1)	unique[i][j] = -1;
+        		if(obstacleGrid[i][j]!=1) unique[i][j]= 0;
         		else if(i==0 || j==0){
-        			if(j!=0 && unique[i][j-1]==-1)	unique[i][j] = -1;
-        			else if(i!=0 && unique[i-1][j]==-1)	unique[i][j] = -1;
+        			if(j!=0)	unique[i][j] = unique[i][j-1];
+        			else if(i!=0)	unique[i][j] = unique[i-1][j];
         			else unique[i][j] = 1;
         		}
-        		else{
-        			int left = unique[i-1][j]>0?unique[i-1][j]:0;
-        			int up = unique[i][j-1]>0?unique[i][j-1]:0;
-        			unique[i][j] = left+up;
-        		}
+        		else unique[i][j] = unique[i-1][j]+unique[i][j-1];
         	}
         }
         
-        return unique[m-1][n-1]>0?unique[m-1][n-1]:0;
+        return unique[m-1][n-1];
     }
 }
