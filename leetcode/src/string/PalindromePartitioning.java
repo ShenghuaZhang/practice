@@ -18,6 +18,8 @@ import java.util.List;
  * ]
  * 
  * @author yili3
+ * 
+ * #PalindromePartitioningII	
  *
  */
 public class PalindromePartitioning {
@@ -27,18 +29,18 @@ public class PalindromePartitioning {
 		helper(s, getDict(s), 0, new ArrayList<String>(), ret);
 		return ret;
 	}
-	private boolean[][] getDict(String s){//#LongestPalindromicSubstring
+	private boolean[][] getDict(String s){	/* #LongestPalindromicSubstring */
 		boolean[][] dict = new boolean[s.length()][s.length()];
-		for(int i=0; i<s.length()-1; i++){
-			for(int j=0; j<=i; j++){
-				if(s.charAt(i)==s.charAt(j) &&(i-j<2 || dict[i-1][j+1]))
+		for (int i = s.length() - 1; i >= 0; i--) {
+			for (int j = i; j < s.length(); j++) {
+				if (s.charAt(i)==s.charAt(j) && ((j-i<2)||dict[i+1][j-1]))
 					dict[i][j] = true;
 			}
 		}
 		return dict;
 	}
 	private void helper(String s, boolean[][] dict, int start, List<String> item, List<List<String>> ret){
-		if(start==s.length()){
+		if(start==s.length()){	/* #WordBreakII */
 			ret.add(new ArrayList<String>(item));
 			return;
 		}
