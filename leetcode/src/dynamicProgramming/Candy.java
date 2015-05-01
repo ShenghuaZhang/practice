@@ -10,7 +10,9 @@ package dynamicProgramming;
  * What is the minimum candies you must give?
  * 
  * @author carllee1991
- *
+ * 
+ *  #LongestPalindromicSubstring #TrappingRainWater
+ * 
  */
 public class Candy {
 	public int candy(int[] ratings) {

@@ -11,5 +11,43 @@ package dynamicProgramming;
  *
  */
 public class TrappingRainWater {
-
+	/* Two pointer: #TwoSumII #ContainerWithMostWater
+	 * #LongestSubstringWithoutRepeatingCharacters
+	 * #LongestSubstringWithAtMostTwoDistinctCharacters
+	 * #MaximumRangeNumber
+	 * */
+	public int trapBetter(int[] height){
+        int left =0, right = height.length-1, ret = 0, temp = 0;
+		while(left<right){
+			if(height[left]<=height[right]){
+			    temp = left+1;
+				while(temp<=right && height[left]>=height[temp])  ret+=(height[left]-height[temp++]);
+				left=temp;
+			}else{
+			    temp = right-1;
+				while(temp>=left && height[right]>=height[temp])  ret+=(height[right]-height[temp--]);
+				right = temp;
+			}
+		}
+		return ret;
+	}
+	
+	/* DP: #Candy #LongestPalindromicSubstring */
+	public int trap(int[] height){
+		if(height==null || height.length==0)	return 0;
+		int max=height[0], res=0;
+		int[] container = new int[height.length];
+		
+		for(int i=1; i<height.length-1; i++){
+			container[i] = max;
+			max = Math.max(max, height[i]);
+		}
+		max = height[height.length-1];
+		for(int i=height.length-2; i>0; i--){
+			container[i] = Math.min(max, container[i]);
+			max = Math.max(max, height[i]);
+			res += container[i]-height[i]>0?container[i]-height[i]:0;
+		}
+		return res;
+	}
 }

@@ -1,5 +1,6 @@
 package string;
 /**
+ * 5
  * https://leetcode.com/problems/longest-palindromic-substring/
  * 
  * Given a string S, find the longest palindromic substring in S.
@@ -7,6 +8,8 @@ package string;
  * and there exists one unique longest palindromic substring.
  * 
  * @author yili3
+ * 
+ * #Candy #TrappingRainWater
  *
  */
 
@@ -30,5 +33,20 @@ public class LongestPalindromicSubstring {
 			right++;
 		}
 		return right-left-1;
+	}
+	
+	public String longestPalindromeDP(String s) {
+		boolean[][] palin = new boolean[s.length()][s.length()];
+		int start = 0, end = 0;
+		for (int i = 0; i <s.length(); i++)
+			for (int j = 0; j <= i; j++)
+				if (s.charAt(i)==s.charAt(j) && (i-j<2||palin[i-1][j+1])) {
+					palin[i][j] = true;
+					if (end-start<i-j){	
+						start = j;	end = i;
+					}
+				}
+
+		return s.substring(start, end+1);
 	}
 }

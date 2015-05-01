@@ -8,7 +8,7 @@ package array;
  * @return An array which include two integers.
  * 
  * See this with combination:
- * #TwoSum#TwoSumII#TwoSumIII#ThreeSum#ThreeSumClosest#FourSum
+ * #TwoSum #TwoSumII #TwoSumIII #ThreeSum #ThreeSumClosest #FourSum
  */
 
 public class TwoSumII {

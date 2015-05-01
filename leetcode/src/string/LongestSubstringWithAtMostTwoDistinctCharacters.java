@@ -10,10 +10,11 @@ package string;
  * T is "ece" which its length is 3.
  * 
  * @author yili3
+ * 
+ * #LongestSubstringWithoutRepeatingCharacters
  *
  */
 public class LongestSubstringWithAtMostTwoDistinctCharacters {
-	// this one much easier to understand
 	public int lengthOfLongestSubstingTwoDistinct(String s){
 		int[] count = new int[256];
 		int start=0, numDistinct = 0, maxLen = 0;
