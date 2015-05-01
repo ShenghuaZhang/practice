@@ -1,5 +1,6 @@
 package dynamicProgramming;
 /**
+ * 62
  * https://leetcode.com/problems/unique-paths/
  * 
  * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
@@ -10,7 +11,7 @@ package dynamicProgramming;
  * @author carllee1991
  *
  */
-public class UniquePath {
+public class UniquePaths {
 	public int uniquePaths(int m, int n) {
 		int[][] dp = new int[m][n];
 
