@@ -16,7 +16,7 @@ package string;
  *
  */
 public class PalindromePartitioningII {
-	public int minCut(String s){
+	public static int minCut(String s){
 		boolean[][] palinDict = findAllPalin(s);
 		
 		int[] res = new int[s.length()];
@@ -24,12 +24,16 @@ public class PalindromePartitioningII {
 			res[i] = i;
 			for(int j=0; j<=i; j++){
 				if(palinDict[j][i])
-					res[i] = Math.min(res[i], res[j]+1);
+					if(j==0){
+						res[i] = 0;
+						break;
+					}
+					else res[i] = Math.min(res[i], res[j-1]+1);
 			}
 		}
 		return res[s.length()-1];
 	}
-	private boolean[][] findAllPalin(String s){
+	private static boolean[][] findAllPalin(String s){
 		boolean[][] palinDict = new boolean[s.length()][s.length()];
 		
 		for(int i=0; i<s.length(); i++){
@@ -39,5 +43,10 @@ public class PalindromePartitioningII {
 			}
 		}
 		return palinDict;
+	}
+	
+	public static void main(String[] args){
+		String s = "cdd";
+		minCut(s);
 	}
 }

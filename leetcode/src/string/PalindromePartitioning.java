@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO 5.5 131
+ * 131
  * https://leetcode.com/problems/palindrome-partitioning/
  * 
  * Given a string s, partition s such that every substring of the partition is a palindrome.
@@ -29,12 +29,12 @@ public class PalindromePartitioning {
 		helper(s, getDict(s), 0, new ArrayList<String>(), ret);
 		return ret;
 	}
-	private boolean[][] getDict(String s){	/* #LongestPalindromicSubstring */
+	private boolean[][] getDict(String s){//#LongestPalindromicSubstring
 		boolean[][] dict = new boolean[s.length()][s.length()];
-		for (int i = s.length() - 1; i >= 0; i--) {
-			for (int j = i; j < s.length(); j++) {
-				if (s.charAt(i)==s.charAt(j) && ((j-i<2)||dict[i+1][j-1]))
-					dict[i][j] = true;
+		for (int i = 0; i < s.length(); i++) {
+			for (int j = 0; j<=i; j++) {
+				if (s.charAt(i)==s.charAt(j) && ((i-j<2)||dict[j+1][i-1]))
+					dict[j][i] = true;
 			}
 		}
 		return dict;
