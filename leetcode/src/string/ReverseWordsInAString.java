@@ -1,6 +1,7 @@
 package string;
 /**
- * 186
+ * 151 186
+ * https://leetcode.com/problems/reverse-words-in-a-string/
  * https://leetcode.com/problems/reverse-words-in-a-string-ii/
  * 
  * Given an input string, reverse the string word by word.
@@ -38,6 +39,11 @@ public class ReverseWordsInAString {
         }
     }
 	
+    public static void reverseWordsString(String s){
+    	char[] c = s.toCharArray();
+    	reverseWords(c);
+    	s=new String(c);
+    }
 	public static void main (String[] args){
 		String s = "asjdflj sjdflksjf sdkljflsj";
 		char[] c = s.toCharArray();
