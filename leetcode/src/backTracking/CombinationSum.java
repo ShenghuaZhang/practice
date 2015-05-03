@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * TODO 5.3 39
+ * 39
  * https://leetcode.com/problems/combination-sum/
  * 
  * Given a set of candidate numbers (C) and a target number (T),
@@ -29,10 +29,24 @@ public class CombinationSum {
 	public List<List<Integer>> combinationSum(int[] candidates, int target){
 		List<List<Integer>> list = new ArrayList<>();
 		if(candidates==null || candidates.length==0)	return list;
-		
 		Arrays.sort(candidates);
 		
+		helper(candidates, target, list, 0, new ArrayList<Integer>());
 		
 		return list;
+	}
+	private void helper(int[] candidates, int target, List<List<Integer>> list, int index,
+			List<Integer> current){
+		if(target==0){
+			list.add(new ArrayList<Integer>(current));
+			return;
+		}
+		if(candidates[index]>target)
+			return;
+		for(int i=index; i<candidates.length; i++){
+			current.add(candidates[i]);
+			helper(candidates, target-candidates[i], list, i, current);
+			current.remove(current.size()-1);
+		}
 	}
 }
