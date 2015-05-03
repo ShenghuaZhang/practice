@@ -22,6 +22,8 @@ import java.util.List;
  * A solution set is: [1, 7] [1, 2, 5] [2, 6] [1, 1, 6] 
  * 
  * @author yili3
+ * 
+ * #CombinationSum
  *
  */
 public class CombinationSumII {
@@ -42,7 +44,7 @@ public class CombinationSumII {
 		}
 		for(int i=index; i<candidates.length; i++){
 			if(candidates[i]>target)	break;
-			if(i==index || candidates[i]!=candidates[i-1]){
+			if(i==index || candidates[i]!=candidates[i-1]){ // #SubsetII
 				current.add(candidates[i]);
 				helper(candidates, target-candidates[i], list, i+1, current);
 				current.remove(current.size()-1);

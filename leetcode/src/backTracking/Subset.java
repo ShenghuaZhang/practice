@@ -22,16 +22,16 @@ public class Subset {
 		if (nums == null || nums.length == 0)
 			return null;
 		Arrays.sort(nums);
-		helper(nums, new ArrayList<Integer>(), list, -1);
+		helper(nums, new ArrayList<Integer>(), list, 0);
 		return list;
 	}
 	private void helper(int[] nums, List<Integer> current,
 			List<List<Integer>> list, int index) {
 		list.add(new ArrayList<Integer>(current));
 		
-		for (int i = index + 1; i < nums.length; i++) {
+		for (int i = index; i < nums.length; i++) {
 			current.add(nums[i]);
-			helper(nums, current, list, i);
+			helper(nums, current, list, i+1);
 			current.remove(current.size() - 1);
 		}
 	}

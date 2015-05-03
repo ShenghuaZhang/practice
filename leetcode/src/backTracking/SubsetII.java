@@ -29,17 +29,17 @@ public class SubsetII {
 		if (nums == null || nums.length == 0)
 			return null;
 		Arrays.sort(nums);
-		helper(nums, new ArrayList<Integer>(), list, -1);
+		helper(nums, new ArrayList<Integer>(), list, 0);
 		return list;
 	}
 	private void helper(int[] nums, List<Integer> current,
 			List<List<Integer>> list, int index) {
 		list.add(new ArrayList<Integer>(current));
 		
-		for (int i = index + 1; i < nums.length; i++) {
-			if(i!=0 && nums[i]!=nums[i-1] || i==index+1){
+		for (int i = index; i < nums.length; i++) {
+			if(i==index || nums[i]!=nums[i-1]){ // #CombinationSumII
 				current.add(nums[i]);
-				helper(nums, current, list, i);
+				helper(nums, current, list, i+1);
 				current.remove(current.size() - 1);
 			}
 		}
