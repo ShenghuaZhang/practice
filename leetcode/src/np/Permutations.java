@@ -15,9 +15,10 @@ import java.util.List;
  *
  */
 public class Permutations {
-	public static List<List<Integer>> premute(int[] num){
+	public List<List<Integer>> premute(int[] num){
 		List<List<Integer>> list = new ArrayList<>();
 		if(num==null ||num.length==0)	return list;
+		
 		List<Integer> temp = new ArrayList<>();
 		temp.add(num[0]);
 		list.add(temp);
@@ -25,7 +26,7 @@ public class Permutations {
 		
 		return list;
 	}
-	private static void helper(int[] num, int cnt, List<List<Integer>> list){
+	private void helper(int[] num, int cnt, List<List<Integer>> list){
 		List<List<Integer>> newList = new ArrayList<>();
 		if(cnt == num.length)	return;
 		for(int i=0; i<list.size(); i++){
@@ -40,10 +41,5 @@ public class Permutations {
 		list.clear();
 		list.addAll(newList);
 		helper(num, ++cnt, list);
-	}
-	
-	public static void main(String[] args){
-		int[] num = {1, 2, 3};
-		premute(num);
 	}
 }
