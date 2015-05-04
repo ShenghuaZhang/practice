@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 46
  * https://leetcode.com/problems/permutations/
  * 
  * Given a collection of numbers, return all possible permutations.
@@ -15,31 +16,48 @@ import java.util.List;
  *
  */
 public class Permutations {
-	public List<List<Integer>> premute(int[] num){
+	public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
+        if(nums==null || nums.length==0)    return list;
+        boolean[] used = new boolean[nums.length];
+        helper(nums, list, new ArrayList<Integer>(), used);
+        return list;
+    }
+    private void helper(int[] nums, List<List<Integer>> list, List<Integer> current, boolean[] used){
+        if(current.size()==nums.length){
+            list.add(new ArrayList<Integer>(current));
+            return;
+        }
+        for(int i=0; i<nums.length; i++){
+            if(!used[i]){
+                used[i] = true;
+                current.add(nums[i]);
+                helper(nums, list, current, used);
+                current.remove(current.size()-1);
+                used[i] = false;
+            }
+        }
+    }
+    
+	public List<List<Integer>> permuteIterator(int[] nums){
 		List<List<Integer>> list = new ArrayList<>();
-		if(num==null ||num.length==0)	return list;
+		if(nums==null ||nums.length==0)	return list;
 		
-		List<Integer> temp = new ArrayList<>();
-		temp.add(num[0]);
-		list.add(temp);
-		helper(num, 1, list);
+		List<Integer> first = new ArrayList<>();
+		first.add(nums[0]);
+		list.add(first);
 		
-		return list;
-	}
-	private void helper(int[] num, int cnt, List<List<Integer>> list){
-		List<List<Integer>> newList = new ArrayList<>();
-		if(cnt == num.length)	return;
-		for(int i=0; i<list.size(); i++){
-			for(int j=0; j<list.get(i).size()+1; j++){
-				List<Integer> temp = new ArrayList<>();
-				temp.addAll(list.get(i));
-				temp.add(j, num[cnt]);
-				newList.add(temp);
+		for(int i=1; i<nums.length; i++){
+			List<List<Integer>> newList = new ArrayList<>();	
+			for(int j=0; j<list.size(); j++){
+				for(int k=0; k<list.get(j).size()+1; k++){
+					List<Integer> item = new ArrayList<Integer>(list.get(j));
+					item.add(k, nums[i]);
+					newList.add(item);
+				}
 			}
-			
+			list = newList;
 		}
-		list.clear();
-		list.addAll(newList);
-		helper(num, ++cnt, list);
+		return list;
 	}
 }
