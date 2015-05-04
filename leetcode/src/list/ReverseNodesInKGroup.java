@@ -1,6 +1,7 @@
 package list;
 
 /**
+ * 25
  * https://leetcode.com/problems/reverse-nodes-in-k-group/
  * 
  * Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
@@ -18,43 +19,29 @@ package list;
  */
 
 public class ReverseNodesInKGroup {
-	public static ListNode reverseKGroup(ListNode head, int k) {
-		if(head==null)	return null;
-		ListNode dummyHead = new ListNode(0);
-		dummyHead.next = head;
-		ListNode pre = dummyHead, cur = head;
-		
-		int cnt=0;
-		while(cur!=null){
-			cnt++;
-			ListNode next = cur.next;
-			if(cnt==k){
-				pre = reverse(pre, next);
-				cnt = 0;
-			}
-			cur = next;
-		}
-		
-		return dummyHead.next;
-	}
-	private static ListNode reverse(ListNode pre, ListNode end){
-		if(pre==null || pre.next==null)	return pre;
-		
-		ListNode head = pre.next;
-		ListNode cur = head.next;
-		while(cur!=end){
-			ListNode next = cur.next;
-			cur.next = pre.next;
-			pre.next = cur;
-			cur = next;
-		}
-		head.next = end;
-		return head;
-	}
-	
-	public static void main(String[] args){
-		ListNode head = ListNode.LeetcodeInitialize("{1,2,3,4,5,6,"
-				+ "7,8,9,10,11,12,13,14,15,16,17,18}");
-		ListNode.print(reverseKGroup(head, 4));
-	}
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummyHead = new ListNode(0), current=head, previous = dummyHead;
+        dummyHead.next = head;
+        int cnt = 0;
+        while(current!=null){
+            cnt ++;
+            ListNode next = current.next;
+            if(cnt == k){
+                previous = reverseK(previous, next);
+                cnt = 0;
+            }
+            current=next;
+        }
+        return dummyHead.next;
+    }
+    private ListNode reverseK(ListNode previous, ListNode end){
+        ListNode current = previous.next;
+        while(current.next!=end){
+            ListNode next = current.next;
+            current.next = next.next;
+            next.next = previous.next;
+            previous.next = next;
+        }
+        return current;
+    }
 }
