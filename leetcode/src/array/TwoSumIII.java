@@ -66,7 +66,6 @@ public class TwoSumIII {
 	
 	/************************** 2 **************************/
 	// add--O(1) find--O(n) space--O(n)
-	// TODO: Map.Entry<Integer, Integer> entry:map.entrySet()
 	public void addII(int number){
 		int count = map.containsKey(number)?map.get(number):0;
 		map.put(number, count+1);
