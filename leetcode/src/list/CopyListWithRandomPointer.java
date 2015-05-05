@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 138
  * https://leetcode.com/problems/copy-list-with-random-pointer/
  * 
  * A linked list is given such that each node contains an
@@ -21,40 +22,30 @@ import java.util.Map;
  *
  */
 public class CopyListWithRandomPointer {
-	/*
-	 * Traverse two time, but using HashMap which need extra space O(n)
-	 */
+	/* Traverse one time, but using HashMap which need extra space O(n) */
 	public RandomListNode copyRandomListHashMap(RandomListNode head){
-		if(head==null)  return head;
-        
-        Map<RandomListNode, RandomListNode> map = new HashMap<>();
-        RandomListNode newHead = new RandomListNode(head.label);
-        map.put(head, newHead);
-        RandomListNode current = head.next, newCurrent = newHead;
-        
-        while(current!=null){
-            newCurrent.next = new RandomListNode(current.label);
-            newCurrent = newCurrent.next;
-            map.put(current, newCurrent);
+		Map<RandomListNode, RandomListNode> map = new HashMap<>();
+        RandomListNode current = head;
+        while(current != null){
+            if(!map.containsKey(current))
+                map.put(current, new RandomListNode(current.label));
+            if(current.next!=null){
+                if(!map.containsKey(current.next))
+                    map.put(current.next, new RandomListNode(current.next.label));
+                map.get(current).next = map.get(current.next);
+            }
+            if(current.random!=null){
+                if(!map.containsKey(current.random))
+                    map.put(current.random, new RandomListNode(current.random.label));
+                map.get(current).random = map.get(current.random);
+            }
             current = current.next;
         }
         
-        current = head;
-        newCurrent = newHead;
-        while(current!=null){
-            newCurrent.random = map.get(current.random);
-            newCurrent = newCurrent.next;
-            current = current.next;
-        }
-        
-        return newHead;
+        return map.get(head);
 	}
-	/*
-	 * Traverse three times, but do not using extra space
-	 */
+	/* Traverse three times, not using hash map */
 	public RandomListNode copyRandomList(RandomListNode head){
-		if(head==null)	return head;
-		
 		RandomListNode current = head;
 		
 		while(current!=null){
@@ -78,14 +69,6 @@ public class CopyListWithRandomPointer {
 			current = current.next;
 			if(temp.next!=null)	temp.next = temp.next.next;
 		}
-//		while(current.next.next!=null){
-//		    RandomListNode newNode = current.next;
-//			current.next = current.next.next;
-//			current = current.next;
-//			newNode.next = newNode.next.next;
-//		}
-//		current.next = null;
-		
 		return newHead;
 	}
 }
