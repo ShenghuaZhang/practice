@@ -18,16 +18,17 @@ import java.util.Stack;
  * @author yili3
  *
  */
-public class CloneGraph {
-	class UndirectedGraphNode{
-		int label;
-		List<UndirectedGraphNode> neighbors;
-		UndirectedGraphNode(int x) {
-			label = x;
-			neighbors = new ArrayList<UndirectedGraphNode>();
-		}
+class UndirectedGraphNode{
+	int label;
+	List<UndirectedGraphNode> neighbors;
+	UndirectedGraphNode(int x) {
+		label = x;
+		neighbors = new ArrayList<UndirectedGraphNode>();
 	}
-	
+}
+
+public class CloneGraph {
+	/* BFS Queue */
 	public UndirectedGraphNode cloneGraphBFS(UndirectedGraphNode node){
 		if(node == null)	return null;
 		Queue<UndirectedGraphNode> queue = new LinkedList<>();
@@ -48,7 +49,7 @@ public class CloneGraph {
 		}
 		return map.get(node);
 	}
-	
+	/* DFS Stack*/
 	public UndirectedGraphNode cloneGraphDFS(UndirectedGraphNode node) {
         if(node == null)    return null;
         Stack<UndirectedGraphNode> stack = new Stack<>();
@@ -69,20 +70,20 @@ public class CloneGraph {
         }
         return map.get(node);
     }
-	
+	/* DFS Recursion */
 	public UndirectedGraphNode cloneGraphDFSRecursion(UndirectedGraphNode node){
 		if(node == null)	return node;
 		Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
 		map.put(node, new UndirectedGraphNode(node.label));
-		helper(node, map);
+		dfs(node, map);
 		
 		return map.get(node);
 	}
-	private void helper(UndirectedGraphNode node, Map<UndirectedGraphNode, UndirectedGraphNode> map){
+	private void dfs(UndirectedGraphNode node, Map<UndirectedGraphNode, UndirectedGraphNode> map){
 		for(int i=0; i<node.neighbors.size(); i++){
 			if(!map.containsKey(node.neighbors.get(i))){
 				map.put(node.neighbors.get(i), new UndirectedGraphNode(node.neighbors.get(i).label));
-				helper(node.neighbors.get(i), map);
+				dfs(node.neighbors.get(i), map);
 			}
 			map.get(node).neighbors.add(map.get(node.neighbors.get(i)));
 		}
