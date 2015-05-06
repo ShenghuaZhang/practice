@@ -1,14 +1,45 @@
 package tree.binarysearchtree;
-
+/**
+ * 99
+ * https://leetcode.com/problems/recover-binary-search-tree/
+ * 
+ * Two elements of a binary search tree (BST) are swapped by mistake.
+ * Recover the tree without changing its structure.
+ * Note:
+ * Could you devise a constant space solution?
+ */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-
-import tree.binarytree.Levelorder;
 import tree.binarytree.TreeNode;
 
 public class RecoverBinarSearchTree {
 	public void recoverTree(TreeNode root) {
+		if(root ==null) return;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root, first = null, second = null, pre = null;
+        
+        while(current!=null || !stack.empty()){
+            while(current!=null){
+                stack.push(current);
+                current =current.left;
+            }
+            current = stack.pop();
+            if(pre!=null && current.val<pre.val){
+                if(first==null){
+                    first = pre;
+                    second = current;
+                }else	second = current;
+            }
+            pre = current;
+            current = current.right;
+        }
+        int temp = first.val;
+        first.val = second.val;
+        second.val = temp;
+    }
+	
+	public void recoverTreeRecursive(TreeNode root) {
 		if (root == null)	return;
 		List<TreeNode> pre = new ArrayList<>();
 		pre.add(null);
@@ -31,39 +62,5 @@ public class RecoverBinarSearchTree {
 		}
 		pre.set(0, root);
 		helper(root.right, pre, res);
-	}
-	
-	public static void recoverTreeII(TreeNode root) {
-		if(root ==null) return;
-        int flag = 0;
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode current = root, first = root, second = root, pre = root;
-        
-        while(current!=null || !stack.isEmpty()){
-            while(current!=null){
-                stack.push(current);
-                current =current.left;
-            }
-            current = stack.pop();
-            if(flag==0)	flag++;
-            else if(current.val<pre.val){
-                if(flag==1){
-                    flag++;
-                    first = pre;
-                    second = current;
-                }else	second = current;
-            }
-            pre = current;
-            current = current.right;
-        }
-        int temp = first.val;
-        first.val = second.val;
-        second.val = temp;
-    }
-	
-	public static void main(String[] args){
-		TreeNode root = TreeNode.LeetcodeInitialize("{3,1,2}");
-		recoverTreeII(root);
-		System.out.println(Levelorder.levelorder(root));
 	}
 }
