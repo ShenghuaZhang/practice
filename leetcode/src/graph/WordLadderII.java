@@ -18,7 +18,7 @@ import java.util.Set;
  * 
  * @author yili3
  *
- *         #WordLadder
+ * #WordLadder
  */
 public class WordLadderII {
 	class StringWithLevel {
