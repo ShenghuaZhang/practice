@@ -112,7 +112,7 @@ public class GraphMatrix {
 		Queue<Integer> queue = new LinkedList<>();
 		queue.offer(0);
 		boolean[] visited = new boolean[nodeNum];
-		
+		System.out.println("bfs: ");
 		while(!queue.isEmpty()){
 			int current = queue.poll();
 			for(int i=0; i<nodeNum; i++){
@@ -126,6 +126,7 @@ public class GraphMatrix {
 	}
 	
 	public void dfs(){
+		System.out.println("dfs: ");
 		dfs(0, new boolean[nodeNum]);
 	}
 	public void dfs(int vertex, boolean[] visited){
@@ -138,6 +139,33 @@ public class GraphMatrix {
 		}
 	}
 	
+	public List<Integer> dijkstra(){
+		return this.dijkstra(0);
+	}
+	public List<Integer> dijkstra(int start){
+		List<Integer> list = new ArrayList<>();
+		list.add(start);
+		int[] distanceToStart = new int[nodeNum];
+		for(int i=0; i<matrix.length; i++) distanceToStart[i] = matrix[start][i];
+		int cnt = 1;
+		while(cnt<nodeNum){
+			int min = 0;
+			for(int i=0; i<nodeNum; i++){
+				if(distanceToStart[i]>0)
+					if(min==0 || distanceToStart[i]<distanceToStart[min]) min = i;
+			}
+			for(int i=0; i<nodeNum; i++){
+				if(matrix[min][i]>0 && (matrix[min][i]+distanceToStart[min]<distanceToStart[i]||distanceToStart[i]==0))
+					distanceToStart[i] = matrix[min][i]+distanceToStart[min];
+			}
+			distanceToStart[min] = -1;
+			list.add(min);
+			cnt++;
+		}
+		System.out.println(list);
+		return list;
+	}
+	
 	public static void main(String[] args){
 		GraphMatrix graph = new GraphMatrix(4);
 		graph.addEdge(0, 1, 4);
@@ -147,11 +175,11 @@ public class GraphMatrix {
 		graph.addEdge(2, 3, 2);
 //		graph.addEdge(3, 2, 1);
 		
-		System.out.println(graph.getMinimumDistance(1, 2));
-		System.out.println(graph.hasPath(1, 2));
-		System.out.println(graph.hasCircle());
+		System.out.println("Get minimumDistance from 1 to 2"+graph.getMinimumDistance(1, 2));
+		System.out.println("hasCircle(topo method): "+graph.hasCircle());
+		System.out.println("topo order: "+graph.topological());
 		graph.bfs();
-		System.out.println(graph.topological());
 		graph.dfs();
+		graph.dijkstra();
 	}
 }
