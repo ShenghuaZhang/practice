@@ -1,14 +1,8 @@
 package tree.heap;
 
 /*************************************************************************
- *  Compilation:  MinPQ.java
- *  Execution:    java MinPQ < input.txt
- *  
  *  Generic min priority queue implementation with a binary heap.
  *  Can be used with a comparator instead of the natural order.
- *
- *  % java MinPQ < tinyPQ.txt
- *  E A E (6 left on pq)
  *
  *  We use a one-based array to simplify parent and child calculations.
  *
@@ -22,8 +16,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- *  TODO 5.5
- *  The <tt>MinPQ</tt> class represents a priority queue of generic keys.
+ *  The <tt></tt> class represents a priority queue of generic keys.
  *  It supports the usual <em>insert</em> and <em>delete-the-minimum</em>
  *  operations, along with methods for peeking at the minimum key,
  *  testing if the priority queue is empty, and iterating through
@@ -42,7 +35,7 @@ import java.util.NoSuchElementException;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class MinPQ<Key> implements Iterable<Key> {
+public class PriorityQueue<Key> implements Iterable<Key> {
     private Key[] pq;                    // store items at indices 1 to N
     private int N;                       // number of items on priority queue
     private Comparator<Key> comparator;  // optional comparator
@@ -52,7 +45,7 @@ public class MinPQ<Key> implements Iterable<Key> {
      * @param initCapacity the initial capacity of the priority queue
      */
     @SuppressWarnings("unchecked")
-	public MinPQ(int initCapacity) {
+	public PriorityQueue(int initCapacity) {
         pq = (Key[]) new Object[initCapacity + 1];
         N = 0;
     }
@@ -60,7 +53,7 @@ public class MinPQ<Key> implements Iterable<Key> {
     /**
      * Initializes an empty priority queue.
      */
-    public MinPQ() {
+    public PriorityQueue() {
         this(1);
     }
 
@@ -71,7 +64,7 @@ public class MinPQ<Key> implements Iterable<Key> {
      * @param comparator the order to use when comparing keys
      */
     @SuppressWarnings("unchecked")
-	public MinPQ(int initCapacity, Comparator<Key> comparator) {
+	public PriorityQueue(int initCapacity, Comparator<Key> comparator) {
         this.comparator = comparator;
         pq = (Key[]) new Object[initCapacity + 1];
         N = 0;
@@ -81,7 +74,7 @@ public class MinPQ<Key> implements Iterable<Key> {
      * Initializes an empty priority queue using the given comparator.
      * @param comparator the order to use when comparing keys
      */
-    public MinPQ(Comparator<Key> comparator) { this(1, comparator); }
+    public PriorityQueue(Comparator<Key> comparator) { this(1, comparator); }
 
     /**
      * Initializes a priority queue from the array of keys.
@@ -89,7 +82,7 @@ public class MinPQ<Key> implements Iterable<Key> {
      * @param keys the array of keys
      */
     @SuppressWarnings("unchecked")
-	public MinPQ(Key[] keys) {
+	public PriorityQueue(Key[] keys) {
         N = keys.length;
         pq = (Key[]) new Object[keys.length + 1];
         for (int i = 0; i < N; i++)
@@ -234,13 +227,13 @@ public class MinPQ<Key> implements Iterable<Key> {
 
     private class HeapIterator implements Iterator<Key> {
         // create a new pq
-        private MinPQ<Key> copy;
+        private PriorityQueue<Key> copy;
 
         // add all items to copy of heap
         // takes linear time since already in heap order so no keys move
         public HeapIterator() {
-            if (comparator == null) copy = new MinPQ<Key>(size());
-            else                    copy = new MinPQ<Key>(size(), comparator);
+            if (comparator == null) copy = new PriorityQueue<Key>(size());
+            else                    copy = new PriorityQueue<Key>(size(), comparator);
             for (int i = 1; i <= N; i++)
                 copy.insert(pq[i]);
         }

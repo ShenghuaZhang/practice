@@ -10,7 +10,6 @@ package dynamicProgramming;
  * such that the container contains the most water.
  * 
  * Note: You may not slant the container.
- * TODO what about we can slant container?
  * 
  * @author yili3
  *
