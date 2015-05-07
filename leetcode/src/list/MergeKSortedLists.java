@@ -55,6 +55,7 @@ public class MergeKSortedLists {
 	 * its elements according to the specified comparator.
 	 */
 	public ListNode mergeKListsHeap(ListNode[] lists) {
+		if(lists==null || lists.length==0)  return null;
 		PriorityQueue<ListNode> heap = new PriorityQueue<ListNode>(lists.length,
 				new Comparator<ListNode>() {
 					public int compare(ListNode n1, ListNode n2) {
