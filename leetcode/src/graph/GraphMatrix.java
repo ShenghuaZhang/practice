@@ -13,6 +13,14 @@ public class GraphMatrix {
 		matrix = new int[n][n];
 		nodeNum = n;
 	}
+	public GraphMatrix(int[][] matrix){
+		this.matrix = new int[matrix.length][matrix.length];
+		nodeNum = matrix.length;
+		for(int i=0; i<matrix.length; i++)
+			for(int j=0; j<matrix.length; j++)
+				this.matrix[i][j] = matrix[i][j];
+	}
+	
 	public void addEdge(int i, int j, int value){
 		if(i>=nodeNum || j>=nodeNum)	return;
 		matrix[i][j] = value;
@@ -74,7 +82,7 @@ public class GraphMatrix {
 					if(matrix[i][j]>0)	pointToMe[j]--;
 				}
 				cnt++;
-				i=0;
+				i=-1;
 			}
 		}
 		return cnt!=nodeNum;
