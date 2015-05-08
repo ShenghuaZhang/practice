@@ -22,6 +22,10 @@ import java.util.Map;
  * you are guaranteed that there will always be only one unique minimum window in S.
  * 
  * @author carllee1991
+ * 
+ * #SubstringWithConcatenationOfAllWords
+ * #LongestSubstringWithoutRepeatingCharacters
+ * #LongestSubstringWithAtMostTwoDistinctCharacters
  *
  */
 public class MinimumWindowSubstring {

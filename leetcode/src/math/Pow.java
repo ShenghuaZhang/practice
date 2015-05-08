@@ -1,6 +1,7 @@
 package math;
 
 /**
+ * 50
  * https://leetcode.com/problems/powx-n/
  * 
  * Implement pow(x, n).
@@ -24,7 +25,7 @@ public class Pow {
 		}
 		
 		n = Math.abs(n);
-		boolean isNeg = (n%2==1 || x<0);
+		boolean isNeg = (n%2==1 && x<0);
 		x = Math.abs(x);
 		while(n>0){
 			if((n&1) == 1){
