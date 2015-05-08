@@ -1,2 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/array/MajorityElement.java=UTF-8
+encoding//src/array/NextPermutation.java=UTF-8
+encoding//src/backTracking/CombinationSum.java=UTF-8
+encoding//src/backTracking/CombinationSumII.java=UTF-8
+encoding//src/binarySearch/FindPeakElement.java=UTF-8
+encoding//src/dynamicProgramming/MaximumSubarray.java=UTF-8
 encoding//src/tree/heap/TopK.java=UTF-8

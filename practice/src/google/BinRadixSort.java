@@ -2,7 +2,7 @@ package google;
 
 import java.util.Arrays;
 
-public class BinSort {
+public class BinRadixSort {
 	public static void binSort(int[] n){
 		for(int i=0; i<n.length; i++){
 			while(i!=n[i]){
