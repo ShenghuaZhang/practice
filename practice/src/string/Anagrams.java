@@ -1,4 +1,11 @@
 package string;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 /**
  * 49
  * https://leetcode.com/problems/anagrams/
@@ -6,13 +13,6 @@ package string;
  * Given an array of strings, return all groups of strings that are anagrams.
  * 
  */
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 public class Anagrams {
 	public List<String> anagrams(String[] strs){
 		List<String> list = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Anagrams {
 			}
 			
 		}
-		// TODO map iterator
+		// TODO HashMap iterator
 		Iterator<List<String>> itr = map.values().iterator();
 		while(itr.hasNext()){
 			List<String> temp = (List<String>)itr.next();
