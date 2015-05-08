@@ -26,7 +26,7 @@ import java.util.Map;
  *
  */
 public class SubstringWithConcatenationOfAllWords {
-	public static List<Integer> findSubstring(String s, String[] words) {
+	public List<Integer> findSubstring(String s, String[] words) {
 		List<Integer> list = new ArrayList<>();
 		Map<String, Integer> dict = new HashMap<>();
 		for(String st:words){
@@ -65,10 +65,5 @@ public class SubstringWithConcatenationOfAllWords {
 			left = right+length;
 		}
 		return list;
-	}
-	
-	public static void main(String[] args){
-		String[] words = {"a","b","a"};
-		System.out.print(findSubstring("abababab", words));
 	}
 }
