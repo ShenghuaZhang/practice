@@ -48,6 +48,6 @@ public class Pow {
 	}
 
 	public static void main(String[] args) {
-		System.out.print(pow(5, 5));
+		System.out.print(pow(9, 99));
 	}
 }
