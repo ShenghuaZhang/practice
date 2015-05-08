@@ -15,6 +15,12 @@ package string;
  *
  */
 public class LongestSubstringWithAtMostTwoDistinctCharacters {
+	/* Two pointer:
+	 * #TwoSumII #ContainerWithMostWater
+	 * #ContainerWithMostWater
+	 * #LongestSubstringWithoutRepeatingCharacters
+	 * #MaximumRangeNumber
+	 * */
 	public int lengthOfLongestSubstingTwoDistinct(String s){
 		int[] count = new int[256];
 		int start=0, numDistinct = 0, maxLen = 0;

@@ -34,7 +34,9 @@ public class LongestPalindromicSubstring {
 		}
 		return right-left-1;
 	}
-	
+	/* DP:
+	 * #Candy #TrappingRainWater
+	 * */
 	public String longestPalindromeDP(String s) {
 		boolean[][] palin = new boolean[s.length()][s.length()];
 		int start = 0, end = 0;

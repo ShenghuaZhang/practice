@@ -1,8 +1,20 @@
 package google;
 
 import java.util.Arrays;
-
+/**
+ * Give you a range like range = 5 and give you a unsorted array
+ * find a window which no bigger than this range and contain most numbers
+ * 
+ * @author carllee1991
+ *
+ */
 public class MaximumRangeNumber {
+	/* Two pointer:
+	 * #TwoSumII #TrappingRainWater
+	 * #LongestSubstringWithoutRepeatingCharacters
+	 * #LongestSubstringWithAtMostTwoDistinctCharacters
+	 * #ContainerWithMostWater
+	 * */
 	public static int maximumRange(int[] A, int size) {
 		Arrays.sort(A);
 		int first = 0, second = 0, cnt = 0;
@@ -16,10 +28,5 @@ public class MaximumRangeNumber {
 		}
 
 		return cnt;
-	}
-	
-	public static void main(String[] args){
-		int[] A = {-1, 3, 5, 12, 34, -23, 45, 7, 10, 13};
-		System.out.print(maximumRange(A, 10));
 	}
 }

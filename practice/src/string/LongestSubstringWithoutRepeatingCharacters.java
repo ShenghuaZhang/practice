@@ -1,4 +1,6 @@
 package string;
+
+import java.util.Arrays;
 /**
  * 3
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
@@ -12,9 +14,13 @@ package string;
  * #LongestSubstringWithAtMostTwoDistinctCharacters
  * 
  */
-import java.util.Arrays;
-
 public class LongestSubstringWithoutRepeatingCharacters {
+	/* Two pointer:
+	 * #TwoSumII #ContainerWithMostWater
+	 * #ContainerWithMostWater
+	 * #LongestSubstringWithAtMostTwoDistinctCharacters
+	 * #MaximumRangeNumber
+	 * */
 	public int lengthOfLongestSubstring(String s){
 		int[] exist = new int[256];
 		Arrays.fill(exist, -1);

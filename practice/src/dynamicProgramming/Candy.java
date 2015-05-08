@@ -15,6 +15,9 @@ package dynamicProgramming;
  * 
  */
 public class Candy {
+	/* DP:
+	 * #TrappingRainWater #LongestPalindromicSubstring
+	 * */
 	public int candy(int[] ratings) {
 		if (ratings==null || ratings.length==0)	return 0;
 
