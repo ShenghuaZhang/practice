@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 187
+ * TODO 187
  * https://leetcode.com/problems/repeated-dna-sequences/
  * 
  * All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T
@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class RepeatedDNASequences {
 	// best one
-	public static List<String> findRepeatedDnaSequences(String s){
+	public List<String> findRepeatedDnaSequences(String s){
 		List<String> list = new ArrayList<>();
 		if(s==null || s.length()<11)	return list;
 		Map<Integer, Integer> map = new HashMap<>();
@@ -67,8 +67,5 @@ public class RepeatedDNASequences {
 		for(int i=index-10; i<index; i++)
 			hashCode = hashCode*5 + (s.charAt(i)-65);
 		return hashCode;
-	}
-	public static void main(String[] args){
-		findRepeatedDnaSequences("AAAAAAAAAAA");
 	}
 }
