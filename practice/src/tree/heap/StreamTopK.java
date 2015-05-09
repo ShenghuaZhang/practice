@@ -8,7 +8,7 @@ import java.util.Scanner;
  *  Using minHeap and maxHeap to get TopK of a stream(unlimited)
  *  
  * @author carllee1991
- *
+ * #TopK
  */
 public class StreamTopK {
 	PriorityQueue<Integer> minHeap, maxHeap;

@@ -1,7 +1,7 @@
 package tree.heap;
 
 import java.util.Arrays;
-
+// #StreamTopK
 public class TopK{
 	// Binary Search: #MedianOfTwoSortedArrays
 	public int findTopKInTwoUnsortedArray(int[] A, int[] B, int k){
@@ -50,11 +50,5 @@ public class TopK{
 		int temp = A[first];
 		A[first] = A[second];
 		A[second] = temp;
-	}
-	
-	public static void main(String[] args){
-		int[] A = {3, 1, 7}, B = {4, 5, 6, 11, 9};
-		System.out.println(new TopK().findTopKInTwoUnsortedArray(A, B, 5));
-		System.out.println(new TopK().findTopKUnsortetArray(B, 5));
 	}
 }
