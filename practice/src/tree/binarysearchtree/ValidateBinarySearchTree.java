@@ -5,7 +5,18 @@ import java.util.List;
 import java.util.Stack;
 
 import tree.binarytree.TreeNode;
-
+/**
+ * 98
+ * https://leetcode.com/problems/validate-binary-search-tree/
+ * 
+ * Given a binary tree, determine if it is a valid binary search tree (BST).
+ * Assume a BST is defined as follows:
+ * The left subtree of a node contains only nodes with keys less than the node's key.
+ * The right subtree of a node contains only nodes with keys greater than the node's key.
+ * Both the left and right subtrees must also be binary search trees.
+ * @author carllee1991
+ *
+ */
 public class ValidateBinarySearchTree {
 	/************************** 0 **************************/
 	// Using InOrder Traversal, but we do not use recursive here but using stack instead.
@@ -41,22 +52,6 @@ public class ValidateBinarySearchTree {
     }
     /************************** 2 **************************/
     // Using InOrder Traversal, next node's value should bigger than the previous one.
-    TreeNode previous;
-    public boolean isValidBSTInOrder(TreeNode root) {
-        previous = null;
-        return helper(root);
-    }
-    private boolean helper(TreeNode root){
-        if (root==null) return true;
-        if (helper(root.left)){
-            if (previous == null || previous.val < root.val)   previous = root;
-            else return false;
-            return helper(root.right);
-        }
-        return false;
-    }
-    /************************** 3 **************************/
-    // Same with 2, only difference is here we use a list to save previous node value on InOrder Traversal.
 	public boolean isValidBSTbyRecursive(TreeNode root){
 		List<Integer> list = new ArrayList<>();
 		list.add(null);
