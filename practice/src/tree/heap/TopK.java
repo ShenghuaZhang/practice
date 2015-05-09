@@ -1,64 +1,60 @@
 package tree.heap;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.Arrays;
 
-@SuppressWarnings("rawtypes")
-public class TopK<E extends Comparable> {
-	private PriorityQueue<E> queue;
-	private int maxSize;
-	
-	@SuppressWarnings("unchecked")
-	public TopK(int maxSize){
-		if(maxSize<=0)	throw new IllegalArgumentException();
-		this.maxSize = maxSize;
-		this.queue = new PriorityQueue(maxSize, new Comparator<E>(){
-			public int compare(E o1, E o2){
-				return (o2.compareTo(o1));
-			}
-		});
+public class TopK{
+	// Binary Search: #MedianOfTwoSortedArrays
+	public int findTopKInTwoUnsortedArray(int[] A, int[] B, int k){
+		Arrays.sort(A);
+		Arrays.sort(B);
+		
+		int l1 = 0, r1=A.length-1, l2=0, r2=B.length-1;
+		return helper(A, B, l1, r1, l2, r2, k);
+	}
+	private int helper(int[] A, int[] B, int l1, int r1, int l2, int r2, int k){
+		int lenA = r1-l1+1, lenB = r2-l2+1;
+		if(lenA>lenB)	return helper(B, A, l2, r2, l1, r1, k);
+		if(lenA==0)	return B[l2+k-1];
+		if(k==1)	return Math.min(A[l1], B[l2]);
+		
+		int posA = Math.min(k/2, lenA), posB = k-posA;
+		if(A[l1+posA-1]>B[l2+posB-1])
+			return helper(A, B, l1, l1+posA-1, l2+posB, r2, posA);
+		else return helper(A, B, l1+posA, r1, l2, l2+posB-1, posB);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public void add(E e){
-		if(queue.size()<maxSize)	queue.add(e);
-		else{
-			E peek = queue.peek();
-			if(e.compareTo(peek)<0){
-				queue.poll();
-				queue.offer(e);
-			}
+	// Binary Search: find TopK at A unsorted array
+	public int findTopKUnsortetArray(int[] A, int k){
+		helper(A, 0, A.length-1, k);
+		return A[k-1];
+	}
+	private void helper(int[] A, int left, int right, int k){
+		if(left<right){
+			int point=partition(A, left, right);
+			if(point==k-1)	return;
+			else if(point<k-1)	helper(A, point+1, right, k);
+			else helper(A, left, point-1, k);
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<E> sortedList(){
-		List<E> list = new ArrayList<E>(queue);
-		Collections.sort(list);
-		return list;
+	private int partition(int[] A, int left, int right){
+		int i=left, j=right-1;
+		while(i<j){
+			while(i<j && A[i]<A[right]) i++;
+			while(i<j && A[j]>A[right]) j--;
+			if(i<j)	swap(A, i++, j--);
+		}
+		if(A[i]>A[right])	swap(A, i, right);
+		return i;
+	}
+	private void swap(int[] A, int first, int second){
+		int temp = A[first];
+		A[first] = A[second];
+		A[second] = temp;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args){
-		final TopK pq = new TopK(10);
-		Random rand = new Random();
-		int rNum = 0;
-		for(int i=0; i<10; i++){
-			rNum = rand.nextInt(100);
-			pq.add(rNum);
-		}
-		Iterable<Integer> iter = new Iterable<Integer>(){
-			public Iterator<Integer> iterator(){
-				return pq.queue.iterator();
-			}
-		};
-		for(Integer it:iter)	System.out.print(it+", ");
-		System.out.println();
-		while(!pq.queue.isEmpty())	System.out.print(pq.queue.poll()+", ");
+		int[] A = {3, 1, 7}, B = {4, 5, 6, 11, 9};
+		System.out.println(new TopK().findTopKInTwoUnsortedArray(A, B, 5));
+		System.out.println(new TopK().findTopKUnsortetArray(B, 5));
 	}
 }

@@ -1,5 +1,8 @@
 package list;
 
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
 /**
  * 23
  * https://leetcode.com/problems/merge-k-sorted-lists/
@@ -8,9 +11,6 @@ package list;
  * Analyze and describe its complexity.
  * 
  */
-import java.util.Comparator;
-import java.util.PriorityQueue;
-
 public class MergeKSortedLists {
 	/*
 	 * Using merge sorting
@@ -73,7 +73,7 @@ public class MergeKSortedLists {
 			if (current.next != null)
 				heap.offer(current.next);
 			previous.next = current;
-			previous = current;
+			previous = previous.next;
 		}
 
 		return dummyHead.next;
