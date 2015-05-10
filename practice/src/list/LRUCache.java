@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 146
  * https://leetcode.com/problems/lru-cache/
  * 
  * Design and implement a data structure for Least Recently Used (LRU) cache.
@@ -25,8 +26,8 @@ public class LRUCache {
 		public Node(int key, int value, Node previous, Node next){
 			this.key = key;
 			this.value = value;
-			next = previous;
-			previous = next;
+			this.next = next;
+			this.previous = previous;
 		}
 		public Node(int key, int value){
 			this.key = key;
@@ -67,6 +68,7 @@ public class LRUCache {
 		}
 		else return -1;
 	}
+	
 	public void set(int key, int value){
 		if(map.containsKey(key)){
 			map.get(key).value = value;
