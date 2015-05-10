@@ -1,10 +1,9 @@
 package amazon;
 
-import global.TreeNode;
-
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+import tree.binarytree.TreeNode;
 
 /**
  * Round 3: (F2F - Data structures and Algorithms)

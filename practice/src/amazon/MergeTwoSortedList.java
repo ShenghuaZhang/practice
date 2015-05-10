@@ -1,6 +1,7 @@
 package amazon;
 
-import global.*;
+import list.ListNode;
+
 
 /**
  * 3.	Merge two sorted linked lists without using extra space

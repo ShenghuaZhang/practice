@@ -1,16 +1,13 @@
 package amazon;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+import tree.binarytree.TreeNode;
 /**
  * Round 3: (F2F - Data structures and Algorithms)
  * 1. Give a binary tree, print all the nodes in spiral order with constant space
  */
-
-import global.TreeNode;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
 public class SpiralOrderBTree{
 	public static List<List<Integer>> spiralOrder(TreeNode root) {
 		Stack<TreeNode> oddStack = new Stack<>();

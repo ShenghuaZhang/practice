@@ -1,6 +1,7 @@
 package geeksForGeeks;
 
-import global.TreeNode;
+import tree.binarytree.TreeNode;
+
 
 public class RemoveHalfNode {
 	public static TreeNode removeHalfNode(TreeNode root){
