@@ -1,7 +1,8 @@
 package tree.trie;
 
 /**
- * 207 https://leetcode.com/problems/implement-trie-prefix-tree/
+ * 208
+ * https://leetcode.com/problems/implement-trie-prefix-tree/
  * 
  * Implement a trie with insert, search, and startsWith methods.
  * Note:You may assume that all inputs are consist of lowercase letters a-z.
@@ -10,12 +11,12 @@ package tree.trie;
  *
  */
 class TrieNode {
-	boolean valid;
+	boolean isWord;
 	TrieNode[] children;
 
 	// Initialize your data structure here.
 	public TrieNode() {
-		valid = false;
+		isWord = false;
 		children = new TrieNode['z' - 'a' + 1];
 	}
 }
@@ -35,7 +36,7 @@ public class Trie {
 				current.children[c - 'a'] = new TrieNode();
 			current = current.children[c - 'a'];
 		}
-		current.valid = true;
+		current.isWord = true;
 	}
 
 	// Returns if the word is in the trie.
@@ -46,7 +47,7 @@ public class Trie {
 				return false;
 			current = current.children[c - 'a'];
 		}
-		return current.valid;
+		return current.isWord;
 	}
 
 	// Returns if there is any word in the trie

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 13
  * https://leetcode.com/problems/roman-to-integer/
  * 
  * Given a ROMAN numeral, convert it to an integer.
@@ -14,7 +15,7 @@ import java.util.Map;
  * #IntegerToRoman
  */
 public class RomanToInteger {
-	private static final Map<Character, Integer> map = new HashMap<Character, Integer>(){
+	private final Map<Character, Integer> map = new HashMap<Character, Integer>(){
 		private static final long serialVersionUID = 1L;
 		{
 	        put('I', 1);
@@ -28,7 +29,7 @@ public class RomanToInteger {
 		}
 	};
 	
-	public static int romanToInt(String s){
+	public int romanToInt(String s){
 		int previous = map.get(s.charAt(0));
 		int result = map.get(s.charAt(0));
 		
@@ -36,14 +37,10 @@ public class RomanToInteger {
 			if(previous<map.get(s.charAt(i)))
 				result -= (2*previous);
 			
-			previous= map.get(s.charAt(i));
-			result += previous;
+			result += map.get(s.charAt(i));
+			previous = map.get(s.charAt(i));
 		}
 		
 		return result;
-	}
-	
-	public static void main(String[] args){
-		System.out.print(romanToInt("CM"));
 	}
 }

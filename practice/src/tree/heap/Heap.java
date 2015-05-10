@@ -1,33 +1,22 @@
 package tree.heap;
 
-class HeapNode {
-	private int value;
-	public HeapNode(int x){
-		value = x;
-	}
-	public int getValue(){
-		return value;
-	}
-	public void setValue(int x){
-		value = x;
-	}
-}
-
-public class Heap {
-	private HeapNode[] heapArray;
+public class Heap<Key> {
+	private Key[] heapArray;
 	private final int defaultSize=100;
 	private int maxSize;
 	private int currentSize;
 	
+	@SuppressWarnings("unchecked")
 	public Heap(){
 		maxSize = defaultSize;
-		heapArray = new HeapNode[maxSize];
+		heapArray = (Key[])new Object[maxSize];
 		currentSize = 0;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Heap(int x){
 		maxSize = x;
-		heapArray = new HeapNode[maxSize];
+		heapArray = (Key[])new Object[maxSize];
 		currentSize = 0;
 	}
 	
@@ -35,14 +24,15 @@ public class Heap {
 		return currentSize==0;
 	}
 	
-	public void insert(int x){
-		if(currentSize == maxSize)	doubleHeapArray(x);
-		heapArray[currentSize] = new HeapNode(x);
+	public void insert(Key k){
+		if(currentSize == maxSize)	doubleHeapArray(k);
+		heapArray[currentSize] = k;
 		trickleUp(currentSize++);
 	}
 	
-	public void doubleHeapArray(int x){
-		HeapNode[] newHeapArray = new HeapNode[currentSize*2];
+	public void doubleHeapArray(Key k){
+		@SuppressWarnings("unchecked")
+		Key[] newHeapArray = (Key[])new Object[currentSize*2];
 		maxSize = currentSize*2;
 		for(int i=0; i<currentSize; i++)
 			newHeapArray[i] = heapArray[i];
@@ -51,8 +41,8 @@ public class Heap {
 	
 	public void trickleUp(int index){
 		int parent = (index-1)/2;
-		HeapNode bottom = heapArray[index];
-		while(index>0 && heapArray[parent].getValue()<bottom.getValue()){
+		Key bottom = heapArray[index];
+		while(index>0 && heapArray[parent].()<bottom.getValue()){
 			heapArray[index] = heapArray[parent];
 			index = parent;
 			parent = (parent-1)/2;
@@ -60,16 +50,16 @@ public class Heap {
 		heapArray[index] = bottom;
 	}
 	
-	public HeapNode remove(){
+	public Key remove(){
 		if(currentSize == 0)	return null;
-		HeapNode root = heapArray[0];
+		Key root = heapArray[0];
 		heapArray[0] = heapArray[--currentSize];
 		trickleDown(0);
 		return root;
 	}
 	
 	public void trickleDown(int index){
-		HeapNode top = heapArray[index];
+		Key top = heapArray[index];
 		int largerChild;
 		while(index < currentSize/2){
 			int left = 2*index +1, right = 2*index+2;

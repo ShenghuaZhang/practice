@@ -1,5 +1,6 @@
 package string;
 /**
+ * 14
  * https://leetcode.com/problems/longest-common-prefix/
  * 
  * Write a function to find the longest common prefix string
