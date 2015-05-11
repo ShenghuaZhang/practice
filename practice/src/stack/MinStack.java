@@ -1,4 +1,6 @@
 package stack;
+
+import java.util.Stack;
 /**
  * 155
  * https://leetcode.com/problems/min-stack/
@@ -11,9 +13,6 @@ package stack;
  * top() -- Get the top element.
  * getMin() -- Retrieve the minimum element in the stack.
  */
-
-import java.util.Stack;
-
 public class MinStack{
 	private Stack<Integer> stack = new Stack<>();
 	private Stack<Integer> minStack = new Stack<>();

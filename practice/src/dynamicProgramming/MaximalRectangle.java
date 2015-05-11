@@ -11,6 +11,8 @@ import java.util.Stack;
  * 
  * @author yili3
  *
+ * #LargestRectangleInHistogram
+ * 
  */
 public class MaximalRectangle {
 	public int maximalRectangle(char[][] matrix){
