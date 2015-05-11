@@ -3,7 +3,7 @@ package google;
 import java.awt.Point;
 
 /**
- * 3
+ * 4
  * https://docs.google.com/file/d/0BwTHFkU-BZ7MaTgxWkZxOFIwV3c/edit
  * get from part of google interview question
  * giving a point, give the angle with X coordinate

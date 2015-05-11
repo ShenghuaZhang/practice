@@ -4,7 +4,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
+/**
+ * 136
+ * https://leetcode.com/problems/single-number/
+ * 
+ * Given an array of integers,
+ * every element appears twice except for one. Find that single one.
+ * 
+ * @author yili3
+ * 
+ * #SingleNumberII
+ *
+ */
 public class SingleNumber {
 	
 	// using hash map

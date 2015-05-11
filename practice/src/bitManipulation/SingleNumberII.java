@@ -1,33 +1,15 @@
 package bitManipulation;
-
+/**
+ * 137
+ * https://leetcode.com/problems/single-number-ii/
+ * 
+ * Given an array of integers,
+ * every element appears three times except for one. Find that single one.
+ * 
+ * @author yili3
+ *
+ */
 public class SingleNumberII {
-	public static int singleNumber(int[] A) {
-		int[] count = new int[32];
-		int rs = 0;
-
-		for (int i = 0; i < 32; i++) {
-			for (int j : A)
-				if ((j >> i & 1) == 1)
-					count[i]++;
-			rs |= (count[i] % 3) << i;
-		}
-
-		return rs;
-	}
-
-	public static int singleNumberHard(int[] A) {
-		int one = 0, two = 0, three = 0;
-		for (int i : A) {
-			two |= one & i;
-			one ^= i;
-			three = one & two;
-			one &= ~three;
-			two &= ~three;
-		}
-
-		return one;
-	}
-
 	// I like this best, less extra space and higher efficiency.
 	public static int singleNumberBetter(short[] A) {
 		int zero = ~0, one = 0, two = 0;

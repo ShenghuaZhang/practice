@@ -1,12 +1,12 @@
 package google;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 /**
  * 3
  * https://docs.google.com/file/d/0BwTHFkU-BZ7MaTgxWkZxOFIwV3c/edit
  */
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
-
 class Entry{
 	String name;
 	public int time;
