@@ -65,7 +65,7 @@ public class RepeatedDNASequences {
 	private int hash(String s, int index){
 		int hashCode = 0;
 		for(int i=index-10; i<index; i++)
-			hashCode = hashCode*5 + (s.charAt(i)-65);
+			hashCode = hashCode*5 + (s.charAt(i)-'A');
 		return hashCode;
 	}
 }
