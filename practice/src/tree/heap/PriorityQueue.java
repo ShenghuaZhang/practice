@@ -1,7 +1,7 @@
 package tree.heap;
 
 /*************************************************************************
- *  Generic min priority queue implementation with a binary heap.
+ *  Generic priority queue implementation with a binary heap.
  *  Can be used with a comparator instead of the natural order.
  *
  *  We use a one-based array to simplify parent and child calculations.
