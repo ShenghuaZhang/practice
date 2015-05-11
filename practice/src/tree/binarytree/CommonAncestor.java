@@ -36,7 +36,7 @@ public class CommonAncestor {
 		list.remove(root);
 		return false;
 	}
-	
+	// TODO tree recursive
 	public static TreeNode findAncestor(TreeNode root, TreeNode A, TreeNode B, TreeNode parent){
 		if(root==null)	return null;
 		if(SameTree.isSame(root, A) || SameTree.isSame(root, B))	return parent;
@@ -51,11 +51,15 @@ public class CommonAncestor {
 	public static void main(String[] args){
 		TreeNode root = TreeNode.testRoot();
 		System.out.println("\nlevelorder: " + Levelorder.levelorder(root));
-		TreeNode ancestor = findAncestor(root, root.left.right.right, root.left.right, null);
-		System.out.println("findAncestor Recursive: "+ancestor.val);
+		
+		TreeNode ancestor = findAncestorForBST(root, root.left.right.right, root.left.right);
+		System.out.println("findAncestor for BST: "+ancestor.val);
+		
 		ancestor = findAncestorForBT(root, root.left.right.right, root.left.right);
 		System.out.println("findAncestor get path first: "+ancestor.val);
-		ancestor = findAncestorForBST(root, root.left.right.right, root.left.right);
-		System.out.println("findAncestor for BST: "+ancestor.val);
+		
+		ancestor = findAncestor(root, root.left.right.right, root.left.right, null);
+		System.out.println("findAncestor Recursive: "+ancestor.val);
+		
 	}
 }
