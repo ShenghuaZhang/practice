@@ -49,7 +49,7 @@ public class PrimitiveAndWrappers {
 	static void test03() {
 		Integer a = 100;
 		Integer b = 100;
-
+		
 		Integer c = 200;
 		Integer d = 200;
 

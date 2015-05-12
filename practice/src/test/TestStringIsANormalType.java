@@ -8,7 +8,7 @@ public class TestStringIsANormalType {
 		String s2 = "Hello ";
 		String s3 = "Hello ";
 		System.out.println(s==s1);
-		System.out.println(s1==s2);
+		System.out.println(s==s2);
 		System.out.println(s2==s3);
 		
 		/** about s is same as primitive*/
