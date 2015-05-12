@@ -10,10 +10,9 @@ package bitManipulation;
  *
  */
 public class SingleNumberII {
-	// I like this best, less extra space and higher efficiency.
-	public static int singleNumberBetter(short[] A) {
+	public static int singleNumberBetter(int[] A) {
 		int zero = ~0, one = 0, two = 0;
-		for (short i : A) {
+		for (int i : A) {
 			int temp = two;
 			two = (one & i) | (two & ~i);
 			one = (zero & i) | (one & ~i);
@@ -36,8 +35,8 @@ public class SingleNumberII {
 	}
 
 	public static void main(String[] args) {
-		short[] test = new short[] { (short) 0b1111111111111111,
-				(short) 0b1010000101000101, (short) 0b1010000101000101,(short) 0b1010000101000101 };
+		/*	The difference between 0 and ~0 */
+		int[] test = new int[] {~0, 12, 12, 12 };
 		System.out.println(singleNumberBetter(test));
 	}
 }

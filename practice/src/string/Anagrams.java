@@ -31,7 +31,6 @@ public class Anagrams {
 			}
 			
 		}
-		// TODO HashMap iterator
 		Iterator<List<String>> itr = map.values().iterator();
 		while(itr.hasNext()){
 			List<String> temp = (List<String>)itr.next();

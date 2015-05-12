@@ -13,7 +13,7 @@ public class DivideTwoIntegers {
 	public static int divide(int dividend, int divisor){
 		if(divisor==0)	return Integer.MAX_VALUE;
 		// 0. different between >> and >>>
-		boolean isNeg = (dividend^divisor)>>>31 == 1;
+		boolean isNeg = (dividend^divisor)>>>31 == 1;	//#SingleNumber
 		int res = 0;
 		
 		if(dividend == Integer.MIN_VALUE){
@@ -47,9 +47,9 @@ public class DivideTwoIntegers {
 	
 	public static void main(String[] args){
 		// 0. different between >> and >>>
-		System.out.print((short) 0b1000000000000000>>>31);
-		System.out.print(" ");
-		System.out.println((short) 0b1000000000000000>>31);
+		// >> is shift remain Negative, but >>> is not.
+		for(int i=0; i<17; i++)
+			System.out.println((short)(0b1000000000000000>>>i)+" "+((short)0b1000000000000000>>i));
 		// 1. Math.abs(Integer.MIN_VALUE) == Integer.MIN_VALUE;
 		System.out.print(Math.abs(Integer.MIN_VALUE) + " ");
 		System.out.println(Integer.MIN_VALUE + Math.abs(Integer.MIN_VALUE));

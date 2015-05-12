@@ -10,13 +10,13 @@ package math;
  * 
  * @author yili3
  * 
- * #ExcelSheetColumnTitle
+ * #ExcelSheetColumnTitle #DecimalToOtherRadix
  */
 public class ExcelSheetColumnNumber {
 	public static int titleToNumber(String s){
 		int num = 0;
 		for(char c:s.toCharArray())
-			num = num*26+(c-64);// 'A'-1 = 64
+			num = num*26+(c-'A'+1);
 		return num;
 	}
 	

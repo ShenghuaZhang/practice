@@ -8,10 +8,11 @@ package math;
  *
  */
 public class DecimalToOtherRadix {
+	final static int binary = 2;
 	int radix;
 	
 	public DecimalToOtherRadix(){
-		this(2);
+		this(binary);
 	}
 	public DecimalToOtherRadix(int radix){
 		this.radix = radix;
@@ -28,19 +29,17 @@ public class DecimalToOtherRadix {
 		}
 		
 		int checkNum = check(sb.toString());
-//		System.out.println(x+" to "+sb.toString()+" checkNum: "+checkNum);
-		assert(checkNum==x):"Not same";
-		System.out.println("Good convert!");
+		System.out.println(x+" to "+sb.toString()+" checkNum: "+checkNum);
+		assert(checkNum==x):"Not same!";
+		System.out.println("Nice convert!");
 		return sb.toString();
 	}
 	
 	/* helper functions */
-	private int check(String radixNum){
+	private int check(String radixNum){ //#ExcelSheetColumnNumber
 		int result = 0;
-		for(int i=radixNum.length()-1, multi = 1; i>=0; i--){
-			result += multi * retrans(radixNum.charAt(i));
-			multi *= radix;
-		}
+		for(char c:radixNum.toCharArray())
+			result = result*radix + retrans(c);
 		return result;
 	}
 	private int retrans(char c){

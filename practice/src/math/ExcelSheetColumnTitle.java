@@ -13,13 +13,16 @@ package math;
  *
  */
 public class ExcelSheetColumnTitle {
-	public String convertToTitle(int n){
+	public static String convertToTitle(int n){
 		StringBuilder sb = new StringBuilder();
 		while(n>0){
-			sb.append((char)(--n%26+'A'));
+			sb.insert(0, (char)(n%26-1+'A'));
 			n = n/26;
 		}
 		
-		return sb.reverse().toString();
+		return sb.toString();
+	}
+	public static void main(String[] args){
+		System.out.println(convertToTitle(105));
 	}
 }

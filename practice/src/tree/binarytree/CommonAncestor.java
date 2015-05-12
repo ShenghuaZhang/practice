@@ -36,7 +36,7 @@ public class CommonAncestor {
 		list.remove(root);
 		return false;
 	}
-	// TODO tree recursive
+
 	public static TreeNode findAncestor(TreeNode root, TreeNode A, TreeNode B, TreeNode parent){
 		if(root==null)	return null;
 		if(SameTree.isSame(root, A) || SameTree.isSame(root, B))	return parent;

@@ -5,7 +5,7 @@ import java.util.List;
 
 import tree.binarytree.*;
 /**
- * TODO recursive of list 109
+ * 109
  * https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
  * 
  * Given a singly linked list where elements are sorted in ascending order,

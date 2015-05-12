@@ -25,7 +25,6 @@ public class LongestConsecutiveSequence {
 		
 		int max=1;
 		while(!set.isEmpty()){
-			// TODO HashSet Iterator
 			Iterator<Integer> iter = set.iterator();
 			int item = (Integer)iter.next();
 			set.remove(item);

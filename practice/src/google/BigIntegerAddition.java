@@ -6,7 +6,7 @@ import java.util.Arrays;
  * Two big integer addition
  * using array to stand big integer
  * 
- * #PlusOne
+ * #PlusOne #AddBinary
  * 
  * @author carllee1991
  *
@@ -34,8 +34,9 @@ public class BigIntegerAddition {
 		return result;
 	}
 	public static void main(String[] args){
-		int[] first = {1, 2, 3, 4, 9, 8}, second = {6, 4, 5, 7, 2, 9, 0};
+		int[] first = {4,9,8,4,5,6,7};
+		int[] second = {9,9,9,9,9,9,9};
 		System.out.println(Arrays.toString(bigIntAdd(first, second)));
-		System.out.println(123498+6457290);
+		System.out.println(4984567+9999999);
 	}
 }
