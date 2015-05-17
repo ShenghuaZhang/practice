@@ -11,6 +11,7 @@ package string;
  * 
  * @author yili3
  * 
+ * Better solution from Google: #LongestSubstringWithAtMostNDistinctCharacters
  * #LongestSubstringWithoutRepeatingCharacters
  *
  */
