@@ -1,6 +1,13 @@
 package tree.trie;
 /**
- * 211
+ * TODO 211
+ * https://leetcode.com/problems/add-and-search-word-data-structure-design/
+ * 
+ * Design a data structure that supports the following two operations:
+ * void addWord(word)
+ * bool search(word)
+ * search(word) can search a literal word or a regular expression string containing only letters a-z 
+ * or .. A . means it can represent any one letter.
  * 
  * @author carllee1991
  *
@@ -44,7 +51,8 @@ public class WordDictionary {
 	private boolean dfs(Node parent, String word, int index){
 		if(index==word.length())	return true;
 		
-		if(word.charAt(index)=='.' && parent.hasChild){
+		if(word.charAt(index)=='.'){
+			if(!parent.hasChild)	return false;
 			for(int i=0; i<parent.children.length; i++){
 				if(parent.children[i]!=null && dfs(parent.children[i], word, index+1))
 					return true;
@@ -58,12 +66,7 @@ public class WordDictionary {
 	
 	public static void main(String[] args){
 		WordDictionary dict = new WordDictionary();
-		dict.addWord("bad");
-		dict.addWord("dad");
-		dict.addWord("mad");
-		dict.search("pad");
-		dict.search("bad");
-		dict.search(".ad");
-		dict.search("b..");
+		dict.addWord("a");
+		dict.search("a.");
 	}
 }

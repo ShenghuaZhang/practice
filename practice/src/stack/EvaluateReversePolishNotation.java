@@ -39,14 +39,12 @@ public class EvaluateReversePolishNotation {
 					return x * y;
 				}
 			});
-			put("/", new Operator() {
-				public int eval(int x, int y) {
-					return x / y;
-				}
-			});
 		}
 	};
-
+	
+	public void addNewOperator(String s, Operator op){
+		map.put(s, op);
+	}
 	public int evalRPNII(String[] tokens) {
 		Stack<Integer> stack = new Stack<>();
 		
@@ -60,5 +58,14 @@ public class EvaluateReversePolishNotation {
 		
 		return stack.pop();
 	}
-
+	
+	public static void main(String[] args){
+		EvaluateReversePolishNotation test = new EvaluateReversePolishNotation();
+		test.addNewOperator("/", new Operator() {
+				public int eval(int x, int y) {
+					return x / y;
+				}});
+		String[] token = {"4", "13", "5", "/", "+"};
+		System.out.print(test.evalRPNII(token));
+	}
 }
