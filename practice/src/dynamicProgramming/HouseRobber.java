@@ -15,7 +15,6 @@ package dynamicProgramming;
  * alerting the police.
  * 
  * @author carllee1991
- * #testtst
  *
  */
 public class HouseRobber {
