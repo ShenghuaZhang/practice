@@ -23,7 +23,9 @@ public class TestStringIsANormalType {
 		System.out.println("After append sb: " + sb);
 	}
 	private static void changeStringBuffer(StringBuffer sb){
-		sb.append("World!");
+		StringBuffer sb2 = new StringBuffer("Hi");
+		sb = sb2;
+		sb2.append("World!");
 	}
 	private static void changeString(String s){
 		s.replace('e', 'f');
