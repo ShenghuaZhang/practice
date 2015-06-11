@@ -30,5 +30,6 @@ public class ArrayCopyDemo {
 		int[] C = (int[])B.clone();
 		int[] D = Arrays.copyOf(C, C.length);
 		System.out.println("C: "+Arrays.toString(C)+"\nD: " + Arrays.toString(D));
+		//test
 	}
 }
