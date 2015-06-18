@@ -15,7 +15,7 @@ public class ExcelSheetColumnNumber {
     //ASCII    "A" is 65, "a" is 97
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(ExcelSheetColumnNumber.titleToNumber("A"));
+		System.out.println(ExcelSheetColumnNumber.titleToNumber("AD"));
 
 	}
 	
