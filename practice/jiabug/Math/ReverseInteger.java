@@ -17,14 +17,38 @@ public class ReverseInteger {
 	public static void main(String[] args) {
 		long i = 101;//101 is int, but i is long. the = converts the int to long type. 
 		              //so if the value does not beyond the range, we may not add l or L int the end
-		System.out.print(i);
-		// TODO Auto-generated method stub
+		System.out.println("i:" + i);
+		
+		int max = Integer.MAX_VALUE;
+		System.out.println("max: " + max);
+		
+		int max_1 = Integer.MAX_VALUE + 1;
+		int max_2 = max_1 - 1;
+		System.out.println("max + 1: " + max_1);
+		System.out.println("max + 1 - 1:" + max_2);
+		
+		int min_1 = Integer.MIN_VALUE - 1;
+		int min_2 = min_1 + 1;
+		
+		System.out.println("min + 1: " + min_1);
+		System.out.println("min - 1 + 1: " + min_2);
+		
+		int raw = 214748364;//736384741;//2147483637;
+		int newresult = raw * 10 + 9;
+		System.out.println("2147483637 + 2147483637: " + (2147483637 + 2147483637));
+		System.out.println("raw * 10: " + raw * 10);
+		System.out.println("newresult:" + newresult);
+		System.out.println("reverse raw : " + (newresult - 9) / 10);//this is different with old raw
+		
+		
+		
+		
 
 	}
 	public static int reverse(int x) {
 		long res = 0;
 		while (x != 0) {  //we can not use x > 0, because we should consider  negative number
-			res = res * 10 + x%10;
+			res = res * 10 + x % 10;
 			x = x / 10;
 		}
 		
@@ -33,6 +57,33 @@ public class ReverseInteger {
 		}
 		return (int)res;
 	}
+	
+	public static int reverse_yi(int x){
+		int ret=0;
+		while(x!=0){
+			if(Math.abs(ret)>Integer.MAX_VALUE/10)	return 0;//we do not need to add x%10, because x itself will overflow
+			ret = ret*10+x%10;
+			//if we add the estimate at here, we need define the ret as long. 
+			x /= 10;
+		}
+		return ret;
+	}
+	
+	public static int reverse_discuss(int x) {
+        int result = 0;
+
+    while (x != 0)
+    {
+        int tail = x % 10;
+        int newResult = result * 10 + tail;
+        if ((newResult - tail) / 10 != result)//why????
+        { return 0; }
+        result = newResult;
+        x = x / 10;
+    }
+
+    return result;
+    }
 	/*x doesn't overflow. but its reverse overflow. 
     Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows.
 	so the above method already overflows in parseInt.
