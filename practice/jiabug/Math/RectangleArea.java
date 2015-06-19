@@ -19,10 +19,12 @@ public class RectangleArea {
 
 	}
 	public static int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
-		if (C >= E || G >= A || B >= H || F >= D) {
-			return 0;
-		}
+		int area_overlap = 0;
 		int width = 0;
+		if (E >= C || A >= G || B >= H || F >= D) {
+			area_overlap = 0;
+		} else {
+		
 		int hight = helper(B, D, F, H);
 		if (E > A) {
 			if (G > C) {
@@ -37,7 +39,9 @@ public class RectangleArea {
 				width = G - A;
 			}
 		}
-		return width * hight;
+		area_overlap = width * hight;
+		}
+		return (C - A) * (D - B) + (G - E) * (H - F) - area_overlap;
 	}
 	public static int helper(int B, int D, int F, int H) {
 		int hight = 0;
