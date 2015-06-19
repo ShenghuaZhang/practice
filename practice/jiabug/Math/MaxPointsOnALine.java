@@ -1,4 +1,8 @@
 package Math;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * 
  * 149
@@ -13,31 +17,43 @@ public class MaxPointsOnALine {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		Point [] points = new Point[3];
+		points[0] = new Point(0,0); 
+		points[1] = new Point(1,1); 
+		points[2] = new Point(0,0); 
+		Line l = new Line(points[0], points[2]);
+		System.out.println(l.intercept);
+//		points[3] = new Point(4,4); 
+//		points[4] = new Point(5,5); 
+//		points[5] = new Point(1,2); 
+//		points[6] = new Point(2,3); 
+//		points[7] = new Point(0,1); 
+//		points[8] = new Point(1,-1); 
+//		points[9] = new Point(5,9); 
+		//there may be some same points in points.[[0,0],[1,1],[0,0]] myoutput is 2, expected is 3.
+		System.out.println(maxPoints(points));
 	}
 
-}
-public class Solution {
-    public int maxPoints(Point[] points) {
-        if (points == null) {
+    public static int maxPoints(Point[] points) {
+        if (points == null || points.length == 0) { //null and zero is different, so we should consider both situation.
             return 0;
         }
         HashMap<Double, ArrayList<Line>> total = new HashMap<Double, ArrayList<Line>>();
-        Line bestLine = null;
         int bestCount = 0;
-        for (int i = 0; i < points.lengh; i++)
+        for (int i = 0; i < points.length; i++) {
             for (int j = i+1; j < points.length; j++){
                 Line l = new Line(points[i], points[j]);
-                insetLine(total, l);
-                int count = countNumber();
+                insertLine(total, l);
+                int count = countNumber(total, l);
                 if (count > bestCount) {
                     bestCount = count;
                 }
             }
-            return bestCount;
+        }
+        return (int) ((1 + Math.sqrt(1 + 8 * bestCount)) / 2);
     }
     
-    public int countNumber (ArrayList<Line> line, Line l) {
+    public static int countNumber (ArrayList<Line> line, Line l) {
         if (line == null) {
             return 0;
         }
@@ -50,55 +66,22 @@ public class Solution {
         return count;
     }
     
-    public int countNumber (HashMap<Double, ArrayList<Line>> total, Line l) {
+    public static int countNumber (HashMap<Double, ArrayList<Line>> total, Line l) {
         double key = l.floorToNeareat(l.slope);
-        int count = countNumber(total.getKey(key), l) +countNumber(total.getKey(key + Line.epsilon), l) + 
-                    countNumber(total.getKey(key - Line.epsilon), l);
+        int count = countNumber(total.get(key), l) +countNumber(total.get(key + Line.epsilon), l) + 
+                    countNumber(total.get(key - Line.epsilon), l);
         return count;
     }
     
-    public void insertLine(HashMap<Double, ArrayList<Line>> total, Line line) {
+    public static void insertLine(HashMap<Double, ArrayList<Line>> total, Line line) {
         ArrayList<Line> arr = null;
         double key = line.floorToNeareat(line.slope);
-        if (!total.contains(key)) {
+        if (!total.containsKey(key)) {
             arr = new ArrayList<Line>();
             total.put(key, arr);
         } else {
-            arr = total.getKey(key);
+            arr = total.get(key);
         }
         arr.add(line);
-    }
-}
-
-public class Line {
-    public static double epsilon = 0.000001;
-    public double slope, intercept;
-    private boolean infinite_slope = false;
-    
-    public Line (Point p1, Point p2) {
-        if (p1.x == p2.x) {
-            infinite_slope = true;
-            intercept = p1.x;
-        } else {
-            slope = (p1.y - p2.y) / (p1.x - p2.x);
-            intercept = p1.y - p1.x * slope;
-        }
-    }
-    
-    public double floorToNeareat(double x) {
-        int y = (int) (x / epsilon);
-        return (double y) * epsilon; 
-    }
-    
-    public boolean isEquavelent(double x1, double x2) {
-        return Math.abs(x1 - x2) <= epsilon;
-    }
-    
-    public boolean isEquavelent(Object o) {
-        Line l = (Line) o;
-        if (isEquavelent(l.slope, slope) && isEquavelent(l.intercept, intercept) && l.infinite_slope == infinite_slope) {
-            return true;
-        }
-        return false;
     }
 }
