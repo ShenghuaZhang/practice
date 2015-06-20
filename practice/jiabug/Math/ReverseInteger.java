@@ -33,12 +33,12 @@ public class ReverseInteger {
 		System.out.println("min + 1: " + min_1);
 		System.out.println("min - 1 + 1: " + min_2);
 		
-		int raw = 214748364;//736384741;//2147483637;
-		int newresult = raw * 10 + 9;
+		int raw = 746384741;//2147483637;
+		int newresult = raw * 10 + 2;
 		System.out.println("2147483637 + 2147483637: " + (2147483637 + 2147483637));
 		System.out.println("raw * 10: " + raw * 10);
 		System.out.println("newresult:" + newresult);
-		System.out.println("reverse raw : " + (newresult - 9) / 10);//this is different with old raw
+		System.out.println("reverse raw : " + (newresult - 2) / 10);//this is different with old raw
 		
 		
 		
@@ -72,17 +72,23 @@ public class ReverseInteger {
 	public static int reverse_discuss(int x) {
         int result = 0;
 
-    while (x != 0)
-    {
-        int tail = x % 10;
-        int newResult = result * 10 + tail;
-        if ((newResult - tail) / 10 != result)//why????
-        { return 0; }
-        result = newResult;
-        x = x / 10;
-    }
-
-    return result;
+	    while (x != 0)
+	    {
+	        int tail = x % 10;
+	        int newResult = result * 10 + tail;
+	        //the value of newResult plus tail then minus tail, so tail does not make any difference, even if result*10 overflows
+	        //so we just need to focus on result*10. if this term overflows, we can get it back through dividing 10. 
+	        //because dividing 10 just let the number become smaller, can not make it overflow again.
+	        //if the result is 214748364, then it is multiplied 10. then if we add 8 it will overflow. but in this 
+	        //situation, x itself will overflow. it will not add a number beyond 2.
+	        if ((newResult - tail) / 10 != result) { //why??
+	        	return 0; 
+	        }
+	        result = newResult;
+	        x = x / 10;
+	    }
+	
+	    return result;
     }
 	/*x doesn't overflow. but its reverse overflow. 
     Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows.
