@@ -1,5 +1,8 @@
 package Math;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * 66
  * https://leetcode.com/problems/plus-one/
@@ -20,6 +23,28 @@ public class PlusOne {
 		for (int i = 0; i < result.length; i++ ) {
 			System.out.println(result[i]);
 		}
+		Object arr[] = new Object[10];
+		boolean empty = true;
+		for (int i=0; i<arr.length; i++) {
+		  if (arr[i] != null) {
+		    empty = false;
+		    break;
+		  }
+		}
+		System.out.println("empty: " + empty);
+		int[] a = new int[]{1,3};
+		int[] b = new int[]{1,3};
+		System.out.println("a == b:" + Arrays.equals(a, b));
+		
+		String s1 = "abcd";
+		String s2 = "abcd";
+		s1 = "abc";
+		s1 = new String("ab");
+		String s3 = new String("abcd");
+		String s4 = new String("abcd");
+		System.out.println("s1: " + s1);
+		System.out.println("s1 == s2: " + (s1 == s2));
+		System.out.println("s3 == s4: " + (s3 == s4));
 
 	}
 	
@@ -47,5 +72,22 @@ public class PlusOne {
 			return res;
 		}
     }
+	
+	public static int[] plusOne_yi(int[] digits) {
+		for (int i = digits.length-1; i >= 0; i--) {
+			digits[i] = digits[i] + 1;
+			if (digits[i] <= 9) {
+				return digits;
+			} else {
+				digits[i] = 0;
+			}
+		}
+		int[] res= new int[digits.length+1];
+		res[0] = 1;
+		for (int j = 0; j < digits.length; j++) {
+			res[j+1] = digits[j];
+		}
+		return res;
+	}
 
 }
