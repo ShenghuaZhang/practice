@@ -12,6 +12,8 @@ import java.util.HashMap;
  * 
  * @author jiakangze
  *
+ * #Line #Line
+ *
  */
 public class MaxPointsOnALine {
 
@@ -69,7 +71,7 @@ public class MaxPointsOnALine {
     public static int countNumber (HashMap<Double, ArrayList<Line>> total, Line l) {
         double key = l.floorToNeareat(l.slope);
         int count = countNumber(total.get(key), l) +countNumber(total.get(key + Line.epsilon), l) + 
-                    countNumber(total.get(key - Line.epsilon), l);
+                    countNumber(total.get(key - Line.epsilon), l);//2.000001 and 1.9999999 and 2.0000000
         return count;
     }
     
