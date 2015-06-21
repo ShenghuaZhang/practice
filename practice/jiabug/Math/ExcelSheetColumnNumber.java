@@ -8,14 +8,15 @@ package Math;
  * Given a column title as appear in an Excel sheet, return its corresponding column number.
  * 
  * @author jiakangze
- *
+ * 
+ * #ExcelSheetColumnTitle
  */
 
 public class ExcelSheetColumnNumber {
     //ASCII    "A" is 65, "a" is 97
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(ExcelSheetColumnNumber.titleToNumber("AD"));
+		System.out.println(ExcelSheetColumnNumber.titleToNumber("YZ"));
 
 	}
 	
