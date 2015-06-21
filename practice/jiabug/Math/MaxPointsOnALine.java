@@ -12,7 +12,7 @@ import java.util.HashMap;
  * 
  * @author jiakangze
  *
- * #Line #Line
+ * #Line #Point
  *
  */
 public class MaxPointsOnALine {
