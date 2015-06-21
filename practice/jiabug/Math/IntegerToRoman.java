@@ -13,6 +13,16 @@ import java.util.ArrayList;
  * @author kajia
  * 
  * http://blog.csdn.net/linhuanmars/article/details/21145639
+ * 1-3:represent as 1
+ *   4:add 1 at left of 5
+ *   5:represent as 5
+ * 6-8:add specific number 1s at the right of 5
+ *  9:add 1 at left of 10
+ *  
+ *  
+ *  https://zh.wikipedia.org/wiki/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97
+ *  this is why the digit of left minus is restricted to I, X, C
+ *  left minus can not beyond one digit. This is same with the number with each digit.
  * #RomanToInteger
  */
 
