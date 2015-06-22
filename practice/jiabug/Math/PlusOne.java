@@ -41,9 +41,16 @@ public class PlusOne {
 		s1 = new String("ab");
 		String s3 = new String("abcd");
 		String s4 = new String("abcd");
+		StringBuilder s5 = new StringBuilder("abc");
+		StringBuilder s6 = new StringBuilder("abc");
+		StringBuffer s7 = new StringBuffer("abc");
+		StringBuffer s8 = new StringBuffer("abc");
 		System.out.println("s1: " + s1);
 		System.out.println("s1 == s2: " + (s1 == s2));
 		System.out.println("s3 == s4: " + (s3 == s4));
+		System.out.println("s3.equals(s4): " + (s3.equals(s4)));
+		System.out.println("s5 == s6: " + (s5.equals(s6)));
+		System.out.println("s7 == s8: " + (s7.equals(s8)));
 
 	}
 	

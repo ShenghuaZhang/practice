@@ -10,6 +10,7 @@ package Math;
  * @author jiakangze
  *
  * same with Sieve_of_Eratosthenes
+ * think about the edges
  */
 
 

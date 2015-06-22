@@ -37,7 +37,7 @@ public class PalindromeNumber {
     	}
     	
     	int div = 1;
-    	
+    	//write n/dive in the estimate statement, let the code neat same with factorial trailing question.
     	while (n/div >= 10) {//if we do not add =, 1001 will be false
     		div *= 10;
     	}

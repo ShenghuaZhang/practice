@@ -77,7 +77,7 @@ public class ReverseInteger {
 	        int tail = x % 10;
 	        int newResult = result * 10 + tail;
 	        //the value of newResult plus tail then minus tail, so tail does not make any difference, even if result*10 overflows
-	        //so we just need to focus on result*10. if this term overflows, we can get it back through dividing 10. 
+	        //so we just need to focus on result*10. if this term overflows, we can not get it back through dividing 10. 
 	        //because dividing 10 just let the number become smaller, can not make it overflow again.
 	        //if the result is 214748364, then it is multiplied 10. then if we add 8 it will overflow. but in this 
 	        //situation, x itself will overflow. it will not add a number beyond 2.
