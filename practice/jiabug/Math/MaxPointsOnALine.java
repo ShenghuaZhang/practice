@@ -19,12 +19,10 @@ public class MaxPointsOnALine {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Point [] points = new Point[3];
+		Point [] points = new Point[2];
 		points[0] = new Point(0,0); 
-		points[1] = new Point(1,1); 
-		points[2] = new Point(0,0); 
-		Line l = new Line(points[0], points[2]);
-		System.out.println(l.intercept);
+//		points[1] = new Point(1,1); 
+		points[1] = new Point(2,2); 
 //		points[3] = new Point(4,4); 
 //		points[4] = new Point(5,5); 
 //		points[5] = new Point(1,2); 
@@ -40,50 +38,37 @@ public class MaxPointsOnALine {
         if (points == null || points.length == 0) { //null and zero is different, so we should consider both situation.
             return 0;
         }
-        HashMap<Double, ArrayList<Line>> total = new HashMap<Double, ArrayList<Line>>();
-        int bestCount = 0;
-        for (int i = 0; i < points.length; i++) {
-            for (int j = i+1; j < points.length; j++){
-                Line l = new Line(points[i], points[j]);
-                insertLine(total, l);
-                int count = countNumber(total, l);
-                if (count > bestCount) {
-                    bestCount = count;
-                }
-            }
+        int max = 1;//if there is only one point, so not 0
+        HashMap<Double, Integer> map = new HashMap<Double, Integer>();
+        for (int i = 0; i < points.length - 1; i++) {
+        	int samePoint = 0;
+        	int localMax = 1;//if there are two same points, so not 0
+        	for (int j = i+1; j < points.length; j++) {
+        		if (points[i].x == points[j].x && points[i].y == points[j].y) {
+        			samePoint++;
+        			continue;
+        		}
+        		double slope = 0.0;
+        		if (points[i].x == points[j].x) {
+        			slope = Double.MAX_VALUE;
+        		} else if (points[i].y == points[j].y) {
+        			slope = 0.0;
+        		} else {
+        			slope = (double)(points[i].y - points[j].y) / (double)(points[i].x - points[j].x);//do not forget type convert
+        		}
+        		if (map.containsKey(slope)) {
+        			map.put(slope, map.get(slope)+1);
+        		} else {
+        			map.put(slope, 2);
+        		}
+        		localMax = Math.max(localMax, map.get(slope));
+        	}
+        	localMax += samePoint;
+        	map.clear();
+        	max = Math.max(localMax, max);
         }
-        return (int) ((1 + Math.sqrt(1 + 8 * bestCount)) / 2);
+        return max;
     }
     
-    public static int countNumber (ArrayList<Line> line, Line l) {
-        if (line == null) {
-            return 0;
-        }
-        int count = 0;
-        for (Line t:line) {
-            if (l.isEquavelent(t)) {
-                count++;
-            }
-        }
-        return count;
-    }
-    
-    public static int countNumber (HashMap<Double, ArrayList<Line>> total, Line l) {
-        double key = l.floorToNeareat(l.slope);
-        int count = countNumber(total.get(key), l) +countNumber(total.get(key + Line.epsilon), l) + 
-                    countNumber(total.get(key - Line.epsilon), l);//2.000001 and 1.9999999 and 2.0000000
-        return count;
-    }
-    
-    public static void insertLine(HashMap<Double, ArrayList<Line>> total, Line line) {
-        ArrayList<Line> arr = null;
-        double key = line.floorToNeareat(line.slope);
-        if (!total.containsKey(key)) {
-            arr = new ArrayList<Line>();
-            total.put(key, arr);
-        } else {
-            arr = total.get(key);
-        }
-        arr.add(line);
-    }
+   
 }
