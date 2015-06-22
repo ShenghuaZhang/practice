@@ -23,9 +23,10 @@ public class FactorialTrailingZeroes {
     public static int trailingZeroes(int n) {
         int res = 0;
         
-        while () {
-        	int multi = n / 10;
-        	int remainder = n % 10;
+        while (n/5 > 0) {
+        	res += n / 5;
+        	n /= 5;
         }
+        return res;
     }
 }
