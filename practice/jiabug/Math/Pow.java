@@ -12,7 +12,7 @@ package Math;
  * http://stackoverflow.com/questions/3884793/minimum-values-and-double-min-value-in-java
  * the result of original question will not overflow
  *
- * #DivideTwoIntegers
+ * #DivideTwoIntegers  #Sqrt
  */
 
 

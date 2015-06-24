@@ -10,7 +10,7 @@ package Math;
  * 
  * @author jiakangze
  * 
- * #Pow
+ * #Pow #Sqrt
  * 
  */
 
