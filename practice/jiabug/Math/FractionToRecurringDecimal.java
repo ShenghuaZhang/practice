@@ -33,7 +33,10 @@ public class FractionToRecurringDecimal {
     		
     	}
     	char sign = ((numerator ^ denominator) >>> 31 == 1) ? '-':' ';
+    	long n = Math.abs(numerator);
+    	long d = Math.abs(denominator);
     	res.append(sign);
+    	res.append(n/d);
     	
         
     }
