@@ -95,7 +95,7 @@ public class Pow {
     		if (Math.abs(half) > Double.MAX_VALUE/Math.abs(half)*Math.abs(x)) {
     			return Double.MAX_VALUE;
     		}
-    		return half * half / x;//every time, the result divides x, so it will not overflow
+    		return half * half / x;
     	}
     }
 
