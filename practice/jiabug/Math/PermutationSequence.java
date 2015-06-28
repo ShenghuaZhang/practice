@@ -1,11 +1,13 @@
 package Math;
 
+import java.util.ArrayList;
+
 /**
  * 60
  * https://leetcode.com/problems/permutation-sequence/
  * 
  * 
- * The set [1,2,3,…,n] contains a total of n! unique permutations.
+ * The set [1,2,3,ï¿½,n] contains a total of n! unique permutations.
  * By listing and labeling all of the permutations in order,
  * We get the following sequence (ie, for n = 3):
  * 
@@ -28,10 +30,42 @@ public class PermutationSequence {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.println(getPermutation(3,6));
+		
 
 	}
 	public static String getPermutation(int n, int k) {
+		if (n <= 0) {
+			return "";
+		}
 		
+		StringBuilder res = new StringBuilder();
+
+		k--;//then we can start the index of arraylist with 0. (line 61)
+		
+		int factorial = 1;
+		for (int i = 2; i < n; i++) {
+			factorial *= i;
+		}
+		
+		ArrayList<Integer> array = new ArrayList<Integer>();
+		for (int i = 1; i <= n; i++) {
+			array.add(i);
+		}
+		
+		int round = n - 1;
+		
+		while (round >= 0) {
+			int index = k / factorial;
+			k %= factorial;
+			res.append(array.get(index));
+			array.remove(index);
+			if (round > 0) {
+				factorial /= round;
+			}
+			round --;
+		}
+		return res.toString();
 	}
 
 }
