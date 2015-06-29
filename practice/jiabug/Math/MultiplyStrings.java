@@ -17,7 +17,8 @@ public class MultiplyStrings {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(multiply("0","12"));
+		System.out.println(multiply("8791743912739","9911999999"));
+		System.out.println(multiply_jiuzhang("8791743912739","9911999999"));
 
 	}
 	
@@ -54,6 +55,40 @@ public class MultiplyStrings {
     		num /= 10;
         }
         return res.reverse().toString();
+    }
+    
+    public static String multiply_jiuzhang(String num1, String num2) {
+    	if (num1 == null || num2 == null) {
+    		return "";
+    	}
+    	
+    	int len1 = num1.length();
+    	int len2 = num2.length();
+    	int len3 = len1 + len2;
+    	int i, j, product, carry;
+    	int[] res = new int[len3];
+    	for (i = len1 - 1; i >= 0; i--) {
+    		carry = 0;
+    		for (j = len2 - 1; j >= 0; j--) {
+    			product = res[i + j + 1] + carry + Character.getNumericValue(num1.charAt(i)) * Character.getNumericValue(num2.charAt(j));
+    					//Character.digit(num1.charAt(i), 10) * Character.digit(num2.charAt(j), 10);
+    			res[i + j + 1] = product % 10;
+    			carry = product / 10;
+    		}
+    		res[i + j + 1] = carry;
+    	}
+    	
+    	i = 0;
+    	while (i < len3 - 1 && res[i] == 0) {
+    		i++;
+    	}
+    	StringBuilder result = new StringBuilder();
+    	while (i < len3) {
+    		result.append(res[i++]);
+    	}
+    	return result.toString();
+
+    	
     }
 
 }
