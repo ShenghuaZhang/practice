@@ -61,11 +61,11 @@ public class BasicCalculator {
         	} else if (c == '(') {
         		stack.push(res);
         		stack.push(sign);
-        		res = 0;
+        		res = 0;//ignore the previous value, reset the old value
         		sign = 1;
         	} else if (c == ')') {
-        		res += sign * number;
-        		res = stack.pop() * res + stack.pop();
+        		res += sign * number;//inside value 
+        		res = stack.pop() * res + stack.pop();//add the previous value
         		number = 0;
         	}
         }
