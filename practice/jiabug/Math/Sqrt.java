@@ -33,7 +33,7 @@ public class Sqrt {
     	int r = x / 2 + 1;//we can remove the 1
     	
     	while (l <= r) {
-    		int m = (l + r) / 2 + 1; //if we add 1 at here. when the input is 1, 2, 3, it will dead loop
+    		int m = (l + r) / 2; //if we add 1 at here. when the input is 1, 2, 3, it will dead loop
     		//when l == r, m should equals l or r. but if we add 1 to m, it will not end
     		//if l = r is the result, we should return l or r. if we add 1 it will not end loop
     		if (x / m >= m && x / (m+1) < (m+1)) {
