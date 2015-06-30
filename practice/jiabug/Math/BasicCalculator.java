@@ -24,18 +24,55 @@ public class BasicCalculator {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Stack<Character> stack = new Stack<Character>();
+		stack.push('a');
+		stack.push('b');
+		stack.push('c');
+		System.out.println(stack.peek());
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+		
+		System.out.println(calculate("1-(5)"));
+		
 
 	}
     public static int calculate(String s) {
-        Stack<Character> stack = new Stack<Character>();
-        int i = s.length()-1;
+    	if (s.length() == 0 || s == null) {
+    		return 0;
+    	}
+        Stack<Integer> stack = new Stack<Integer>();
+        
         int res = 0;
-        while (i >= 0) {
-        	if (!stack.isEmpty() && (stack.peek() == '+' || stack.peek() == '-') && s.charAt(i) != '(' && s.charAt(i) != ')') {
-        		
+        int sign = 1;
+        int number = 0;
+        
+        for (int i = 0; i < s.length(); i++) {
+        	char c = s.charAt(i);
+        	if (Character.isDigit(c)) {
+        		number = number * 10 + (int)(c - '0');//a number may have two digits.
+        	} else if (c == '+') {
+        		res += sign * number;
+        		sign = 1;
+        		number = 0;
+        	} else if ( c == '-') {
+        		res += sign * number;
+        		sign = -1;
+        		number = 0;
+        	} else if (c == '(') {
+        		stack.push(res);
+        		stack.push(sign);
+        		res = 0;
+        		sign = 1;
+        	} else if (c == ')') {
+        		res += sign * number;
+        		res = stack.pop() * res + stack.pop();
+        		number = 0;
         	}
         }
-        
+        if (number != 0) {
+        	res += sign * number;
+        }
+        return res;
     }
 
 }
