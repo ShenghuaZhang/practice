@@ -12,6 +12,8 @@ package BitManipulation;
  * http://www.catonmat.net/blog/low-level-bit-hacks-you-absolutely-must-know/
  * http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetTable
  * 
+ * -x is same with ~x + 1
+ * 
  * @author jiakangze
  *
  */
@@ -22,6 +24,9 @@ public class NumberOfOneBits {
 
 		System.out.println(hammingWeight(-1));
 	}
+	
+	//Low Level Bit Hacks You Absolutely Must Know:reference
+	
     // you need to treat n as an unsigned value
     public static int hammingWeight(int n) {
     	int count = 0;
