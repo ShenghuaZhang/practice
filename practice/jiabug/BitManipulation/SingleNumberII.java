@@ -53,7 +53,7 @@ public class SingleNumberII {
     		ones = (nums[i] ^ ones) & (~twos);
     		twos = (nums[i] ^ twos) & (~ones);
     	}
-    	return ones;//evernote
+    	return ones;//evernote  if we return twos, it always will be 0
     }
 
 }

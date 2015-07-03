@@ -26,13 +26,17 @@ public class SingleNumber {
 		int [] nums = new int[]{-1};
 		System.out.println(singleNumberCommon(nums));
 	}
+	
+	
     public static int singleNumber(int[] nums) {
     	if (nums == null || nums.length == 0) {
     		return -1;
     	}
         int res = nums[0];
         for (int i = 1; i < nums.length; i++) {
-        	res ^= nums[i];
+        	res ^= nums[i];//we just need to focus on specific bit.  for example,  0, 1, 0. first two bits are different, after XOR, we will get 1. if next 
+        	               //number is 0(majority one), we will get 1(single number), and if the next number is 1(mojority one), we will get 0(single number).
+        	//so 1 XOR a bit, we will get the opposite number of the bit. so we will get the opposite bit of the mojority one.
         }
         return res;
     }
