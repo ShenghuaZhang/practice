@@ -14,6 +14,8 @@ import java.util.Set;
  * 
  * @author jiakangze
  *
+ * https://leetcode.com/discuss/6170/my-o-n-solution-using-xor
+ *
  * #SingleNumberII
  */
 

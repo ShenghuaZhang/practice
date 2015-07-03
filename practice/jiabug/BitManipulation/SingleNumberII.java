@@ -11,6 +11,7 @@ package BitManipulation;
  * 
  * @author jiakangze
  *
+ * https://leetcode.com/discuss/6632/challenge-me-thx
  * #SingleNumber
  */
 
@@ -42,6 +43,17 @@ public class SingleNumberII {
         	}
         }
         return res;
+    }
+    
+    public static int singleNumber_nice(int[] nums) {
+    	int ones = 0;
+    	int twos = 0;
+    	
+    	for (int i = 0; i < nums.length; i++) {
+    		ones = (nums[i] ^ ones) & (~twos);
+    		twos = (nums[i] ^ twos) & (~ones);
+    	}
+    	return ones;//evernote
     }
 
 }
