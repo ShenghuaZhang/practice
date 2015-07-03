@@ -14,6 +14,7 @@ import java.util.Set;
  * 
  * @author jiakangze
  *
+ * #SingleNumberII
  */
 
 public class SingleNumber {
@@ -24,6 +25,9 @@ public class SingleNumber {
 		System.out.println(singleNumberCommon(nums));
 	}
     public static int singleNumber(int[] nums) {
+    	if (nums == null || nums.length == 0) {
+    		return -1;
+    	}
         int res = nums[0];
         for (int i = 1; i < nums.length; i++) {
         	res ^= nums[i];
