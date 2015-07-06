@@ -19,7 +19,7 @@ import java.util.HashMap;
  * 
  * @author jiakangze
  * 
- * #FourSum
+ * #FourSum    #ThreeSum
  */
 
 public class TwoSum {
