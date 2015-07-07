@@ -2,7 +2,6 @@ package HashTable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -28,38 +27,87 @@ import java.util.List;
 public class FourSum {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		int[] nums = new int[]{0,1,5,0,1,5,5,-4};
+		List<List<Integer>> res = fourSum(nums, 11); 
+		for (int i = 0; i < res.size(); i++) {
+			System.out.println(res.get(i));
+		}
 	}
 	
     public static List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
-        List<Integer> item = new ArrayList<Integer>();
-        res.add(item);
         if (nums == null || nums.length < 4) {
         	return res;
         }
         Arrays.sort(nums);
-        int l = nums.length;
-        for (int i = 0; i < l-3; i++) {
-        	for (int j = i+1; j < l-2; j++) {
-        		for (int k = j+1; k < l-1; k++) {
-        			for (int m = k+1; m < l; m++) {
-        				List<Integer> list = new ArrayList<Integer>();
-        				if (nums[i] + nums[j] + nums[k] + nums[m] == target) {
-        					list.add(nums[i]);
-        					list.add(nums[j]);
-        					list.add(nums[k]);
-        					list.add(nums[m]);
-        				}
-        				if (!res.contains(list)) {
-        					res.add(list);
-        				}
-        			}
-        		}
+        
+        for (int i = nums.length-1; i >= 3; i--) {
+        	
+        	if (i < nums.length - 1 && nums[i] == nums[i+1]) {
+        		continue;
         	}
+        	
+        	List<List<Integer>> threesum = ThreeSum(nums, i-1, target - nums[i]);
+        	
+        	for (int j = 0; j < threesum.size(); j++) {
+        		threesum.get(j).add(nums[i]);
+        	}
+        	
+        	res.addAll(threesum);
         }
+        
         return res;
+    }
+    
+    private static List<List<Integer>> ThreeSum(int[] nums, int end, int target) {
+    	List<List<Integer>> res = new ArrayList<List<Integer>>();
+    	
+    	for (int i = end; i >= 2; i--) {
+    		
+    		if (i < end && nums[i] == nums[i+1]) {
+    			continue;
+    		}
+    		
+    		List<List<Integer>> twosum = TwoSum(nums, i-1, target - nums[i]);
+    		
+    		for (int j = 0; j < twosum.size(); j++) {
+    			twosum.get(j).add(nums[i]);
+    		}
+    		
+    		res.addAll(twosum);
+    	}
+    	return res;
+    }
+    
+    private static List<List<Integer>> TwoSum(int[] nums, int end, int target) {
+    	List<List<Integer>> res = new ArrayList<List<Integer>>();
+    	
+    	int l = 0;
+    	int r = end;
+    	
+    	while (l < r) {
+    		if (nums[l] + nums[r] == target) {
+    			List<Integer> item = new ArrayList<Integer>();
+    			item.add(nums[l]);
+    			item.add(nums[r]);
+    			res.add(item);
+    			
+    			l++;
+    			r--;
+    			
+    			while (l < r && nums[r] == nums[r+1]) {
+    				r--;
+    			}
+    			while (l < r && nums[l] == nums[l-1]) {
+    				l++;
+    			}
+    		} else if (nums[l] + nums[r] > target) {
+    			r--;
+    		} else {
+    			l++;
+    		}
+    	}
+    	return res;
     }
 
 }
