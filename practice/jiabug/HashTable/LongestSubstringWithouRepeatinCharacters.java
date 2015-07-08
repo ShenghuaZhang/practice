@@ -19,7 +19,7 @@ import java.util.HashSet;
 public class LongestSubstringWithouRepeatinCharacters {
 
 	public static void main(String[] args) {
-		System.out.println(lengthOfLongestSubstring("bbbbbbb"));
+		System.out.println(lengthOfLongestSubstring("bbtatlud"));
 	}
 	
     public static int lengthOfLongestSubstring(String s) {
@@ -27,28 +27,26 @@ public class LongestSubstringWithouRepeatinCharacters {
         if (s == null || s.length() == 0) {
         	return res;
         }
-        
+        int runner = 0;
+        int walker = 0;
         HashSet<Character> set = new HashSet<Character>();
-        for (int i = 0; i < s.length(); i++) {
-        	set.add(s.charAt(i));
-        	int length = 1;
-        	int j = i + 1;
-        	for (; j < s.length(); j++) {
-        		if (set.add(s.charAt(j))) {
-        			length++;
+        
+        while (runner < s.length()) {
+        	if (set.contains(s.charAt(runner))){
+        		if (runner - walker > res) {
+        			res = runner - walker;
         		}
+        		while (walker < s.length() && s.charAt(walker) != s.charAt(runner)) {//there is no need to write walker < s.length().
+        			set.remove(s.charAt(walker));
+        			walker++;
+        		}
+        		walker++;
+        	} else {
+        		set.add(s.charAt(runner));
         	}
-        	int k = i;
-        	while (s.charAt(k) != s.charAt(j)) {
-        		set.remove(s.charAt(k));
-        		k++;
-        	}
-        	i = k;
-        	if (length > res) {
-        		res= length;
-        	}
+        	runner++;
         }
-        return res;
+        return Math.max(res, runner - walker);
     }
 
 }
