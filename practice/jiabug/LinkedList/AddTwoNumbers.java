@@ -23,8 +23,8 @@ public class AddTwoNumbers {
 		// TODO Auto-generated method stub
 
 	}
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+/*    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         
-    }
+    }*/
 
 }
