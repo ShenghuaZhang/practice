@@ -91,5 +91,53 @@ public class SubstringWithConcatenationOfAllWords {
         }
         return res;
     }
+    
+    public static List<Integer> findSubstring_ganker(String s, String[] words) {
+    	List<Integer> res = new ArrayList<Integer>();
+    	
+    	if (s == null || s.length() == 0 || words == null || words.length == 0) {
+    		return res;
+    	}
+    	
+    	HashMap<String, Integer> map = new HashMap<String, Integer>();
+    	
+    	for (String i: words) {
+    		if (map.containsKey(i)) {
+    			map.put(i, map.get(i)+1);
+    		} else {
+    			map.put(i, 1);
+    		}
+    	}
+    	
+    	int wordLen = words[0].length();
+    	
+    	for (int i = 0; i < wordLen; i++) {
+    		HashMap<String, Integer> curmap = new HashMap<String, Integer>();
+    		int walker = i;
+    		int count = 0;
+    		for (int runner = i; runner < s.length()-wordLen; runner++) {
+    			String str = s.substring(runner, runner+wordLen);
+    			if (map.containsKey(str)) {
+    				if (curmap.containsKey(str)) {
+    					curmap.put(str, curmap.get(str)+1);
+    				} else {
+    					curmap.put(str, 1);
+    				}
+    				if (curmap.get(str) <= map.get(str)) {
+    					count++;
+    				} else {
+    					while (curmap.get(str) > map.get(str) ){
+    						String temp = s.substring(walker, walker+wordLen);
+    						curmap.put(str, curmap.get(str)-1);
+    						walker += wordLen;
+    					}
+    				}
+    				if (count == words.length) {
+    					res.add(walker);
+    				}
+    			}
+    		}
+    	}
+    }
 
 }
