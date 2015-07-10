@@ -1,5 +1,7 @@
 package HashTable;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,10 +29,67 @@ public class SubstringWithConcatenationOfAllWords {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		for (int i = 0; i < 3; i++) {
+			System.out.println("i:" + i);
+			for (int j = 0; j < 5; j++) {
+				if (j == 2) {
+					break;//break the inner loop
+				}
+				System.out.println("j:" + j);
+			}
+		}
+		System.out.println(findSubstring("wordgoodgoodgoodbestword", new String[]{"word","good","best","good"}).size());
 
 	}
-    public List<Integer> findSubstring(String s, String[] words) {
-        
+    public static List<Integer> findSubstring(String s, String[] words) {
+        List<Integer> res = new ArrayList<Integer>();
+        int wordLen = words[0].length();
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        for (String str : words) {
+        	if (map.containsKey(str)) {
+        		map.put(str, map.get(str)+1);
+        	} else {
+        		map.put(str, 1);
+        	}
+        }
+
+        for (int i = 0; i < s.length()-wordLen*words.length+1; i++) {//do not forget add one !!!
+        	int walker = i;
+            int count = 0;
+        	for (int runner = i; runner < s.length()-wordLen+1; runner += wordLen){//do not forget add one !!!!
+        		String str = s.substring(runner, runner+wordLen);
+        		if (map.containsKey(str)) {
+        			map.put(str, map.get(str)-1);
+        			if (map.get(str) < 0) {
+        				while (walker <= runner) {
+        					String temp  = s.substring(walker, walker+wordLen);
+        					map.put(temp, map.get(temp)+1);
+        					walker += wordLen;
+        				}
+        				break;
+        			} else {
+        				count++;
+        			}
+        			if (count == words.length) {
+        				res.add(walker);
+        				while (walker <= runner) {
+        					String temp  = s.substring(walker, walker+wordLen);
+        					map.put(temp, map.get(temp)+1);
+        					walker += wordLen;
+        				}
+        				break;
+        			}
+        		} else {
+        			while (walker < runner) {
+    					String temp  = s.substring(walker, walker+wordLen);
+    					map.put(temp, map.get(temp)+1);
+    					walker += wordLen;
+    				}
+        			break;
+        		}
+        	}
+        }
+        return res;
     }
 
 }
