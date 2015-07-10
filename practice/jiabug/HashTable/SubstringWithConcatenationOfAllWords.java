@@ -38,7 +38,7 @@ public class SubstringWithConcatenationOfAllWords {
 				System.out.println("j:" + j);
 			}
 		}
-		System.out.println(findSubstring("wordgoodgoodgoodbestword", new String[]{"word","good","best","good"}).size());
+		System.out.println(findSubstring_ganker("barfoofoobarthefoobarman", new String[]{"bar","foo","the"}).size());
 
 	}
     public static List<Integer> findSubstring(String s, String[] words) {
@@ -115,7 +115,7 @@ public class SubstringWithConcatenationOfAllWords {
     		HashMap<String, Integer> curmap = new HashMap<String, Integer>();
     		int walker = i;
     		int count = 0;
-    		for (int runner = i; runner < s.length()-wordLen; runner++) {
+    		for (int runner = i; runner <= s.length()-wordLen; runner+=wordLen) {
     			String str = s.substring(runner, runner+wordLen);
     			if (map.containsKey(str)) {
     				if (curmap.containsKey(str)) {
@@ -128,16 +128,31 @@ public class SubstringWithConcatenationOfAllWords {
     				} else {
     					while (curmap.get(str) > map.get(str) ){
     						String temp = s.substring(walker, walker+wordLen);
-    						curmap.put(str, curmap.get(str)-1);
+    						curmap.put(temp, curmap.get(temp)-1);
+    						if (curmap.get(temp) < map.get(temp)) {
+    							//"barfoofoobarthefoobarman", ["bar","foo","the"]
+    							//in this example, when we have two "foo", but for the second one, we do not add 1 for count.
+    							//we need begin with the second "foo", so we just do not minus 1.
+    							count--;
+    						}
     						walker += wordLen;
     					}
     				}
     				if (count == words.length) {
     					res.add(walker);
+    					String temp = s.substring(walker, walker+wordLen);
+    					curmap.put(temp, curmap.get(temp)-1);
+    					count--;
+    					walker += wordLen;
     				}
+    			} else {
+    				count = 0;
+    				curmap.clear();
+    				walker = runner + wordLen;
     			}
     		}
     	}
+    	return res;
     }
 
 }
