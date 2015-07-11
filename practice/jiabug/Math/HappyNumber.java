@@ -1,6 +1,7 @@
 package Math;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * 202
@@ -43,5 +44,20 @@ public class HappyNumber {
     		
     	}
     }
-
+    
+    public static boolean isHappy_good(int n) {
+    	HashSet<Integer> set = new HashSet<Integer>();
+        while (n != 1) {
+    	    int number = 0;
+    	    while (n > 0) {
+    	    	number += (n%10) * (n%10);
+    	    	n /= 10;
+    	    }
+    	    if (!set.add(number) && number != 1) {
+    	    	return false;
+    	    }
+    	    n = number;
+        }
+        return true;
+    }
 }

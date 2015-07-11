@@ -19,7 +19,8 @@ public class DivideTwoIntegers {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		System.out.println(Integer.MIN_VALUE - 0);
+		//think about the input -2147483648, 2
 	}
 	
 	
