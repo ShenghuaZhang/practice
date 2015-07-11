@@ -10,14 +10,20 @@ package LinkedList;
  * 
  * 
  * @author kajia
- *
+ * #PalindromeLinkedList
  */
 
 public class ReverseLinkedList {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		ListNode n1 = new ListNode(1);
+		ListNode n2 = new ListNode(2);
+		ListNode n3 = new ListNode(3);
+		n1.next = n2;
+		n2.next = n3;
+		n3.next = null;
+		System.out.println(reverseList_jiuzhang(n1).val);
 	}
 	
     public static ListNode reverseList_my(ListNode head) {
