@@ -31,7 +31,7 @@ public class IntersectionOfTwoLinkedLists {
 
 	}
 	
-    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    public static ListNode getIntersectionNodeI(ListNode headA, ListNode headB) {
         if (!hasIntersection(headA, headB)) {//if the two last nodes are not same, they must not have intersection.
         	return null;
         }
@@ -54,6 +54,101 @@ public class IntersectionOfTwoLinkedLists {
         return headA;
         
     }
+    
+    /*
+	 * 1. Traverse the first linked list(count the elements) and make a circular linked list.
+	 * 	(Remember last node so that we can break the circle later on).
+	 * 2. Now view the problem as find the loop in the second linked list.
+	 * 	So the problem is solved.
+	 * 3. Since we already know the length of the loop(size of first linked list)
+	 * 	we can traverse those many number of nodes in second list,
+	 * 	and then start another pointer from the beginning of second list.
+	 * 	we have to traverse until they are equal, and that is the required intersection point.
+	 * 4. remove the circle from the linked list.
+	 */
+    public static ListNode getIntersectionNodeII(ListNode headA, ListNode headB) {
+    	if (!hasIntersection(headA, headB)) {
+    		return null;
+    	}
+    	
+    	ListNode last = headA;
+    	ListNode first = headB;
+    	
+    	int length = 1;
+    	while (last.next != null) {
+    		last = last.next;
+    		length++;
+    	}
+    	last.next = headA;
+    	
+    	
+    	//B goes through the distance of |b-a|, then A and B will begin at the same line.
+    	while (length > 0) {//do not contain 0
+    		first = first.next;
+    		length--;
+    	}
+    	
+    	while (first != headB) {
+    		first = first.next;
+    		headB = headB.next;
+    	}
+    	
+    	last.next = null;
+    	
+    	return first;
+    }
+    
+    /*
+	 * 1) Let X be the length of the first linked list until intersection point.
+	 * Let Y be the length of the second linked list until the intersection point.
+	 * Let Z be the length of the linked list from intersection point to End of
+	 * the linked list including the intersection node.
+	 * We Have:
+	 * 				X + Z = length1;
+	 * 				Y + Z = length2;
+	 * 2) Reverse first linked list.
+	 * 3) Traverse Second linked list. Let C3 be the length of second list - 1. 
+	 * Now we have
+	 * 				X + Y = length3
+	 * We have 3 linear equations. By solving them, we get
+	 * 			X = (length1 + length3 - length2)/2;
+	 * 			Y = (length2 + length3 - length1)/2;
+	 * 			Z = (length1 + length2 - length3)/2;
+	 * WE GOT THE INTERSECTION POINT.
+	 * 4)  Reverse first linked list.
+	 * 
+	 * Advantage: No Comparison of pointers.
+	 * Disadvantage : Modifying linked list(Reversing list).
+	 */
+    public static ListNode getIntersectionNodeIII(ListNode headA, ListNode headB) {
+    	if (!hasIntersection(headA, headB)) {
+    		return null;
+    	}
+    	int length1 = length(headA);
+    	int length2 = length(headB);
+    	ListNode reverseHeadA = reverse(headA);
+    	int length3 = length(headB);
+    	
+    	int Y = (length2 + length3 - length1 - 1) / 2;
+    	while(Y > 0) {
+    		headB = headB.next;
+    		Y--;
+    	}
+    	headA = reverse(reverseHeadA);
+    	return headB;
+    }
+    
+    private static ListNode reverse (ListNode node) { 
+    	ListNode pre = null;
+    	while (node != null) {
+    		ListNode temp = node.next;
+    		node.next = pre;
+    		pre = node;
+    		node = temp;
+    	}
+    	return pre;
+    }
+    
     private static int length (ListNode node) {
     	int count = 0;
     	while (node != null) {
@@ -68,7 +163,7 @@ public class IntersectionOfTwoLinkedLists {
     	}
     	for (;headA.next != null; headA = headA.next);
     	for (;headB.next != null; headB = headB.next);
-    	return true;
+    	return headA == headB;//we compare the physical address directly.
     }
 
 }
