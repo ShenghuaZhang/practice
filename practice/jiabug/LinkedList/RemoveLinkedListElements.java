@@ -25,8 +25,12 @@ public class RemoveLinkedListElements {
         while (head != null && head.val == val) {
         	head = head.next;
         }
+        if (head == null) {
+        	return head;
+        }
         ListNode newHead = head;
         ListNode pre = head;
+        head = head.next;
         while (head != null) {
         	if (head.val == val) {
         		head = head.next;
