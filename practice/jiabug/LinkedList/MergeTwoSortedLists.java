@@ -40,5 +40,29 @@ public class MergeTwoSortedLists {
         }
         return newHead.next;
     }
+    
+    public static ListNode mergeTwoLists_ganker(ListNode l1, ListNode l2) {
+    	ListNode newHead = new ListNode(0);
+    	
+    	newHead.next = l1;
+    	
+    	ListNode pre = newHead;
+    	while (l1 != null && l2 != null) {
+    		if (l1.val > l2.val) {
+    			ListNode temp = l2.next;
+    			l2.next = l1;
+    			pre.next = l2;
+    			l2 = temp;
+    			
+    		} else {
+    			l1 = l1.next;
+    		}
+    		pre = pre.next;
+    	}
+    	if (l2 != null) {
+    		pre.next = l2;
+    	}
+    	return newHead.next;
+    }
 
 }
