@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 /**
  * 16
+ * https://leetcode.com/problems/3sum-closest/
+ * 
  * Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target.
  * Return the sum of the three integers. You may assume that each input would have exactly one solution.
  * 
@@ -36,6 +38,10 @@ public class ThreeSumClosest {
         	}
         	
         	int gap = twoSumGap(nums, i-1, nums[i] - target);
+        	if (gap == 0) {
+        		res = 0;
+        		break;
+        	}
         	if (Math.abs(gap) < Math.abs(res)) {
         		res = gap;
         	}
