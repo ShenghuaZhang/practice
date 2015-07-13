@@ -21,7 +21,7 @@ public class RotateList {
 
 	}
 	
-    public static ListNode rotateRight(ListNode head, int k) {
+    public static ListNode rotateRight_my(ListNode head, int k) {
     	if (head == null) {
     		return null;
     	}
@@ -31,18 +31,27 @@ public class RotateList {
         	last = last.next;
         	length++;
         }
-        int rotate = length - k % (length+1);
+        int rotate = k % length;
         
         if (rotate == 0) {
         	return head;
         }
-        last.next = head;       
-        while (rotate > 0) {
-        	head = head.next;
+        
+        ListNode walker = head;
+        ListNode runner = head;
+        
+        while (rotate != 0) {
+        	runner = runner.next;
         	rotate--;
         }
-        ListNode newhead = head.next;
-        head.next = null;
+        while (runner.next != null) {
+        	runner = runner.next;
+        	walker = walker.next;
+        }
+        
+        ListNode newhead = walker.next;
+        runner.next = head;
+        walker.next = null;
         
         return newhead;
     }
