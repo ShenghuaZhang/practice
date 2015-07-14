@@ -11,6 +11,8 @@ package LinkedList;
  * 
  * @author jiakangze
  *
+ * http://www.cnblogs.com/ccdev/archive/2012/09/06/2673618.html
+ *
  * #LinkedListCycle
  */
 

@@ -42,14 +42,17 @@ public class MultiplyStrings {
         	
         	for (int j = Math.min(i-1, num1.length()); j>= 1; j--) {
         		
-        		if(i - j <= num2.length()) {
+        		if (i - j <= num2.length()) {
         			num += (int)(num1.charAt(j-1) - '0') * (int)(num2.charAt(i-1-j) - '0');
+        		} else {
+        			break;//more efficient
         		}
         		
         		
         	}
         	if (i != 1 || num > 0) {
-    			res.append(num%10);
+    			res.append(num%10);//the most significant bit of result only can come from carry.
+    			//so, if num == 0, the carry will be 0, then we do not need to continue.
     		}
     		
     		num /= 10;
