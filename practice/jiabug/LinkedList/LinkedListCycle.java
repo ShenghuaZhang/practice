@@ -22,11 +22,8 @@ public class LinkedListCycle {
 
 	}
     public static boolean hasCycle(ListNode head) {
-        if (head == null) {
-            return false;
-        }
         ListNode runner = head;
-        while (runner.next != null && runner.next.next != null) {
+        while (runner != null && runner.next != null) {
             runner = runner.next.next;
             head = head.next;
             if (runner == head) {
