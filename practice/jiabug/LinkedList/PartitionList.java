@@ -22,22 +22,34 @@ public class PartitionList {
 
 	}
 	public static ListNode partition(ListNode head, int x) {
-		ListNode pre1 = new ListNode(0);
-		ListNode cur1 = head;
-		
-		ListNode head2 = new ListNode(0);
-		ListNode cur2 = head2;
-		
-		while (cur1 != null) {
-			ListNode temp = cur1.next;
-			if (cur1.val >= x) {
-				cur2.next = cur1;
-				cur2 = cur2.next;
-				cur2.next = null;
-				cur1 = temp;
-			}
-			
+		if (head == null) {
+			return null;
 		}
+		
+		//we leave the big part in the origin position. and insert the small ones after the lastsmall
+		ListNode helper = new ListNode(0);
+		ListNode lastSmall = helper;
+		helper.next = head;
+		
+		ListNode cur = head;
+		ListNode lastBig = null;
+		
+		while (cur != null) {
+			if (cur.val >= x) {
+				lastBig = cur;
+				cur = cur.next;
+			} else if (lastBig == null) {
+				lastSmall = cur;
+				cur = cur.next;
+			} else {
+				lastBig.next = cur.next;
+				cur.next = lastSmall.next;//using this to connect the small part and big part
+				lastSmall.next = cur;
+				lastSmall = cur;
+				cur = lastBig.next;
+			}
+		}
+		return helper.next;
 	}
 	
 	
