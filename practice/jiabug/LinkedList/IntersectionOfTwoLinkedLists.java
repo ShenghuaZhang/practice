@@ -127,9 +127,10 @@ public class IntersectionOfTwoLinkedLists {
     	int length1 = length(headA);
     	int length2 = length(headB);
     	ListNode reverseHeadA = reverse(headA);
-    	int length3 = length(headB);
+    	int length3 = length(headB) - 1;
     	
-    	int Y = (length2 + length3 - length1 - 1) / 2;
+    	int Y = (length2 + length3 - length1) / 2;
+    	//length2 + length3  - length1 - 1 is even. so when we add 1, the result won't change
     	while(Y > 0) {
     		headB = headB.next;
     		Y--;
