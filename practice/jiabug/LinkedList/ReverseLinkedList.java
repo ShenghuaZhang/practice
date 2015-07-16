@@ -59,6 +59,7 @@ public class ReverseLinkedList {
     }
     //recursive method
     //think about the recursive process
+    //这里我想多说一下reverse操作，因为这是链表最常见的操作。有时候在第一轮电面这种比较基础的面试中，可能会要求实现reverse操作，但是因为有点过于简单，面试官会要求递归和非递归都实现一下。
     public static ListNode reverseList_recursive(ListNode head) {
     	 return helper(head, null);
     }
