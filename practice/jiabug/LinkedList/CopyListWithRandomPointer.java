@@ -19,6 +19,34 @@ public class CopyListWithRandomPointer {
 	public static void main(String[] args) {
 		
 	}
+	/* Traverse one time, but using HashMap which need extra space O(n) */
+	public static RandomListNode copyrRandomList(RandomListNode head) {
+		HashMap<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
+		
+		RandomListNode cur = head;
+		
+		while (cur != null) {
+			if (!map.containsKey(cur)) {
+				map.put(cur, new RandomListNode(cur.label));
+			}
+			if (cur.next != null) {
+				if (!map.containsKey(cur.next)) {
+					map.put(cur.next, new RandomListNode(cur.next.label));
+				}
+				map.get(cur).next = map.get(cur.next);
+			}
+			
+			if (cur.random != null) {
+				if (!map.containsKey(cur.random)) {
+					map.put(cur.random, new RandomListNode(cur.random.label));
+				}
+				map.get(cur).random = map.get(cur.random);
+			}
+			cur = cur.next;
+		}
+		return map.get(head);
+	}
+	
 	/* Traverse two times, but using HashMap which need extra space O(n) */
     public static RandomListNode copyRandomList(RandomListNode head) {
     	if (head == null) {
@@ -42,7 +70,7 @@ public class CopyListWithRandomPointer {
         }
         return newhead;
     }
-    
+    /* Traverse three times, not using hash map */
     public static RandomListNode copyRandomList_good(RandomListNode head) {
     	if (head == null) {
     		return null;

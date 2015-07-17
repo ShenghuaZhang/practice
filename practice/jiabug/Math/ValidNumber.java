@@ -34,7 +34,7 @@ public class ValidNumber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(isNumber("6e6.5"));
+		System.out.println(isNumber("2e+"));
 
 	}
     public static boolean isNumber(String s) {
