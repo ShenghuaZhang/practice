@@ -32,8 +32,7 @@ public class EvaluateReversePolishNotation {
         
         Stack<Integer> stack = new Stack<Integer>();
         
-        for (int i = 0; i < tokens.length; i++) {
-        	String s = tokens[i];
+        for (String s: tokens) {
         	if (s.equals("+")) {
         		stack.push(stack.pop() + stack.pop());
         	} else if (s.equals("-")) {
@@ -46,8 +45,7 @@ public class EvaluateReversePolishNotation {
         		int y = stack.pop();
         		stack.push(y / x);
         	} else {
-        		int temp = Integer.parseInt(s);
-        		stack.push(temp);
+        		stack.push(Integer.parseInt(s));
         	}
         }
         return stack.pop();
