@@ -1,5 +1,6 @@
 package HashTable;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -50,6 +51,34 @@ public class LongestSubstringWithouRepeatinCharacters {
         	runner++;
         }
         return Math.max(res, runner - walker);
+    }
+    
+    public static int lengthOfLongestSubstring_second(String s) {
+    	int count = 0;
+    	HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+    	
+    	int pre = 0;
+    	int cur = 0;
+    	
+    	while (cur < s.length()) {
+    		char ch = s.charAt(cur);
+    		if (!map.containsKey(ch)) {
+    			map.put(ch, cur);
+    			cur++;
+    		} else {
+    			if (map.size() > count) {
+    				count = map.size();
+    			}
+    			while (s.charAt(pre) != ch) {
+    				map.remove(s.charAt(pre));
+    				pre++;
+    			}
+    			map.remove(ch);
+    			pre++;
+    		}
+    	}
+    	
+    	return Math.max(count, map.size());
     }
 
 }

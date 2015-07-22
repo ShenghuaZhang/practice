@@ -40,7 +40,7 @@ public class MultiplyStrings {
         
         for (int i = num1.length() + num2.length(); i >=1; i--) {
         	
-        	for (int j = Math.min(i-1, num1.length()); j>= 1; j--) {
+        	for (int j = Math.min(i-1, num1.length()); j >= 1; j--) {
         		
         		if (i - j <= num2.length()) {
         			num += (int)(num1.charAt(j-1) - '0') * (int)(num2.charAt(i-1-j) - '0');
