@@ -41,7 +41,7 @@ public class Anagrams {
         }*/ 
         // using this method, we can not record the first string.
     	List<String> res = new ArrayList<String>();
-    	if (strs == null || strs.length == 1) {
+    	if (strs == null || strs.length <= 1) {
     		return res;
     	}
     	HashMap<String, List<String>> map = new HashMap<String, List<String>>();
