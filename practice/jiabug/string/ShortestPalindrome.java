@@ -19,53 +19,46 @@ public class ShortestPalindrome {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(shortestPalindrome("aaaaaaa"));
+		System.out.println(shortestPalindrome("abcd"));
 		
 		String s = "ab";
 		StringBuilder res = new StringBuilder(s);
-		res.insert(2, "e");
-		//System.out.println(res.toString());
+		//System.out.println(res.substring(0,2));
 
 	}
     public static String shortestPalindrome(String s) {
-        int start = 0;
-        int end = 0;
-        int longest = 0;
-        for (int i = 0; i < s.length(); i++) {
-        	int len1 = helper(s, i, i);
-        	int len2 = helper(s, i, i+1);
-        	
-        	int len = Math.max(len1, len2);
-        	
-        	if (len > longest) {
-        		start = i - (len-1) / 2;
-        		end = i + len/2;
-        		longest = len;
-        	}
-        }
-        StringBuilder res = new StringBuilder(s);
-        end++;
-        while (end < res.length()) {
-        	res.insert(start,res.charAt(end));
-        	end += 2;
-        }
-        System.out.println("res: " + res);
-        System.out.println("end: " + end);
-        start--;
-        while (start >= 0) {
-        	res.insert(end, res.charAt(start));
-        	start--;
-        }
-        return res.toString();
-        
+    	if (s == null) {
+    		return null;
+    	}
+    	if (s.length() == 0) {
+    		return "";
+    	}
+    	StringBuilder res = new StringBuilder(s);
+    	for (int i = res.length()-1; i >= 0; i--) {
+    		if (isPalindrome(res.substring(0, i+1))) {
+    			i++;
+    			while (i < s.length()) {
+    				res.insert(0, s.charAt(i));
+    				i++;
+    			}
+    			return res.toString();
+    		}
+    	}
+    	return "";
+    	
+    }
+    private static boolean isPalindrome(String s) {
+    	int pre = 0;
+    	int last = s.length() - 1;
+    	while (pre < last) {
+    		if (s.charAt(pre) != s.charAt(last)) {
+    			return false;
+    		}
+    		pre++;
+    		last--;
+    	}
+    	return true;
     }
     
-    private static int helper(String s, int start, int end) {
-    	while(start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
-    		start--;
-    		end++;
-    	}
-    	return end - start - 1;
-    }
 
 }
