@@ -18,54 +18,80 @@ package string;
 public class ShortestPalindrome {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(shortestPalindrome("aaaaaaa"));
 		
-		String s = "ab";
-		StringBuilder res = new StringBuilder(s);
-		res.insert(2, "e");
-		//System.out.println(res.toString());
+		System.out.println(shortestPalindrome("aba"));
+		
 
 	}
-    public static String shortestPalindrome(String s) {
-        int start = 0;
-        int end = 0;
-        int longest = 0;
-        for (int i = 0; i < s.length(); i++) {
-        	int len1 = helper(s, i, i);
-        	int len2 = helper(s, i, i+1);
-        	
-        	int len = Math.max(len1, len2);
-        	
-        	if (len > longest) {
-        		start = i - (len-1) / 2;
-        		end = i + len/2;
-        		longest = len;
+    public static String shortestPalindrome_KMP(String s) {
+        if (s == null || s.length() == 0) {
+        	return "";
+        }
+        
+        StringBuilder total = new StringBuilder(s);
+        StringBuilder rev = new StringBuilder(s);
+        total.append('#').append(rev.reverse()).append('@');
+        System.out.println(total);
+        
+        int[] next = new int[total.length()];
+        
+        next[0] = -1;
+        int j = 0;
+        int k = -1;
+        while (j < total.length()-1) {
+        	if(k == -1 || total.charAt(j) == total.charAt(k)) {
+        		k++;
+        		j++;
+        		if (total.charAt(j) != total.charAt(k)) {
+        			next[j] = k;
+        		} else {
+        			next[j] = next[k];
+        		}
+        	} else {
+        		k = next[k];
         	}
         }
         StringBuilder res = new StringBuilder(s);
-        end++;
-        while (end < res.length()) {
-        	res.insert(start,res.charAt(end));
-        	end += 2;
-        }
-        System.out.println("res: " + res);
-        System.out.println("end: " + end);
-        start--;
-        while (start >= 0) {
-        	res.insert(end, res.charAt(start));
-        	start--;
-        }
+        System.out.println(next[total.length()-1]);
+        res.insert(0, rev.substring(0, rev.length() - next[total.length()-1]));
         return res.toString();
-        
     }
     
-    private static int helper(String s, int start, int end) {
-    	while(start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
-    		start--;
-    		end++;
+    public static String shortestPalindrome(String s) {
+    	if (s == null || s.length() <=1) {
+    		return s;
     	}
-    	return end - start - 1;
+    	
+    	int len = s.length();
+    	int mid = len/2;
+    	String res = "";
+    	
+    	for (int i = mid; i >= 1; i--) {
+    		if (s.charAt(i) == s.charAt(i-1)) {
+    			if ((res = helper(s, i-1, i)) != null) {
+    				return res;
+    			}
+    		} else {
+    			if ((res = helper(s, i-1, i-1)) != null) {
+    				return res;
+    			}
+    		}
+    	}
+    	return res;
     }
-
+    
+    public static String helper(String s, int l, int r) {
+    	int i = 1;
+    	for (; l-i >= 0; i++) {
+    		if (s.charAt(l-i) != s.charAt(r+i)) {
+    			break;
+    		}
+    	}
+    	if (l-i >= 0) {
+    		return null;
+    	}
+    	StringBuilder res = new StringBuilder(s.substring(r+i, s.length()));
+    	
+    	return res.reverse().append(s).toString();
+    }
 }
